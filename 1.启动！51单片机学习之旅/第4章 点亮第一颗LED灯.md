@@ -1,0 +1,81 @@
+# 第四章 点亮第一颗LED灯
+
+## 1. 硬件介绍
+
+## 1.1 LED简介
+
+    百度百科关于发光二极管的介绍[发光二极管_百度百科 (baidu.com)](https://baike.baidu.com/item/%E5%8F%91%E5%85%89%E4%BA%8C%E6%9E%81%E7%AE%A1/1521336)
+
+    所谓的LED就是发光二极管啦，它具有单向导通性，学过模电的都知道。通过5mA点亮即可发光，电流越大越亮，但是不能太大了，不然会烧坏，这时候我们就会在LED管脚上串联一个电阻，目的就是限流，因此这些电阻又叫做“限流电阻”
+
+    当发光二极管发光的时候，用万用表测量它两端的电压，会得到大约1.7V，这个电压又叫做发光二极管的“导通压降”（啊，又是模电）
+
+    下面看看几个LED的图咯：
+
+<img src="https://ts1.cn.mm.bing.net/th/id/R-C.3d635fdc51eb40fa629f7626c058607a?rik=nttpWIUSxuFrpQ&riu=http%3a%2f%2fwww.jldianzi.com%2fupfile%2fimages%2f2009032719184758908.JPG&ehk=Xm14MV8Lr3re%2f2uJAoCXff5lorGPhycnnxw6kCF4MbQ%3d&risl=&pid=ImgRaw&r=0" title="" alt="" width="259">
+
+<img src="https://ts1.cn.mm.bing.net/th/id/R-C.a7ec01a01696a4750a41824d359ccaa0?rik=iSC0yMca0ldAfw&riu=http%3a%2f%2ffile4.youboy.com%2fa%2f54%2f66%2f53%2f8%2f2851348.gif&ehk=XpmPjbt82sLJZERH7sCZu6wVELb41Bjy13sIlNh0xPE%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1" title="" alt="" width="263">
+
+<img src="https://ts1.cn.mm.bing.net/th/id/R-C.367fe5bd0015aad40d844b9276073a5f?rik=4z4eMrDtkqX2fA&riu=http%3a%2f%2ffile.china-nengyuan.com%2f999%2fproduct%2fbig%2f201801%2fp557959001517369628.jpg&ehk=P6vuNrMWOss8PJug9EWufQCX0OwL44mFssKbHKvKhbY%3d&risl=&pid=ImgRaw&r=0" title="" alt="" width="269">
+
+    值得注意的是：直插式二极管长脚为阳极（正极），短脚为阴极（负极），我们初中时就学过了电流从正极流向负极，所以在DIY的时候别电源接反了（我就因为这个烧个几个模块还有一个CPU:sob:
+
+## 2. 硬件设计
+
+    我们的普中A7开发板上面板载了LED模块，如下图所示：
+
+![](https://img.picgo.net/2024/05/24/-2024-05-24-153535c3a71ffbc91e047e.png)
+
+    该模块独立，可以自由连接单片机IO口，因此D1-D8可连接到单片机的P20-P27口。
+
+    LED有两种接法：即共阴和共阳，共阳就是LED阳极管脚(+)接电源VCC(+)，阴极管脚通过一个限流电阻（RP9 471）接到P2口上。关于共阳共阴更加详细：[ 数码管共阳和共阴是什么意思？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/39882534)
+
+    根据前面介绍和模电知识，要让LED发光，即对应的阴极管脚应为低电平，若为高电平熄灭（还是简单解释一下吧：这是因为LED是一种二极管，在正向偏置（阳极高于阴极电压）时才能工作。当LED的阴极与地（零电位）相连时，通过LED的电流从阳极流向阴极，使LED正向偏置，从而导致发光。因此，为了使LED发光，对应的阴极管脚需要保持低电平，以确保正向偏置状态。
+
+    所以下面软件设计要实现的就是让P2口输出低电平，从而使LED亮
+
+## 3. 软件设计
+
+    本章要实现的功能是：点亮D1指示灯。前面我们已经学会怎么创建工程了，现在我们仅需写代码就行了。代码如下：
+
+```c
+#include <REGX52.H> // 头文件
+
+sbit LED = P2^0; // 将P2_0管脚定义为LED
+
+int main()
+{
+    LED = 0; // 设置LED电平为0，即低电平
+
+    return 0;    
+}
+```
+
+    关于头文件和sbit可以参考：[sbit在c语言中的作用,sbit是什么意思-CSDN博客](https://blog.csdn.net/weixin_28933797/article/details/117005852)[reg52.h头文件的内容 - 知乎 (zhihu.com)](https://zhuanlan.zhihu.com/p/614160046)简单来说sbit就是定义的意思，REGX52.H与stdio.h一样，就是编译器提前写好了一些功能，你只需调用继续咯
+
+    或者我们可以直接令P2口为0，我建议还是定义一下，别人看你的程序就会一目了然
+
+```c
+#include <REGX52.H> // 头文件
+
+int main()
+{
+    P2_0 = 0; // 设置P2_0口电平为0，即低电平
+
+    return 0;    
+}
+```
+
+## 4. 实验现象
+
+    看，D1已经被我们点亮了！
+
+    注意嗷：要用一根线把D1和P2_0口连起来
+
+<img src="https://img.picgo.net/2024/05/24/IMG_20240524_1559400a0cf75267a7a93a.jpg" title="" alt="" width="637">
+
+## 5. 小结
+
+    我们终于点亮了第一颗LED灯，不算困难，现在我们知道了，操作模块，就是利用模块的特性，设计代码，与单片机的IO口相连，怎么样，很简单吧。后面我们的操作也是这样，先介绍硬件特性，再写代码，导线再一连，大功告成
+
+    下一章我们就开始花式玩转LED灯（闪烁、流水）
