@@ -10,13 +10,9 @@
 
     当发光二极管发光的时候，用万用表测量它两端的电压，会得到大约1.7V，这个电压又叫做发光二极管的“导通压降”（啊，又是模电）
 
-    下面看看几个LED的图咯：
+    下面看看LED的图咯：
 
 <img src="https://ts1.cn.mm.bing.net/th/id/R-C.3d635fdc51eb40fa629f7626c058607a?rik=nttpWIUSxuFrpQ&riu=http%3a%2f%2fwww.jldianzi.com%2fupfile%2fimages%2f2009032719184758908.JPG&ehk=Xm14MV8Lr3re%2f2uJAoCXff5lorGPhycnnxw6kCF4MbQ%3d&risl=&pid=ImgRaw&r=0" title="" alt="" width="259">
-
-<img src="https://ts1.cn.mm.bing.net/th/id/R-C.a7ec01a01696a4750a41824d359ccaa0?rik=iSC0yMca0ldAfw&riu=http%3a%2f%2ffile4.youboy.com%2fa%2f54%2f66%2f53%2f8%2f2851348.gif&ehk=XpmPjbt82sLJZERH7sCZu6wVELb41Bjy13sIlNh0xPE%3d&risl=&pid=ImgRaw&r=0&sres=1&sresct=1" title="" alt="" width="263">
-
-<img src="https://ts1.cn.mm.bing.net/th/id/R-C.367fe5bd0015aad40d844b9276073a5f?rik=4z4eMrDtkqX2fA&riu=http%3a%2f%2ffile.china-nengyuan.com%2f999%2fproduct%2fbig%2f201801%2fp557959001517369628.jpg&ehk=P6vuNrMWOss8PJug9EWufQCX0OwL44mFssKbHKvKhbY%3d&risl=&pid=ImgRaw&r=0" title="" alt="" width="269">
 
     值得注意的是：直插式二极管长脚为阳极（正极），短脚为阴极（负极），我们初中时就学过了电流从正极流向负极，所以在DIY的时候别电源接反了（我就因为这个烧个几个模块还有一个CPU:sob:
 
@@ -28,7 +24,7 @@
 
     该模块独立，可以自由连接单片机IO口，因此D1-D8可连接到单片机的P20-P27口。
 
-    LED有两种接法：即共阴和共阳，共阳就是LED阳极管脚(+)接电源VCC(+)，阴极管脚通过一个限流电阻（RP9 471）接到P2口上。关于共阳共阴更加详细：[ 数码管共阳和共阴是什么意思？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/39882534)
+    LED有两种接法：即共阴和共阳，共阳就是LED阳极管脚(+)接电源VCC(+)，阴极管脚通过一个限流电阻（RP9 471）接到P2口上。（我们开发板上面就是使用的共阳接法）关于共阳共阴更加详细：[ 数码管共阳和共阴是什么意思？ - 知乎 (zhihu.com)](https://www.zhihu.com/question/39882534)
 
     根据前面介绍和模电知识，要让LED发光，即对应的阴极管脚应为低电平，若为高电平熄灭（还是简单解释一下吧：这是因为LED是一种二极管，在正向偏置（阳极高于阴极电压）时才能工作。当LED的阴极与地（零电位）相连时，通过LED的电流从阳极流向阴极，使LED正向偏置，从而导致发光。因此，为了使LED发光，对应的阴极管脚需要保持低电平，以确保正向偏置状态。
 
@@ -79,3 +75,7 @@ int main()
     我们终于点亮了第一颗LED灯，不算困难，现在我们知道了，操作模块，就是利用模块的特性，设计代码，与单片机的IO口相连，怎么样，很简单吧。后面我们的操作也是这样，先介绍硬件特性，再写代码，导线再一连，大功告成
 
     下一章我们就开始花式玩转LED灯（闪烁、流水）
+
+---
+
+2024.6.24修订，后期不再维护
