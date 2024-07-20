@@ -1,0 +1,110 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        06/08/2024  12:45:07  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+E:\DIANZI\KEIL C51\C51\BIN\BL51.EXE main.obj TO template RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  E:\DIANZI\KEIL C51\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  template (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0003H     ABSOLUTE     
+            CODE    0006H     0024H     UNIT         ?PR?EXTI0?MAIN
+            CODE    002AH     000CH     UNIT         ?C_C51STARTUP
+            CODE    0036H     000BH     UNIT         ?PR?_DELAY_10US?MAIN
+            CODE    0041H     0007H     UNIT         ?PR?EXTI0_INIT?MAIN
+            CODE    0048H     0005H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   template (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?PR?EXTI0?MAIN
+  +--> ?PR?_DELAY_10US?MAIN
+
+*** NEW ROOT ***************************************************
+
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?EXTI0_INIT?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  template (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/08/2024  12:45:07  PAGE 2
+
+
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:0041H         PUBLIC        exti0_init
+  B:00A8H.7       PUBLIC        EA
+  B:00A0H.0       PUBLIC        LED1
+  B:00B0H.2       PUBLIC        KEY3
+  C:0048H         PUBLIC        main
+  C:0036H         PUBLIC        _delay_10us
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.0       PUBLIC        IT0
+  C:0006H         PUBLIC        exti0
+  -------         PROC          _DELAY_10US
+  D:0006H         SYMBOL        ten_us
+  C:0036H         LINE#         10
+  C:0036H         LINE#         11
+  C:0036H         LINE#         12
+  C:0040H         LINE#         13
+  -------         ENDPROC       _DELAY_10US
+  -------         PROC          EXTI0_INIT
+  C:0041H         LINE#         16
+  C:0041H         LINE#         17
+  C:0041H         LINE#         18
+  C:0043H         LINE#         19
+  C:0045H         LINE#         20
+  C:0047H         LINE#         21
+  -------         ENDPROC       EXTI0_INIT
+  -------         PROC          EXTI0
+  C:0006H         LINE#         23
+  C:0013H         LINE#         25
+  C:001AH         LINE#         27
+  C:001DH         LINE#         28
+  C:001FH         LINE#         29
+  -------         ENDPROC       EXTI0
+  -------         PROC          MAIN
+  C:0048H         LINE#         30
+  C:0048H         LINE#         31
+  C:0048H         LINE#         32
+  C:004BH         LINE#         34
+  C:004BH         LINE#         35
+  C:004BH         LINE#         37
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=9.0 xdata=0 code=77
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

@@ -1,0 +1,117 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        05/17/2021  16:22:13  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\YZ\KEILC51\C51\BIN\BL51.EXE main.obj TO template RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  D:\YZ\KEILC51\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  template (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            IDATA   0008H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     000CH     UNIT         ?C_C51STARTUP
+                    000FH     0004H                  *** GAP ***
+            CODE    0013H     0003H     ABSOLUTE     
+            CODE    0016H     0024H     UNIT         ?PR?EXTI1?MAIN
+            CODE    003AH     000BH     UNIT         ?PR?_DELAY_10US?MAIN
+            CODE    0045H     0007H     UNIT         ?PR?EXTI1_INIT?MAIN
+            CODE    004CH     0005H     UNIT         ?PR?MAIN?MAIN
+
+
+
+OVERLAY MAP OF MODULE:   template (MAIN)
+
+
+SEGMENT
+  +--> CALLED SEGMENT
+---------------------
+?PR?EXTI1?MAIN
+  +--> ?PR?_DELAY_10US?MAIN
+
+*** NEW ROOT ***************************************************
+
+?C_C51STARTUP
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN
+  +--> ?PR?EXTI1_INIT?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  template (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+BL51 BANKED LINKER/LOCATER V6.22                                                      05/17/2021  16:22:13  PAGE 2
+
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  C:0045H         PUBLIC        exti1_init
+  B:00A8H.7       PUBLIC        EA
+  B:00A0H.0       PUBLIC        LED1
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  B:00B0H.3       PUBLIC        KEY4
+  D:00D8H         PUBLIC        CCON
+  C:004CH         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:003AH         PUBLIC        _delay_10us
+  B:0088H.2       PUBLIC        IT1
+  B:00A8H.2       PUBLIC        EX1
+  C:0016H         PUBLIC        exti1
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY_10US
+  D:0006H         SYMBOL        ten_us
+  C:003AH         LINE#         25
+  C:003AH         LINE#         26
+  C:003AH         LINE#         27
+  C:0044H         LINE#         28
+  -------         ENDPROC       _DELAY_10US
+  -------         PROC          EXTI1_INIT
+  C:0045H         LINE#         36
+  C:0045H         LINE#         37
+  C:0045H         LINE#         38
+  C:0047H         LINE#         39
+  C:0049H         LINE#         40
+  C:004BH         LINE#         41
+  -------         ENDPROC       EXTI1_INIT
+  -------         PROC          MAIN
+  C:004CH         LINE#         49
+  C:004CH         LINE#         50
+  C:004CH         LINE#         51
+  C:004FH         LINE#         53
+  C:004FH         LINE#         54
+  C:004FH         LINE#         56
+  -------         ENDPROC       MAIN
+  -------         PROC          EXTI1
+  C:0016H         LINE#         59
+  C:0023H         LINE#         61
+  C:002AH         LINE#         62
+  C:002DH         LINE#         63
+  C:002FH         LINE#         64
+  -------         ENDPROC       EXTI1
+  -------         ENDMOD        MAIN
+
+Program Size: data=9.0 xdata=0 code=77
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

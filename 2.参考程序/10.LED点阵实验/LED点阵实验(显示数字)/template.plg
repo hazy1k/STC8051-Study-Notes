@@ -1,0 +1,15 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+H:\普中51-A7开发板资料\4--实验程序\1--基础实验\12.1-LED点阵实验(显示数字)\template.uvproj
+Project File Date:  04/27/2021
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=77.0 xdata=0 code=406
+creating hex file from "template"...
+"template" - 0 Error(s), 0 Warning(s).

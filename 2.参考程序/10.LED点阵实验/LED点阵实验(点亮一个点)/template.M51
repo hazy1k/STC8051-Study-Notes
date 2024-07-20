@@ -1,0 +1,153 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        06/04/2024  19:58:56  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+E:\DIANZI\KEIL C51\C51\BIN\BL51.EXE main.obj TO template RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  E:\DIANZI\KEIL C51\C51\LIB\C51S.LIB (?C_STARTUP)
+
+
+LINK MAP OF MODULE:  template (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0005H     UNIT         _DATA_GROUP_
+            IDATA   000DH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     006DH     UNIT         ?PR?_HC595_WRITE_DATA?MAIN
+            CODE    0070H     001AH     UNIT         ?PR?_DELAY_10US?MAIN
+            CODE    008AH     0011H     UNIT         ?PR?MAIN?MAIN
+            CODE    009BH     000CH     UNIT         ?C_C51STARTUP
+
+
+
+OVERLAY MAP OF MODULE:   template (MAIN)
+
+
+SEGMENT                              DATA_GROUP 
+  +--> CALLED SEGMENT              START    LENGTH
+--------------------------------------------------
+?C_C51STARTUP                      -----    -----
+  +--> ?PR?MAIN?MAIN
+
+?PR?MAIN?MAIN                      0008H    0001H
+  +--> ?PR?_HC595_WRITE_DATA?MAIN
+
+?PR?_HC595_WRITE_DATA?MAIN         0009H    0004H
+  +--> ?PR?_DELAY_10US?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  template (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  B:00B0H.6       PUBLIC        SRCLK
+  D:00B0H         PUBLIC        P3
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/04/2024  19:58:56  PAGE 2
+
+
+  C:008AH         PUBLIC        main
+  B:00B0H.5       PUBLIC        RCLK
+  C:007FH         PUBLIC        _delay_10us
+  B:00B0H.4       PUBLIC        SER
+  C:0003H         PUBLIC        _hc595_write_data
+  C:0070H         SYMBOL        L?0022
+  C:007BH         SYMBOL        L?0023
+  -------         PROC          L?0021
+  -------         ENDPROC       L?0021
+  C:0070H         SYMBOL        L?0022
+  C:007BH         SYMBOL        L?0023
+  -------         PROC          _DELAY_10US
+  D:0006H         SYMBOL        ten_us
+  C:007FH         LINE#         28
+  C:007FH         LINE#         29
+  C:007FH         LINE#         30
+  C:0089H         LINE#         31
+  -------         ENDPROC       _DELAY_10US
+  -------         PROC          _HC595_WRITE_DATA
+  D:0001H         SYMBOL        dat1
+  D:0005H         SYMBOL        dat2
+  D:0003H         SYMBOL        dat3
+  D:000CH         SYMBOL        dat4
+  -------         DO            
+  D:0002H         SYMBOL        i
+  -------         ENDDO         
+  C:0003H         LINE#         42
+  C:0005H         LINE#         43
+  C:0005H         LINE#         44
+  C:0007H         LINE#         46
+  C:0007H         LINE#         47
+  C:0007H         LINE#         48
+  C:0013H         LINE#         49
+  C:0019H         LINE#         50
+  C:0019H         LINE#         51
+  C:0019H         LINE#         52
+  C:0019H         LINE#         53
+  C:001CH         LINE#         54
+  C:0020H         LINE#         56
+  C:0022H         LINE#         57
+  C:0022H         LINE#         58
+  C:002DH         LINE#         59
+  C:0031H         LINE#         60
+  C:0031H         LINE#         61
+  C:0031H         LINE#         62
+  C:0031H         LINE#         63
+  C:0034H         LINE#         64
+  C:0038H         LINE#         66
+  C:003AH         LINE#         67
+  C:003AH         LINE#         68
+  C:0045H         LINE#         69
+  C:0049H         LINE#         70
+  C:0049H         LINE#         71
+  C:0049H         LINE#         72
+  C:0049H         LINE#         73
+  C:004CH         LINE#         74
+  C:0050H         LINE#         76
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/04/2024  19:58:56  PAGE 3
+
+
+  C:0052H         LINE#         77
+  C:0052H         LINE#         78
+  C:005DH         LINE#         79
+  C:0061H         LINE#         80
+  C:0061H         LINE#         81
+  C:0061H         LINE#         82
+  C:0061H         LINE#         83
+  C:0064H         LINE#         84
+  C:0068H         LINE#         86
+  C:006AH         LINE#         87
+  C:006DH         LINE#         88
+  C:006FH         LINE#         89
+  -------         ENDPROC       _HC595_WRITE_DATA
+  -------         PROC          MAIN
+  -------         DO            
+  D:0008H         SYMBOL        i
+  -------         ENDDO         
+  C:008AH         LINE#         98
+  C:008AH         LINE#         99
+  C:008AH         LINE#         100
+  C:008DH         LINE#         102
+  C:008DH         LINE#         103
+  C:008DH         LINE#         104
+  C:0099H         LINE#         105
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=14.0 xdata=0 code=167
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

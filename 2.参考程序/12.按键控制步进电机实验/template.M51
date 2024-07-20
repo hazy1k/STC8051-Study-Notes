@@ -1,0 +1,225 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        06/27/2024  10:55:35  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+E:\DIANZI\KEIL C51\C51\BIN\BL51.EXE main.obj TO template RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  main.obj (MAIN)
+  E:\DIANZI\KEIL C51\C51\LIB\C51S.LIB (?C_STARTUP)
+  E:\DIANZI\KEIL C51\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  template (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0006H     UNIT         _DATA_GROUP_
+            DATA    000EH     0002H     UNIT         ?DT?MAIN
+            IDATA   0010H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     008CH     UNIT         ?PR?MAIN?MAIN
+            CODE    008FH     008CH     UNIT         ?C_C51STARTUP
+            CODE    011BH     006BH     UNIT         ?PR?_MOTOR_28BYJ48_SEND?MAIN
+            CODE    0186H     0057H     UNIT         ?PR?_KEY_SCAN?MAIN
+            CODE    01DDH     001EH     UNIT         ?PR?_DELAY_MS?MAIN
+            CODE    01FBH     000BH     UNIT         ?PR?_DELAY_10US?MAIN
+            CODE    0206H     0005H     UNIT         ?C_INITSEG
+
+
+
+OVERLAY MAP OF MODULE:   template (MAIN)
+
+
+SEGMENT                                DATA_GROUP 
+  +--> CALLED SEGMENT                START    LENGTH
+----------------------------------------------------
+?C_C51STARTUP                        -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                        0008H    0006H
+  +--> ?PR?_KEY_SCAN?MAIN
+  +--> ?PR?_MOTOR_28BYJ48_SEND?MAIN
+  +--> ?PR?_DELAY_MS?MAIN
+
+?PR?_KEY_SCAN?MAIN                   -----    -----
+  +--> ?PR?_DELAY_10US?MAIN
+
+
+
+SYMBOL TABLE OF MODULE:  template (MAIN)
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/27/2024  10:55:35  PAGE 2
+
+
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  B:00B0H.1       PUBLIC        KEY1
+  B:00B0H.0       PUBLIC        KEY2
+  B:00B0H.2       PUBLIC        KEY3
+  B:00B0H.3       PUBLIC        KEY4
+  C:0003H         PUBLIC        main
+  C:01FBH         PUBLIC        _delay_10us
+  C:0186H         PUBLIC        _key_scan
+  C:01DDH         PUBLIC        _delay_ms
+  C:011BH         PUBLIC        _motor_28BYJ48_send
+  B:0090H.0       PUBLIC        IN1_A
+  B:0090H.1       PUBLIC        IN2_B
+  B:0090H.2       PUBLIC        IN3_C
+  B:0090H.3       PUBLIC        IN4_D
+  -------         PROC          _DELAY_10US
+  D:0006H         SYMBOL        ten_us
+  C:01FBH         LINE#         26
+  C:01FBH         LINE#         27
+  C:01FBH         LINE#         28
+  C:0205H         LINE#         29
+  -------         ENDPROC       _DELAY_10US
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        ms
+  -------         DO            
+  D:0006H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:01DDH         LINE#         31
+  C:01DDH         LINE#         32
+  C:01DDH         LINE#         34
+  C:01E6H         LINE#         35
+  C:01FAH         LINE#         36
+  -------         ENDPROC       _DELAY_MS
+  -------         PROC          _MOTOR_28BYJ48_SEND
+  D:0007H         SYMBOL        step
+  D:0005H         SYMBOL        dir
+  -------         DO            
+  D:0006H         SYMBOL        temp
+  -------         ENDDO         
+  C:011BH         LINE#         39
+  C:011BH         LINE#         40
+  C:011BH         LINE#         41
+  C:011DH         LINE#         43
+  C:0120H         LINE#         44
+  C:0120H         LINE#         45
+  C:0125H         LINE#         46
+  C:0125H         LINE#         48
+  C:014AH         LINE#         49
+  C:014AH         LINE#         50
+  C:014AH         LINE#         51
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/27/2024  10:55:35  PAGE 3
+
+
+  C:014CH         LINE#         52
+  C:014EH         LINE#         53
+  C:014EH         LINE#         54
+  C:0150H         LINE#         55
+  C:0152H         LINE#         56
+  C:0152H         LINE#         57
+  C:0156H         LINE#         58
+  C:0158H         LINE#         59
+  C:0158H         LINE#         60
+  C:015CH         LINE#         61
+  C:015EH         LINE#         62
+  C:015EH         LINE#         63
+  C:0166H         LINE#         64
+  C:0167H         LINE#         65
+  C:0167H         LINE#         66
+  C:016FH         LINE#         67
+  C:0170H         LINE#         68
+  C:0170H         LINE#         69
+  C:0172H         LINE#         70
+  C:0174H         LINE#         71
+  C:0174H         LINE#         72
+  C:017CH         LINE#         73
+  C:017DH         LINE#         74
+  C:017DH         LINE#         75
+  C:0185H         LINE#         76
+  C:0185H         LINE#         77
+  C:0185H         LINE#         78
+  -------         ENDPROC       _MOTOR_28BYJ48_SEND
+  -------         PROC          _KEY_SCAN
+  D:0006H         SYMBOL        mode
+  -------         DO            
+  D:000EH         SYMBOL        key
+  -------         ENDDO         
+  C:0186H         LINE#         81
+  C:0186H         LINE#         82
+  C:0186H         LINE#         85
+  C:0190H         LINE#         86
+  C:01A4H         LINE#         87
+  C:01A4H         LINE#         88
+  C:01ABH         LINE#         89
+  C:01B0H         LINE#         90
+  C:01B3H         LINE#         91
+  C:01B6H         LINE#         92
+  C:01B9H         LINE#         93
+  C:01BCH         LINE#         94
+  C:01BFH         LINE#         95
+  C:01C2H         LINE#         96
+  C:01C5H         LINE#         97
+  C:01C8H         LINE#         98
+  C:01C8H         LINE#         99
+  C:01D4H         LINE#         100
+  C:01D4H         LINE#         101
+  C:01DAH         LINE#         102
+  C:01DAH         LINE#         103
+  C:01DCH         LINE#         104
+  -------         ENDPROC       _KEY_SCAN
+  -------         PROC          MAIN
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/27/2024  10:55:35  PAGE 4
+
+
+  -------         DO            
+  D:0008H         SYMBOL        key
+  D:000AH         SYMBOL        dir
+  D:0002H         SYMBOL        speed
+  D:000CH         SYMBOL        step
+  -------         ENDDO         
+  C:0003H         LINE#         106
+  C:0003H         LINE#         107
+  C:0003H         LINE#         108
+  C:0008H         LINE#         109
+  C:000CH         LINE#         110
+  C:000FH         LINE#         111
+  C:0013H         LINE#         113
+  C:0013H         LINE#         114
+  C:0013H         LINE#         115
+  C:001EH         LINE#         116
+  C:0026H         LINE#         117
+  C:0026H         LINE#         118
+  C:0037H         LINE#         119
+  C:0039H         LINE#         120
+  C:0041H         LINE#         121
+  C:0041H         LINE#         123
+  C:004CH         LINE#         124
+  C:0051H         LINE#         125
+  C:0053H         LINE#         126
+  C:005BH         LINE#         127
+  C:005BH         LINE#         129
+  C:0066H         LINE#         130
+  C:006BH         LINE#         131
+  C:006BH         LINE#         133
+  C:007AH         LINE#         134
+  C:0082H         LINE#         135
+  C:0082H         LINE#         136
+  C:0086H         LINE#         137
+  C:0086H         LINE#         138
+  C:008DH         LINE#         139
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+Program Size: data=17.0 xdata=0 code=523
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

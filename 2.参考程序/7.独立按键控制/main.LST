@@ -1,0 +1,48 @@
+C51 COMPILER V9.01   MAIN                                                                  06/25/2024 19:25:06 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: E:\dianzi\Keil C51\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          
+   3          //定义K1按键控制脚
+   4          sbit KEY1 = P3^0;
+   5          
+   6          //定义LED1控制脚
+   7          sbit LED1 = P2^0;
+   8          
+   9          // 延时函数
+  10          void delay_us(unsigned int ten_us)
+  11          {
+  12   1              while(ten_us--);        
+  13   1      }
+  14          
+  15          int main()
+  16          {
+  17   1              while(1)
+  18   1              {
+  19   2                      if(KEY1 == 0) // 检测端口是否为低电平-开关按下
+  20   2                      {
+  21   3                              delay_us(20); // 消抖
+  22   3                              LED1 = !LED1; // 模拟灯的亮灭-翻转状态
+  23   3                      }
+  24   2              }
+  25   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     25    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

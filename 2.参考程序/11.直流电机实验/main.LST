@@ -1,0 +1,46 @@
+C51 COMPILER V9.01   MAIN                                                                  06/27/2024 10:52:11 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: E:\dianzi\Keil C51\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          
+   3          //定义直流电机控制管脚
+   4          sbit DC_Motor = P1^0;
+   5          
+   6          //ms延时函数，ms=1时，大约延时1ms
+   7          void delay_ms(unsigned int ms)
+   8          {
+   9   1              int i,j;
+  10   1              for(i=ms;i>0;i--)
+  11   1                      for(j=110;j>0;j--);
+  12   1      }
+  13          
+  14          int main()
+  15          {       
+  16   1              DC_Motor = 1; // 給高电平-开启电机
+  17   1              delay_ms(5000); // 设定工作时间
+  18   1              DC_Motor = 0;// 给低电平-关闭电机
+  19   1              while(1)
+  20   1              {                       
+  21   2                                                                      
+  22   2              }               
+  23   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     45    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

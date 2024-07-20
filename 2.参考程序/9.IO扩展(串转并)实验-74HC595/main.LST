@@ -1,0 +1,129 @@
+C51 COMPILER V9.01   MAIN                                                                  06/26/2024 10:07:32 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN main.OBJ
+COMPILER INVOKED BY: E:\dianzi\Keil C51\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+
+line level    source
+
+   1          #include <REGX52.H>
+   2          
+   3          // 定义74HC595控制管脚
+   4          sbit SC = P3^6; // 串行输入时钟(SCK)
+   5          sbit RC = P3^5; // 存储寄存器时钟(RCK)
+   6          sbit SE = P3^4; // 串行数据输入(SER)
+   7          
+   8          unsigned char ghc595_buf[8]={0x01,0x02,0x04,0x08,0x10,0x20,0x40,0x80};
+   9          
+  10          // 延时函数，ten_us=1时，大约延时10us
+  11          void delay_10us(unsigned int ten_us)
+  12          {
+  13   1              while(ten_us--);        
+  14   1      }
+  15          
+  16          // ms延时函数，ms=1时，大约延时1ms
+  17          void delay_ms(unsigned int ms)
+  18          {
+  19   1              unsigned int i,j;
+  20   1              for(i=ms;i>0;i--)
+  21   1                      for(j=110;j>0;j--);
+  22   1      }
+  23          
+  24          /*
+  25          向74HC595写入4个字节的数据
+  26          dat1：对应74HC595(A)输出第1行-第8行
+  27          dat2：对应74HC595(B)输出第9行-第16行
+  28          dat3：对应74HC595(C)输出第1列-第8列
+  29          dat4：对应74HC595(D)输出第9列-第16列
+  30          */
+  31          void hc595_write_data(unsigned char dat1, unsigned char dat2, unsigned char dat3, unsigned char dat4)
+  32          {
+  33   1              unsigned char i = 0;
+  34   1              
+  35   1              // 详细分析dat4，其他同理
+  36   1              for(i = 0; i < 8; i++) // 循环8次即可将一个字节写入寄存器中
+  37   1              {
+  38   2                      SE = dat4 >> 7; // 将最高位赋给串行输入引脚
+  39   2                      dat4 <<= 1; // 将下一个数据移到最高位
+  40   2                      SC = 0; // 将串行输入时钟置0，准备将数据输入到74HC595寄存器
+  41   2                      delay_10us(1);
+  42   2                      SC = 1; // 将时钟引脚SC置为1，将数据从SE引脚输入到74HC595寄存器
+  43   2                      delay_10us(1); // 移位寄存器时钟上升沿将端口数据送入寄存器中    
+  44   2              }
+  45   1              
+  46   1              // 分析同上，只是换了输出的地方
+  47   1              for(i = 0; i < 8; i++)
+  48   1              {
+  49   2                      SE = dat3 >> 7;
+  50   2                      dat3 <<= 1;
+  51   2                      SC = 0;
+  52   2                      delay_10us(1);
+  53   2                      SC = 1;
+  54   2                      delay_10us(1);  
+  55   2              }
+C51 COMPILER V9.01   MAIN                                                                  06/26/2024 10:07:32 PAGE 2   
+
+  56   1      
+  57   1              for(i = 0; i < 8; i++)
+  58   1              {
+  59   2                      SE = dat2 >> 7;
+  60   2                      dat2 <<= 1;
+  61   2                      SC = 0;
+  62   2                      delay_10us(1);
+  63   2                      SC = 1;
+  64   2                      delay_10us(1);  
+  65   2              }
+  66   1      
+  67   1              for(i = 0; i < 8; i++)
+  68   1              {
+  69   2                      SE = dat1 >> 7;
+  70   2                      dat1 <<= 1;
+  71   2                      SC = 0;
+  72   2                      delay_10us(1);
+  73   2                      SC = 1;
+  74   2                      delay_10us(1);  
+  75   2              }
+  76   1      
+  77   1              // 这段代码将存储寄存器的时钟引脚RC置为1，然后立即置为0。
+  78   1              // 这个操作是存储74HC595寄存器中之前输入的所有数据，使其在输出引脚上可用。
+  79   1              RC = 1;
+  80   1              delay_10us(1);
+  81   1              RC = 0; // 存储寄存器时钟上升沿将前面写入到寄存器的数据输出     
+  82   1      }
+  83          
+  84          // 控制一行逐渐滚动输出
+  85          void main()
+  86          {       
+  87   1              unsigned char i = 0; // 计数器
+  88   1      
+  89   1              // A和B控制行，C和D控制列
+  90   1              // 如果我们想一列滚动显示的，你应该知道怎么做的
+  91   1              while(1)
+  92   1              {               
+  93   2                      for(i = 0; i < 8; i++)
+  94   2                      {       
+  95   3                              hc595_write_data(ghc595_buf[i], 0, 0, 0); // 使74HC595(A)输出
+  96   3                              delay_ms(1); // 延时100ms       
+  97   3                      }
+  98   2                      for(i = 0; i < 8; i++)
+  99   2                      {       
+ 100   3                              hc595_write_data(0,ghc595_buf[i],0,0); // 使74HC595(B)输出
+ 101   3                              delay_ms(1);
+ 102   3                      }                                                                       
+ 103   2              }               
+ 104   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    238    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      8       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
