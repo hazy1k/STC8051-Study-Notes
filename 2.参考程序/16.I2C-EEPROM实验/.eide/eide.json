@@ -1,0 +1,90 @@
+{
+  "name": "template",
+  "type": "C51",
+  "dependenceList": [],
+  "srcDirs": [],
+  "virtualFolder": {
+    "name": "<virtual_root>",
+    "files": [],
+    "folders": [
+      {
+        "name": "User",
+        "files": [
+          {
+            "path": "User/main.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "App",
+        "files": [
+          {
+            "path": "App/24c02/24c02.c"
+          },
+          {
+            "path": "App/iic/iic.c"
+          },
+          {
+            "path": "App/key/key.c"
+          },
+          {
+            "path": "App/smg/smg.c"
+          },
+          {
+            "path": "App/24c02/24c02.h"
+          },
+          {
+            "path": "App/iic/iic.h"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "Public",
+        "files": [
+          {
+            "path": "Public/public.c"
+          }
+        ],
+        "folders": []
+      }
+    ]
+  },
+  "outDir": "build",
+  "deviceName": null,
+  "packDir": null,
+  "miscInfo": {
+    "uid": "0a10c5852ad42c55c65d46bcce659ec3"
+  },
+  "targets": {
+    "Target 1": {
+      "excludeList": [],
+      "toolchain": "Keil_C51",
+      "compileConfig": {
+        "options": "null"
+      },
+      "uploader": "Custom",
+      "uploadConfig": {
+        "bin": "",
+        "commandLine": "",
+        "eraseChipCommand": ""
+      },
+      "uploadConfigMap": {},
+      "custom_dep": {
+        "name": "default",
+        "incList": [
+          "../../../../dianzi/KEILC51/C51/INC/Atmel",
+          "App/24c02",
+          "App/iic",
+          "App/key",
+          "App/smg",
+          "Public"
+        ],
+        "libList": [],
+        "defineList": []
+      }
+    }
+  },
+  "version": "3.4"
+}

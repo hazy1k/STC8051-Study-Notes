@@ -1,0 +1,79 @@
+{
+  "name": "template",
+  "type": "C51",
+  "dependenceList": [],
+  "srcDirs": [],
+  "virtualFolder": {
+    "name": "<virtual_root>",
+    "files": [],
+    "folders": [
+      {
+        "name": "User",
+        "files": [
+          {
+            "path": "User/main.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "App",
+        "files": [
+          {
+            "path": "App/smg/smg.c"
+          },
+          {
+            "path": "App/ds18b20/ds18b20.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "Public",
+        "files": [
+          {
+            "path": "Public/public.c"
+          }
+        ],
+        "folders": []
+      }
+    ]
+  },
+  "outDir": "build",
+  "deviceName": null,
+  "packDir": null,
+  "miscInfo": {
+    "uid": "94c8488e1a95e5f2cc1a2d5beab41551"
+  },
+  "targets": {
+    "Target 1": {
+      "excludeList": [],
+      "toolchain": "Keil_C51",
+      "compileConfig": {
+        "options": "null"
+      },
+      "uploader": "Custom",
+      "uploadConfig": {
+        "bin": "",
+        "commandLine": "",
+        "eraseChipCommand": ""
+      },
+      "uploadConfigMap": {},
+      "custom_dep": {
+        "name": "default",
+        "incList": [
+          "../../../../dianzi/KEILC51/C51/INC/Atmel",
+          "App/24c02",
+          "App/iic",
+          "App/key",
+          "App/smg",
+          "Public",
+          "App/ds18b20"
+        ],
+        "libList": [],
+        "defineList": []
+      }
+    }
+  },
+  "version": "3.4"
+}

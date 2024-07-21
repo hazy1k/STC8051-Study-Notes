@@ -1,0 +1,279 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        06/20/2024  09:09:27  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+E:\DIANZI\KEIL C51\C51\BIN\BL51.EXE .\Obj\main.obj, .\Obj\smg.obj, .\Obj\ired.obj, .\Obj\public.obj TO .\Obj\template PR
+>> INT (.\Obj\template.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Obj\main.obj (MAIN)
+  .\Obj\smg.obj (SMG)
+  .\Obj\ired.obj (IRED)
+  .\Obj\public.obj (PUBLIC)
+  E:\DIANZI\KEIL C51\C51\LIB\C51S.LIB (?C_STARTUP)
+  E:\DIANZI\KEIL C51\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  E:\DIANZI\KEIL C51\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Obj\template (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0011H     UNIT         ?DT?SMG
+            DATA    0019H     000DH     UNIT         _DATA_GROUP_
+            DATA    0026H     0004H     UNIT         ?DT?IRED
+            IDATA   002AH     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0003H     ABSOLUTE     
+            CODE    0006H     0132H     UNIT         ?PR?IRED?IRED
+            CODE    0138H     0098H     UNIT         ?PR?_SMG_DISPLAY?SMG
+            CODE    01D0H     008CH     UNIT         ?C_C51STARTUP
+            CODE    025CH     002DH     UNIT         ?C?LIB_CODE
+            CODE    0289H     0028H     UNIT         ?PR?MAIN?MAIN
+            CODE    02B1H     0014H     UNIT         ?C_INITSEG
+            CODE    02C5H     000BH     UNIT         ?PR?_DELAY_10US?PUBLIC
+            CODE    02D0H     0009H     UNIT         ?PR?IRED_INIT?IRED
+
+
+
+OVERLAY MAP OF MODULE:   .\Obj\template (MAIN)
+
+
+SEGMENT                          DATA_GROUP 
+  +--> CALLED SEGMENT          START    LENGTH
+----------------------------------------------
+?PR?IRED?IRED                  0019H    0005H
+  +--> ?PR?_DELAY_10US?PUBLIC
+
+*** NEW ROOT ***************************************************
+
+?C_C51STARTUP                  -----    -----
+  +--> ?PR?MAIN?MAIN
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/20/2024  09:09:27  PAGE 2
+
+
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                  001EH    0003H
+  +--> ?PR?IRED_INIT?IRED
+  +--> ?PR?_SMG_DISPLAY?SMG
+
+?PR?_SMG_DISPLAY?SMG           0021H    0005H
+  +--> ?PR?_DELAY_10US?PUBLIC
+
+
+
+SYMBOL TABLE OF MODULE:  .\Obj\template (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:0289H         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  -------         DO            
+  D:001EH         SYMBOL        ired_buf
+  -------         ENDDO         
+  C:0289H         LINE#         5
+  C:0289H         LINE#         6
+  C:0289H         LINE#         9
+  C:028CH         LINE#         11
+  C:028CH         LINE#         12
+  C:028CH         LINE#         13
+  C:0297H         LINE#         14
+  C:02A1H         LINE#         15
+  C:02A4H         LINE#         16
+  C:02AFH         LINE#         17
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        SMG
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:0090H         PUBLIC        P1
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:0138H         PUBLIC        _smg_display
+  D:0008H         PUBLIC        gsmg_code
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/20/2024  09:09:27  PAGE 3
+
+
+  B:00A0H.2       PUBLIC        LSA
+  B:00A0H.3       PUBLIC        LSB
+  B:00A0H.4       PUBLIC        LSC
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _SMG_DISPLAY
+  D:0021H         SYMBOL        dat
+  D:0005H         SYMBOL        pos
+  -------         DO            
+  D:0024H         SYMBOL        i
+  D:0025H         SYMBOL        pos_temp
+  -------         ENDDO         
+  C:0138H         LINE#         14
+  C:013EH         LINE#         15
+  C:013EH         LINE#         16
+  C:0141H         LINE#         17
+  C:0145H         LINE#         19
+  C:0151H         LINE#         20
+  C:0151H         LINE#         21
+  C:017AH         LINE#         22
+  C:017AH         LINE#         23
+  C:017EH         LINE#         24
+  C:0182H         LINE#         25
+  C:0186H         LINE#         26
+  C:018AH         LINE#         27
+  C:0192H         LINE#         28
+  C:019AH         LINE#         29
+  C:01A2H         LINE#         30
+  C:01A8H         LINE#         31
+  C:01A8H         LINE#         32
+  C:01C0H         LINE#         33
+  C:01C7H         LINE#         34
+  C:01CAH         LINE#         35
+  C:01CFH         LINE#         36
+  -------         ENDPROC       _SMG_DISPLAY
+  -------         ENDMOD        SMG
+
+  -------         MODULE        IRED
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  B:00A8H.7       PUBLIC        EA
+  D:0026H         PUBLIC        gired_data
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  B:00B0H.2       PUBLIC        IRED
+  C:0006H         PUBLIC        ired
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:02D0H         PUBLIC        ired_init
+  B:00A8H.0       PUBLIC        EX0
+  B:0088H.0       PUBLIC        IT0
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          IRED_INIT
+  C:02D0H         LINE#         6
+  C:02D0H         LINE#         7
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/20/2024  09:09:27  PAGE 4
+
+
+  C:02D0H         LINE#         8
+  C:02D2H         LINE#         9
+  C:02D4H         LINE#         10
+  C:02D6H         LINE#         11
+  C:02D8H         LINE#         12
+  -------         ENDPROC       IRED_INIT
+  -------         PROC          IRED
+  -------         DO            
+  D:0019H         SYMBOL        ired_high_time
+  D:001AH         SYMBOL        time_cnt
+  D:001CH         SYMBOL        i
+  D:001DH         SYMBOL        j
+  -------         ENDDO         
+  C:0006H         LINE#         14
+  C:0023H         LINE#         16
+  C:0026H         LINE#         17
+  C:002CH         LINE#         18
+  C:0032H         LINE#         20
+  C:0038H         LINE#         21
+  C:0038H         LINE#         22
+  C:003EH         LINE#         23
+  C:0047H         LINE#         24
+  C:0047H         LINE#         25
+  C:004EH         LINE#         26
+  C:0056H         LINE#         27
+  C:005FH         LINE#         30
+  C:0065H         LINE#         31
+  C:0065H         LINE#         32
+  C:006BH         LINE#         33
+  C:0074H         LINE#         34
+  C:0074H         LINE#         35
+  C:007BH         LINE#         36
+  C:0083H         LINE#         37
+  C:008CH         LINE#         40
+  C:008FH         LINE#         41
+  C:008FH         LINE#         42
+  C:0092H         LINE#         43
+  C:0092H         LINE#         44
+  C:0098H         LINE#         45
+  C:00A1H         LINE#         46
+  C:00A1H         LINE#         47
+  C:00A8H         LINE#         48
+  C:00B0H         LINE#         49
+  C:00B8H         LINE#         52
+  C:00BEH         LINE#         53
+  C:00C1H         LINE#         54
+  C:00C1H         LINE#         55
+  C:00C8H         LINE#         56
+  C:00CAH         LINE#         57
+  C:00D3H         LINE#         60
+  C:00E0H         LINE#         61
+  C:00E7H         LINE#         62
+  C:00F0H         LINE#         63
+  C:00F3H         LINE#         64
+  C:00FCH         LINE#         65
+  C:0105H         LINE#         66
+  C:0105H         LINE#         67
+BL51 BANKED LINKER/LOCATER V6.22                                                      06/20/2024  09:09:27  PAGE 5
+
+
+  C:010CH         LINE#         68
+  C:010CH         LINE#         69
+  C:010FH         LINE#         70
+  C:011DH         LINE#         72
+  C:011DH         LINE#         73
+  C:011DH         LINE#         74
+  -------         ENDPROC       IRED
+  -------         ENDMOD        IRED
+
+  -------         MODULE        PUBLIC
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0090H         PUBLIC        P1
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:02C5H         PUBLIC        _delay_10us
+  D:00C8H         PUBLIC        T2CON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY_10US
+  D:0006H         SYMBOL        ten_us
+  C:02C5H         LINE#         3
+  C:02C5H         LINE#         4
+  C:02C5H         LINE#         5
+  C:02CFH         LINE#         6
+  -------         ENDPROC       _DELAY_10US
+  -------         ENDMOD        PUBLIC
+
+  -------         MODULE        ?C?CLDOPTR
+  C:025CH         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+Program Size: data=43.0 xdata=0 code=729
+LINK/LOCATE RUN COMPLETE.  0 WARNING(S),  0 ERROR(S)

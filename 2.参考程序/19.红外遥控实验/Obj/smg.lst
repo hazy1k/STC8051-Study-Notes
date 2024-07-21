@@ -1,0 +1,61 @@
+C51 COMPILER V9.01   SMG                                                                   06/20/2024 09:01:14 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE SMG
+OBJECT MODULE PLACED IN .\Obj\smg.obj
+COMPILER INVOKED BY: E:\dianzi\Keil C51\C51\BIN\C51.EXE App\smg\smg.c BROWSE INCDIR(.\App\24c02;.\App\iic;.\App\key;.\Ap
+                    -p\smg;.\Public;.\App\ds18b20;.\App\ds1302;.\App\ired;.\App\time) DEBUG OBJECTEXTEND PRINT(.\Obj\smg.lst) OBJECT(.\Obj\sm
+                    -g.obj)
+
+line level    source
+
+   1          #include "smg.h"
+   2          
+   3          //共阴极数码管显示0~F的段码数据
+   4          unsigned char gsmg_code[17]={0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,
+   5                                          0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+   6          
+   7          /*******************************************************************************
+   8          * 函 数 名       : smg_display
+   9          * 函数功能               : 动态数码管显示
+  10          * 输    入       : dat：要显示的数据
+  11                                             pos：从左开始第几个位置开始显示，范围1-8
+  12          * 输    出       : 无
+  13          *******************************************************************************/
+  14          void smg_display(unsigned char dat[],unsigned char pos)
+  15          {
+  16   1              unsigned char i=0;
+  17   1              unsigned char pos_temp=pos-1;
+  18   1      
+  19   1              for(i=pos_temp;i<8;i++)
+  20   1              {
+  21   2                      switch(7-i)//位选
+  22   2                      {
+  23   3                              case 0: LSC=1;LSB=1;LSA=1;break;
+  24   3                              case 1: LSC=1;LSB=1;LSA=0;break;
+  25   3                              case 2: LSC=1;LSB=0;LSA=1;break;
+  26   3                              case 3: LSC=1;LSB=0;LSA=0;break;
+  27   3                              case 4: LSC=0;LSB=1;LSA=1;break;
+  28   3                              case 5: LSC=0;LSB=1;LSA=0;break;
+  29   3                              case 6: LSC=0;LSB=0;LSA=1;break;
+  30   3                              case 7: LSC=0;LSB=0;LSA=0;break;
+  31   3                      }
+  32   2                      SMG_A_DP_PORT=dat[i-pos_temp];//传送段选数据
+  33   2                      delay_10us(100);//延时一段时间，等待显示稳定
+  34   2                      SMG_A_DP_PORT=0x00;//消音
+  35   2              }
+  36   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    152    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     17       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

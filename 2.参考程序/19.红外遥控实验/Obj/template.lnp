@@ -1,0 +1,6 @@
+".\Obj\main.obj",
+".\Obj\smg.obj",
+".\Obj\ired.obj",
+".\Obj\public.obj" 
+TO ".\Obj\template" 
+PRINT(".\Obj\template.m51") RAMSIZE(256) 

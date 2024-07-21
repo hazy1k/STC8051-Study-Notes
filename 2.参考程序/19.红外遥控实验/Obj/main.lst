@@ -1,0 +1,43 @@
+C51 COMPILER V9.01   MAIN                                                                  06/20/2024 09:09:27 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Obj\main.obj
+COMPILER INVOKED BY: E:\dianzi\Keil C51\C51\BIN\C51.EXE User\main.c BROWSE INCDIR(.\App\24c02;.\App\iic;.\App\key;.\App\
+                    -smg;.\Public;.\App\ds18b20;.\App\ds1302;.\App\ired;.\App\time) DEBUG OBJECTEXTEND PRINT(.\Obj\main.lst) OBJECT(.\Obj\mai
+                    -n.obj)
+
+line level    source
+
+   1          #include "public.h"
+   2          #include "smg.h"
+   3          #include "ired.h"
+   4          
+   5          void main()
+   6          {       
+   7   1              unsigned char ired_buf[3];
+   8   1      
+   9   1              ired_init();//红外初始化
+  10   1      
+  11   1              while(1)
+  12   1              {                               
+  13   2                      ired_buf[0]=gsmg_code[gired_data[2]/16]; // 将控制码高4位转换为数码管段码
+  14   2                      ired_buf[1]=gsmg_code[gired_data[2]%16]; // 将控制码低4位转换为数码管段码
+  15   2                      ired_buf[2]=0X76; // 显示H的段码
+  16   2                      smg_display(ired_buf, 6);       
+  17   2              }               
+  18   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     40    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       3
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

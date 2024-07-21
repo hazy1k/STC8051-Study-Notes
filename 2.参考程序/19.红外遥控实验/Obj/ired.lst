@@ -1,0 +1,102 @@
+C51 COMPILER V9.01   IRED                                                                  06/20/2024 09:09:27 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE IRED
+OBJECT MODULE PLACED IN .\Obj\ired.obj
+COMPILER INVOKED BY: E:\dianzi\Keil C51\C51\BIN\C51.EXE App\ired\ired.c BROWSE INCDIR(.\App\24c02;.\App\iic;.\App\key;.\
+                    -App\smg;.\Public;.\App\ds18b20;.\App\ds1302;.\App\ired;.\App\time) DEBUG OBJECTEXTEND PRINT(.\Obj\ired.lst) OBJECT(.\Obj
+                    -\ired.obj)
+
+line level    source
+
+   1          #include "ired.h"
+   2          
+   3          unsigned char gired_data[4]; // 存储4个字节接收码（地址码+地址反码+控制码+控制反码）
+   4          
+   5          // 红外端口初始化函数，外部中断0配置 
+   6          void ired_init(void)
+   7          {
+   8   1              IT0 = 1; // 下降沿触发
+   9   1              EX0 = 1; // 打开中断0允许
+  10   1              EA = 1; // 打开总中断
+  11   1              IRED = 1; // 初始化端口
+  12   1      }
+  13          
+  14          void ired() interrupt 0 // 外部中断0服务函数
+  15          {
+  16   1              unsigned char ired_high_time = 0;
+  17   1              unsigned int time_cnt = 0;
+  18   1              unsigned char i = 0,j = 0;
+  19   1      
+  20   1              if(IRED == 0)
+  21   1              {
+  22   2                      time_cnt = 1000;
+  23   2                      while((!IRED) && (time_cnt)) // 等待引导信号9ms低电平结束，若超过10ms强制退出
+  24   2                      {
+  25   3                              delay_10us(1); // 延时约10us
+  26   3                              time_cnt--;
+  27   3                              if(time_cnt == 0)
+  28   3                                      return;         
+  29   3                      }
+  30   2                      if(IRED) // 引导信号9ms低电平已过，进入4.5ms高电平
+  31   2                      {
+  32   3                              time_cnt = 500;
+  33   3                              while(IRED && time_cnt) // 等待引导信号4.5ms高电平结束，若超过5ms强制退出
+  34   3                              {
+  35   4                                      delay_10us(1);
+  36   4                                      time_cnt--;
+  37   4                                      if(time_cnt == 0)
+  38   4                                              return; 
+  39   4                              }
+  40   3                              for(i = 0; i < 4; i++)//循环4次，读取4个字节数据
+  41   3                              {
+  42   4                                      for(j = 0; j < 8; j++)//循环8次读取每位数据即一个字节
+  43   4                                      {
+  44   5                                              time_cnt = 600;
+  45   5                                              while((IRED==0) && time_cnt) // 等待数据1或0前面的0.56ms结束，若超过6ms强制退出
+  46   5                                              {
+  47   6                                                      delay_10us(1);
+  48   6                                                      time_cnt--;
+  49   6                                                      if(time_cnt == 0)
+  50   6                                                              return; 
+  51   6                                              }
+  52   5                                              time_cnt = 20;
+  53   5                                              while(IRED) // 等待数据1或0后面的高电平结束，若超过2ms强制退出
+C51 COMPILER V9.01   IRED                                                                  06/20/2024 09:09:27 PAGE 2   
+
+  54   5                                              {
+  55   6                                                      delay_10us(10); // 约0.1ms
+  56   6                                                      ired_high_time++;
+  57   6                                                      if(ired_high_time > 20)
+  58   6                                                              return; 
+  59   6                                              }
+  60   5                                              gired_data[i] >>= 1; // 先读取的为低位，然后是高位
+  61   5                                              if(ired_high_time >= 8) // 如果高电平时间大于0.8ms，数据则为1，否则为0
+  62   5                                                      gired_data[i] |= 0x80;
+  63   5                                              ired_high_time=0; // 重新清零，等待下一次计算时间
+  64   5                                      }
+  65   4                              }
+  66   3                      }
+  67   2                      if(gired_data[2] != ~gired_data[3]) // 校验控制码与反码，错误则返回
+  68   2                      {
+  69   3                              for(i = 0; i < 4; i++)
+  70   3                                      gired_data[i] = 0;
+  71   3                              return; 
+  72   3                      }
+  73   2              }               
+  74   1      }
+  75          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    315    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
