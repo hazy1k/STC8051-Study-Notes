@@ -61,7 +61,6 @@ void pwm_init(unsigned char tim_h, unsigned char tim_l, unsigned int tim_scale, 
 void pwm_set_duty_cycle(unsigned char duty);
 
 #endif
-
 ```
 
 ```c
@@ -76,39 +75,39 @@ unsigned char gtim_scale = 0; // 保存PWM周期=定时器初值*tim_scale
 // PWM初始化函数
 void pwm_init(unsigned char tim_h, unsigned char tim_l, unsigned int tim_scale, unsigned char duty)
 {
-	gtim_h = tim_h; // 将传入的初值保存在全局变量中，方便中断函数继续调用
-	gtim_l = tim_l;
-	gduty = duty;
-	gtim_scale = tim_scale;
+    gtim_h = tim_h; // 将传入的初值保存在全局变量中，方便中断函数继续调用
+    gtim_l = tim_l;
+    gduty = duty;
+    gtim_scale = tim_scale;
 
-	TMOD|=0X01;	// 选择为定时器0模式，工作方式1
-	TH0 = gtim_h; // 定时初值设置 
-	TL0 = gtim_l;	
-	ET0 = 1; // 打开定时器0中断允许
-	EA = 1; // 打开总中断
-	TR0 = 1; // 打开定时器
+    TMOD|=0X01;    // 选择为定时器0模式，工作方式1
+    TH0 = gtim_h; // 定时初值设置 
+    TL0 = gtim_l;    
+    ET0 = 1; // 打开定时器0中断允许
+    EA = 1; // 打开总中断
+    TR0 = 1; // 打开定时器
 }
 
 // 设置占空比
 void pwm_set_duty_cycle(unsigned char duty)
 {
-	gduty = duty;	
+    gduty = duty;    
 }
 
-void pwm(void) interrupt 1	//定时器0中断函数
+void pwm(void) interrupt 1    //定时器0中断函数
 {
-	static unsigned int time = 0;
+    static unsigned int time = 0;
 
-	TH0 = gtim_h; // 定时初值设置 
-	TL0 = gtim_l;
-	
-	time++;
-	if(time >= gtim_scale) // PWM周期=定时器初值*gtim_scale，重新开始计数
-		time=0;
-	if(time<=gduty) // 占空比	
-		PWM=1;
-	else
-		PWM=0;		
+    TH0 = gtim_h; // 定时初值设置 
+    TL0 = gtim_l;
+
+    time++;
+    if(time >= gtim_scale) // PWM周期=定时器初值*gtim_scale，重新开始计数
+        time=0;
+    if(time<=gduty) // 占空比    
+        PWM=1;
+    else
+        PWM=0;        
 }
 ```
 
@@ -117,31 +116,30 @@ void pwm(void) interrupt 1	//定时器0中断函数
 #include "pwm.h"
 
 void main()
-{	
-	unsigned char dir = 0; // 默认为0
-	unsigned char duty = 0;
+{    
+    unsigned char dir = 0; // 默认为0
+    unsigned char duty = 0;
 
-	pwm_init(0XFF,0XF6, 100, 0); // 定时时间为0.01ms，PWM周期是100*0.01ms=1ms，占空比为0%
+    pwm_init(0XFF,0XF6, 100, 0); // 定时时间为0.01ms，PWM周期是100*0.01ms=1ms，占空比为0%
 
-	while(1)
-	{
-		if(dir == 0) // 当dir为递增方向
-		{
-			duty++; // 占空比递增
-			if(duty == 70)
-				dir=1;// 当到达一定值切换方向，占空比最大能到100，但到达70左右再递增，肉眼也分辨不出亮度变化	
-		}
-		else
-		{
-			duty--;
-			if(duty == 0)
-				dir = 0; // 当到达一定值切换方向	
-		}
-		pwm_set_duty_cycle(duty); // 设置占空比
-		delay_ms(1); // 短暂延时，让呼吸灯有一个流畅的效果			
-	}
+    while(1)
+    {
+        if(dir == 0) // 当dir为递增方向
+        {
+            duty++; // 占空比递增
+            if(duty == 70)
+                dir=1;// 当到达一定值切换方向，占空比最大能到100，但到达70左右再递增，肉眼也分辨不出亮度变化    
+        }
+        else
+        {
+            duty--;
+            if(duty == 0)
+                dir = 0; // 当到达一定值切换方向    
+        }
+        pwm_set_duty_cycle(duty); // 设置占空比
+        delay_ms(1); // 短暂延时，让呼吸灯有一个流畅的效果            
+    }
 }
-
 ```
 
 ## 6. 小结
@@ -155,3 +153,7 @@ void main()
     最后就是定时器 0 的中断服务函数， 在中断内定义了一个静态变量用于统计进入中断的次数时间， 当进入中断次数时间大于等于 gtim_scale 周期倍数， 则重新开始计数， 表示 PWM 周期为定时器初值*gtim_scale； 然后当计数次数时间小于等于设置的占空比次数时间， 则使对应 IO 输出高电平， 否则输出低电平。
 
     主函数比较简单， 首先调用外设驱动头文件， 然后进入主函数初始化 PWM，将定时器设置为 0.01ms， 初值为 0XFFF6， 即每隔 0.01ms 进入一次中断。 PWM 周期倍数设置为 100， 即 PWM 周期为 1ms， 占空比设置为 0。 最后进入 while 循环，通过 dir 切换方向实现 duty 值的自增和自减来调节占空比， 将该值传入到占空比调节函数 pwm_set_duty_cycl。 为了使呼吸灯流畅， 每调节占空比短暂延时一下
+
+---
+
+2024.7.23第一次修订

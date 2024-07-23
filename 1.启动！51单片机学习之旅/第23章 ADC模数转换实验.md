@@ -148,3 +148,7 @@ unsigned int xpt2046_read_adc_value(unsigned char cmd)
     其中 Vref 是参考电压， XPT2046 接入的是 5V， ADC_Value 是读取的 AD 值，分辨率是 ADC 的位数（ 212=4096） 。
 
     经过公式计算后会得到小数， 所以定义了一个 float 型变量 adc_vol 存储，然后将该值放大 10 倍， 目的是保留小数后一位。 最后将得到的电压值转换为数码管段码数据显示。
+
+---
+
+2024.7.23第一次修订
