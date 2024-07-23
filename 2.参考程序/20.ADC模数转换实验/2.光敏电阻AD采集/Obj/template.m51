@@ -1,0 +1,293 @@
+BL51 BANKED LINKER/LOCATER V6.22                                                        08/13/2021  11:39:44  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
+D:\YZ\KEILC51\C51\BIN\BL51.EXE .\Obj\main.obj, .\Obj\smg.obj, .\Obj\xpt2046.obj, .\Obj\public.obj TO .\Obj\template PRIN
+>> T (.\Obj\template.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL
+
+
+INPUT MODULES INCLUDED:
+  .\Obj\main.obj (MAIN)
+  .\Obj\smg.obj (SMG)
+  .\Obj\xpt2046.obj (XPT2046)
+  .\Obj\public.obj (PUBLIC)
+  D:\YZ\KEILC51\C51\LIB\C51S.LIB (?C_STARTUP)
+  D:\YZ\KEILC51\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  D:\YZ\KEILC51\C51\LIB\C51S.LIB (?C?UIDIV)
+  D:\YZ\KEILC51\C51\LIB\C51S.LIB (?C_INIT)
+
+
+LINK MAP OF MODULE:  .\Obj\template (MAIN)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0011H     UNIT         ?DT?SMG
+            DATA    0019H     000BH     UNIT         _DATA_GROUP_
+            IDATA   0024H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+            CODE    0003H     0098H     UNIT         ?PR?_SMG_DISPLAY?SMG
+            CODE    009BH     008CH     UNIT         ?C_C51STARTUP
+            CODE    0127H     0082H     UNIT         ?C?LIB_CODE
+            CODE    01A9H     007DH     UNIT         ?PR?MAIN?MAIN
+            CODE    0226H     001FH     UNIT         ?PR?_XPT2046_WIRTE_DATA?XPT2046
+            CODE    0245H     001FH     UNIT         ?PR?XPT2046_READ_DATA?XPT2046
+            CODE    0264H     001EH     UNIT         ?PR?_DELAY_MS?PUBLIC
+            CODE    0282H     001AH     UNIT         ?PR?_XPT2046_READ_ADC_VALUE?XPT2046
+            CODE    029CH     0014H     UNIT         ?C_INITSEG
+            CODE    02B0H     000BH     UNIT         ?PR?_DELAY_10US?PUBLIC
+
+
+
+OVERLAY MAP OF MODULE:   .\Obj\template (MAIN)
+
+
+SEGMENT                                       DATA_GROUP 
+  +--> CALLED SEGMENT                       START    LENGTH
+-----------------------------------------------------------
+?C_C51STARTUP                               -----    -----
+  +--> ?PR?MAIN?MAIN
+  +--> ?C_INITSEG
+
+?PR?MAIN?MAIN                               0019H    0006H
+  +--> ?PR?_XPT2046_READ_ADC_VALUE?XPT2046
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/13/2021  11:39:44  PAGE 2
+
+
+  +--> ?PR?_SMG_DISPLAY?SMG
+
+?PR?_XPT2046_READ_ADC_VALUE?XPT2046         -----    -----
+  +--> ?PR?_XPT2046_WIRTE_DATA?XPT2046
+  +--> ?PR?XPT2046_READ_DATA?XPT2046
+
+?PR?_SMG_DISPLAY?SMG                        001FH    0005H
+  +--> ?PR?_DELAY_10US?PUBLIC
+
+
+
+SYMBOL TABLE OF MODULE:  .\Obj\template (MAIN)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        MAIN
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A0H         PUBLIC        P2
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  D:00D8H         PUBLIC        CCON
+  C:01A9H         PUBLIC        main
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          MAIN
+  -------         DO            
+  D:0019H         SYMBOL        adc_value
+  D:001BH         SYMBOL        adc_buf
+  -------         ENDDO         
+  C:01A9H         LINE#         21
+  C:01A9H         LINE#         22
+  C:01A9H         LINE#         23
+  C:01AEH         LINE#         26
+  C:01AEH         LINE#         27
+  C:01AEH         LINE#         28
+  C:01B7H         LINE#         29
+  C:01C5H         LINE#         30
+  C:01E6H         LINE#         31
+  C:0207H         LINE#         32
+  C:0219H         LINE#         33
+  C:0224H         LINE#         34
+  -------         ENDPROC       MAIN
+  -------         ENDMOD        MAIN
+
+  -------         MODULE        SMG
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0080H         PUBLIC        P0
+  D:00A0H         PUBLIC        P2
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  C:0003H         PUBLIC        _smg_display
+  D:00D8H         PUBLIC        CCON
+  D:0008H         PUBLIC        gsmg_code
+  D:0098H         PUBLIC        SCON
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/13/2021  11:39:44  PAGE 3
+
+
+  D:0088H         PUBLIC        TCON
+  B:00A0H.2       PUBLIC        LSA
+  B:00A0H.3       PUBLIC        LSB
+  B:00A0H.4       PUBLIC        LSC
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _SMG_DISPLAY
+  D:001FH         SYMBOL        dat
+  D:0005H         SYMBOL        pos
+  -------         DO            
+  D:0022H         SYMBOL        i
+  D:0023H         SYMBOL        pos_temp
+  -------         ENDDO         
+  C:0003H         LINE#         14
+  C:0009H         LINE#         15
+  C:0009H         LINE#         16
+  C:000CH         LINE#         17
+  C:0010H         LINE#         19
+  C:001CH         LINE#         20
+  C:001CH         LINE#         21
+  C:0045H         LINE#         22
+  C:0045H         LINE#         23
+  C:0049H         LINE#         24
+  C:004DH         LINE#         25
+  C:0051H         LINE#         26
+  C:0055H         LINE#         27
+  C:005DH         LINE#         28
+  C:0065H         LINE#         29
+  C:006DH         LINE#         30
+  C:0073H         LINE#         31
+  C:0073H         LINE#         32
+  C:008BH         LINE#         33
+  C:0092H         LINE#         34
+  C:0095H         LINE#         35
+  C:009AH         LINE#         36
+  -------         ENDPROC       _SMG_DISPLAY
+  -------         ENDMOD        SMG
+
+  -------         MODULE        XPT2046
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00B0H         PUBLIC        P3
+  D:00A8H         PUBLIC        IE
+  B:00B0H.5       PUBLIC        CS
+  D:00B8H         PUBLIC        IP
+  D:00D8H         PUBLIC        CCON
+  C:0245H         PUBLIC        xpt2046_read_data
+  D:0098H         PUBLIC        SCON
+  C:0282H         PUBLIC        _xpt2046_read_adc_value
+  D:0088H         PUBLIC        TCON
+  C:0226H         PUBLIC        _xpt2046_wirte_data
+  B:00B0H.7       PUBLIC        DOUT
+  B:00B0H.6       PUBLIC        CLK
+  B:00B0H.4       PUBLIC        DIN
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _XPT2046_WIRTE_DATA
+  D:0007H         SYMBOL        dat
+  -------         DO            
+  D:0006H         SYMBOL        i
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/13/2021  11:39:44  PAGE 4
+
+
+  -------         ENDDO         
+  C:0226H         LINE#         10
+  C:0226H         LINE#         11
+  C:0226H         LINE#         14
+  C:0228H         LINE#         15
+  C:0229H         LINE#         16
+  C:022BH         LINE#         17
+  C:022BH         LINE#         18
+  C:0236H         LINE#         19
+  C:023AH         LINE#         20
+  C:023CH         LINE#         21
+  C:023DH         LINE#         22
+  C:023FH         LINE#         23
+  C:0240H         LINE#         24
+  C:0244H         LINE#         25
+  -------         ENDPROC       _XPT2046_WIRTE_DATA
+  -------         PROC          XPT2046_READ_DATA
+  -------         DO            
+  D:0005H         SYMBOL        i
+  D:0006H         SYMBOL        dat
+  -------         ENDDO         
+  C:0245H         LINE#         33
+  C:0245H         LINE#         34
+  C:0245H         LINE#         36
+  C:0248H         LINE#         38
+  C:024AH         LINE#         39
+  C:024BH         LINE#         40
+  C:024CH         LINE#         41
+  C:024CH         LINE#         42
+  C:0253H         LINE#         43
+  C:0255H         LINE#         44
+  C:0256H         LINE#         45
+  C:0258H         LINE#         46
+  C:0259H         LINE#         47
+  C:025FH         LINE#         48
+  C:0263H         LINE#         49
+  C:0263H         LINE#         50
+  -------         ENDPROC       XPT2046_READ_DATA
+  -------         PROC          _XPT2046_READ_ADC_VALUE
+  D:0007H         SYMBOL        cmd
+  -------         DO            
+  D:0007H         SYMBOL        i
+  D:0004H         SYMBOL        adc_value
+  -------         ENDDO         
+  C:0282H         LINE#         58
+  C:0282H         LINE#         59
+  C:0282H         LINE#         61
+  C:0285H         LINE#         63
+  C:0287H         LINE#         64
+  C:0289H         LINE#         65
+  C:028CH         LINE#         66
+  C:0290H         LINE#         67
+  C:0292H         LINE#         68
+  C:0293H         LINE#         69
+  C:0295H         LINE#         70
+  C:0296H         LINE#         71
+  C:0299H         LINE#         72
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/13/2021  11:39:44  PAGE 5
+
+
+  C:029BH         LINE#         73
+  C:029BH         LINE#         74
+  -------         ENDPROC       _XPT2046_READ_ADC_VALUE
+  -------         ENDMOD        XPT2046
+
+  -------         MODULE        PUBLIC
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:00A8H         PUBLIC        IE
+  D:00B8H         PUBLIC        IP
+  D:00D8H         PUBLIC        CCON
+  D:0098H         PUBLIC        SCON
+  D:0088H         PUBLIC        TCON
+  C:02B0H         PUBLIC        _delay_10us
+  C:0264H         PUBLIC        _delay_ms
+  D:00D0H         PUBLIC        PSW
+  -------         PROC          _DELAY_10US
+  D:0006H         SYMBOL        ten_us
+  C:02B0H         LINE#         9
+  C:02B0H         LINE#         10
+  C:02B0H         LINE#         11
+  C:02BAH         LINE#         12
+  -------         ENDPROC       _DELAY_10US
+  -------         PROC          _DELAY_MS
+  D:0006H         SYMBOL        ms
+  -------         DO            
+  D:0006H         SYMBOL        i
+  D:0004H         SYMBOL        j
+  -------         ENDDO         
+  C:0264H         LINE#         20
+  C:0264H         LINE#         21
+  C:0264H         LINE#         23
+  C:026DH         LINE#         24
+  C:0281H         LINE#         25
+  -------         ENDPROC       _DELAY_MS
+  -------         ENDMOD        PUBLIC
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0127H         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?UIDIV
+  C:0154H         PUBLIC        ?C?UIDIV
+  -------         ENDMOD        ?C?UIDIV
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_MS?PUBLIC
+
+Program Size: data=37.0 xdata=0 code=699
+LINK/LOCATE RUN COMPLETE.  1 WARNING(S),  0 ERROR(S)

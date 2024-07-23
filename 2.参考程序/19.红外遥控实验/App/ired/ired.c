@@ -13,8 +13,8 @@ void ired_init(void)
 
 void ired() interrupt 0	// 外部中断0服务函数
 {
-	unsigned char ired_high_time = 0;
-	unsigned int time_cnt = 0;
+	unsigned char ired_high_time = 0; // 记录高电平时间
+	unsigned int time_cnt = 0; // 记录时间计数
 	unsigned char i = 0,j = 0;
 
 	if(IRED == 0)

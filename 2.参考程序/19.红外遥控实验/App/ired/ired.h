@@ -4,7 +4,7 @@
 #include "public.h"
 
 //管脚定义
-sbit IRED=P3^2;
+sbit IRED = P3^2;
 
 //声明变量
 extern unsigned char gired_data[4];
