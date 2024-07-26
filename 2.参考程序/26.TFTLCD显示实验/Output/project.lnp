@@ -1,0 +1,7 @@
+".\output\main.obj",
+".\output\public.obj",
+".\output\uart.obj",
+".\output\tftlcd.obj",
+".\output\gui.obj" 
+TO ".\output\project" 
+PRINT(".\output\project.m51") RAMSIZE(256) 

@@ -1,0 +1,1 @@
+"Public\uart.c" LARGE BROWSE INCDIR(.\User;.\Public;.\GUI;.\APP\tftlcd;.\APP\touch) DEBUG OBJECTEXTEND PRINT(.\output\uart.lst) OBJECT(.\output\uart.obj)

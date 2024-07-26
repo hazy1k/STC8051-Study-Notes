@@ -1,0 +1,90 @@
+{
+  "name": "template",
+  "type": "C51",
+  "dependenceList": [],
+  "srcDirs": [],
+  "virtualFolder": {
+    "name": "<virtual_root>",
+    "files": [],
+    "folders": [
+      {
+        "name": "User",
+        "files": [
+          {
+            "path": "User/main.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "Public",
+        "files": [
+          {
+            "path": "Public/public.c"
+          },
+          {
+            "path": "Public/uart.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "APP",
+        "files": [
+          {
+            "path": "APP/tftlcd/tftlcd.c"
+          },
+          {
+            "path": "APP/touch/touch.c"
+          }
+        ],
+        "folders": []
+      },
+      {
+        "name": "GUI",
+        "files": [
+          {
+            "path": "GUI/gui.c"
+          }
+        ],
+        "folders": []
+      }
+    ]
+  },
+  "outDir": "build",
+  "deviceName": null,
+  "packDir": null,
+  "miscInfo": {
+    "uid": "1e4676e56e09452f68b95109ef2550f5"
+  },
+  "targets": {
+    "Target 1": {
+      "excludeList": [],
+      "toolchain": "Keil_C51",
+      "compileConfig": {
+        "options": "null"
+      },
+      "uploader": "Custom",
+      "uploadConfig": {
+        "bin": "",
+        "commandLine": "",
+        "eraseChipCommand": ""
+      },
+      "uploadConfigMap": {},
+      "custom_dep": {
+        "name": "default",
+        "incList": [
+          "../../../../dianzi/KEILC51/C51/INC/Atmel",
+          "User",
+          "Public",
+          "GUI",
+          "APP/tftlcd",
+          "APP/touch"
+        ],
+        "libList": [],
+        "defineList": []
+      }
+    }
+  },
+  "version": "3.4"
+}

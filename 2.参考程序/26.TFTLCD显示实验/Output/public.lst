@@ -1,0 +1,37 @@
+C51 COMPILER V9.01   PUBLIC                                                                06/16/2024 10:45:30 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE PUBLIC
+OBJECT MODULE PLACED IN .\output\public.obj
+COMPILER INVOKED BY: E:\dianzi\Keil C51\C51\BIN\C51.EXE Public\public.c LARGE BROWSE INCDIR(.\User;.\Public;.\GUI;.\APP\
+                    -tftlcd;.\APP\touch) DEBUG OBJECTEXTEND PRINT(.\output\public.lst) OBJECT(.\output\public.obj)
+
+line level    source
+
+   1          #include "public.h"
+   2          
+   3          void delay_10us(unsigned int us)
+   4          {
+   5   1              while(us--);
+   6   1      }
+   7          
+   8          void delay_ms(unsigned int ms)
+   9          {
+  10   1              unsigned int i,j;
+  11   1              for(i = ms; i > 0; i--)
+  12   1                      for(j = 110; j > 0; j--);
+  13   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     41    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

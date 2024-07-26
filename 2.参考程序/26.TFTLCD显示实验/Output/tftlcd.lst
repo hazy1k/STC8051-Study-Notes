@@ -1,0 +1,804 @@
+C51 COMPILER V9.01   TFTLCD                                                                06/16/2024 10:40:57 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE TFTLCD
+OBJECT MODULE PLACED IN .\output\tftlcd.obj
+COMPILER INVOKED BY: E:\dianzi\Keil C51\C51\BIN\C51.EXE APP\tftlcd\tftlcd.c LARGE BROWSE INCDIR(.\User;.\Public;.\GUI;.\
+                    -APP\tftlcd;.\APP\touch) DEBUG OBJECTEXTEND PRINT(.\output\tftlcd.lst) OBJECT(.\output\tftlcd.obj)
+
+line level    source
+
+   1          #include "tftlcd.h"
+   2          #include "font.h" 
+   3          #include "uart.h"
+   4          #include "stdlib.h"
+   5          
+   6          // LCD的画笔颜色和背景色           
+   7          unsigned int FRONT_COLOR = WHITE; // 画笔颜色
+   8          unsigned int BACK_COLOR = BLACK; // 背景色 
+   9          
+  10          _tftlcd_data tftlcd_data; 
+  11          
+  12          void Delay(unsigned int dly)
+  13          {
+  14   1          unsigned int i,j;
+  15   1      
+  16   1          for(i = 0; i < dly; i++)
+  17   1              for(j = 0; j < 255; j++);
+  18   1      }
+  19          
+  20          // 写寄存器函数
+  21          // cmd:寄存器值
+  22          void LCD_WriteCmd(unsigned int cmd)
+  23          {       
+  24   1              TFT_WR = 1;
+  25   1              TFT_CS = 0;
+  26   1              TFT_RD = 1;
+  27   1              TFT_RS = 0;
+  28   1      
+  29   1              TFT_DATAPORTL = cmd>>8;
+  30   1              TFT_WR = 0;
+  31   1              TFT_WR = 1;
+  32   1      
+  33   1              TFT_DATAPORTL = cmd&0x00ff;
+  34   1              TFT_WR = 0;
+  35   1              TFT_WR = 1;
+  36   1      
+  37   1              TFT_CS = 1;
+  38   1      }
+  39          
+  40          //写数据
+  41          //dat:要写入的值
+  42          void LCD_WriteData(unsigned int dat)
+  43          {
+  44   1              TFT_WR = 1;
+  45   1              TFT_CS = 0;
+  46   1              TFT_RD = 1;
+  47   1              TFT_RS = 1;
+  48   1                       
+  49   1              TFT_DATAPORTL = dat>>8;
+  50   1              TFT_WR = 0;
+  51   1              TFT_WR = 1;
+  52   1              TFT_DATAPORTL = dat&0x00ff;
+  53   1              TFT_WR = 0;
+  54   1              TFT_WR = 1;
+C51 COMPILER V9.01   TFTLCD                                                                06/16/2024 10:40:57 PAGE 2   
+
+  55   1      
+  56   1              TFT_CS = 1;     
+  57   1      }
+  58          
+  59          void LCD_WriteData_Color(unsigned int color)
+  60          {
+  61   1              TFT_WR = 1;
+  62   1              TFT_CS = 0;
+  63   1              TFT_RD = 1;
+  64   1              TFT_RS = 1;
+  65   1                       
+  66   1              TFT_DATAPORTL = color>>8;
+  67   1              TFT_WR = 0;
+  68   1              TFT_WR = 1;
+  69   1              TFT_DATAPORTL = color&0x00ff;
+  70   1              TFT_WR = 0;
+  71   1              TFT_WR = 1;
+  72   1      
+  73   1              TFT_CS=1;       
+  74   1      }
+  75          
+  76          void LCD_WriteCmdData(unsigned int cmd, unsigned int dat)
+  77          {
+  78   1              LCD_WriteCmd(cmd);
+  79   1              LCD_WriteData(dat);
+  80   1      }
+  81          
+  82          // 读数据
+  83          // 返回值:读到的值
+  84          unsigned int LCD_ReadData(void)
+  85          {
+  86   1              unsigned int ram;
+  87   1      
+  88   1              TFT_DATAPORTH = 0xff;
+  89   1              TFT_DATAPORTL = 0xff;   
+  90   1      
+  91   1              TFT_CS = 0;
+  92   1              TFT_RS = 1;
+  93   1              TFT_RD = 0;
+  94   1              _nop_();
+  95   1              ram = TFT_DATAPORTL;
+  96   1              ram <<= 8;
+  97   1              ram |= TFT_DATAPORTL;
+  98   1              TFT_RD = 1;     
+  99   1              TFT_CS = 1;
+ 100   1      
+ 101   1              return ram;     
+ 102   1      }
+ 103          
+ 104          // 设置LCD显示方向
+ 105          // dir:0,竖屏；1,横屏
+ 106          void LCD_Display_Dir(unsigned char dir)
+ 107          {
+ 108   1              tftlcd_data.dir = dir;
+ 109   1              if(dir == 0)  // 默认竖屏方向
+ 110   1              {               
+ 111   2                      LCD_WriteCmdData(0x0001, 0x0100); // Output Direct
+ 112   2                      LCD_WriteCmdData(0x0003, 0x1030); // 设置彩屏显示方向的寄存器
+ 113   2      
+ 114   2                      tftlcd_data.height = HEIGHT;
+ 115   2                      tftlcd_data.width = WIDTH;              
+ 116   2              }
+C51 COMPILER V9.01   TFTLCD                                                                06/16/2024 10:40:57 PAGE 3   
+
+ 117   1              else
+ 118   1              {       
+ 119   2                      LCD_WriteCmdData(0x0001, 0x0000); // Output Direct
+ 120   2                      LCD_WriteCmdData(0x0003, 0x1038); // 设置彩屏显示方向的寄存器
+ 121   2      
+ 122   2                      tftlcd_data.height = WIDTH;
+ 123   2                      tftlcd_data.width = HEIGHT;
+ 124   2              }
+ 125   1      }
+ 126          
+ 127          // TFTLCD初始化
+ 128          void TFTLCD_Init(void)
+ 129          {
+ 130   1              unsigned int i = 0;
+ 131   1              TFT_RST = 1;  
+ 132   1              delay_ms(100);
+ 133   1              
+ 134   1              TFT_RST = 0;
+ 135   1              delay_ms(100);
+ 136   1      
+ 137   1              TFT_RST = 1;
+ 138   1              delay_ms(100);
+ 139   1              
+ 140   1              LCD_WriteCmd(0X0000);                           
+ 141   1              tftlcd_data.id = LCD_ReadData();
+ 142   1      
+ 143   1              //************* Start Initial Sequence **********// 
+ 144   1              LCD_WriteCmdData(0x0001, 0x0100); // set SS  and SM bit 
+ 145   1              LCD_WriteCmdData(0x0002, 0x0200); // set 1 line inversion 
+ 146   1              LCD_WriteCmdData(0x0003, 0x1030); // set GRAM write direction and BGR=1. 
+ 147   1              LCD_WriteCmdData(0x0004, 0x0000); // Resize register 
+ 148   1              LCD_WriteCmdData(0x0008, 0x0202); // set theback porch and front porch 
+ 149   1              LCD_WriteCmdData(0x0009, 0x0000); // set non-display area refresh cycle ISC[3:0] 
+ 150   1              LCD_WriteCmdData(0x000A, 0x0000); // FMARK function 
+ 151   1              LCD_WriteCmdData(0x000C, 0x0000); // RGB interface setting 
+ 152   1              LCD_WriteCmdData(0x000D, 0x0000); // Frame marker Position 
+ 153   1              LCD_WriteCmdData(0x000F, 0x0000); // RGB int erface polarity 
+ 154   1              //*************Power On sequence **************** // 
+ 155   1              LCD_WriteCmdData(0x0010, 0x0000); // SAP, BT[3:0], AP, DSTB, SLP, STB 
+ 156   1              LCD_WriteCmdData(0x0011, 0x0007); // DC1[2:0 ], DC0[2:0], VC[2:0] 
+ 157   1              LCD_WriteCmdData(0x0012, 0x0000); // VREG1OUT voltage 
+ 158   1              LCD_WriteCmdData(0x0013, 0x0000); // VDV[4:0] for VCOM amplitude 
+ 159   1              delay_ms(10);                         // Dis-charge capacitor power voltage 
+ 160   1              LCD_WriteCmdData(0x0010, 0x1690); // SAP, BT[3:0], AP, DSTB, SLP, STB 
+ 161   1              LCD_WriteCmdData(0x0011, 0x0227); // R11h=0x 0221 at VCI=3.3V, DC1[2:0], DC0[2:0], VC[2:0] 
+ 162   1              delay_ms(10);                          // Delay 50ms 
+ 163   1              LCD_WriteCmdData(0x0012, 0x008D); // External reference voltage= Vci; 
+ 164   1              delay_ms(10);                          // Delay 50ms 
+ 165   1              LCD_WriteCmdData(0x0013, 0x1200); // VDV[4:0] for VCOM amplitude 
+ 166   1              LCD_WriteCmdData(0x0029, 0x0005); // VCM[5:0] for VCOMH 
+ 167   1              LCD_WriteCmdData(0x002B, 0x000C); // Frame Rate = 91Hz 
+ 168   1              delay_ms(10);                          // Delay 50ms 
+ 169   1              LCD_WriteCmdData(0x0020, 0x0000); // GRAM horizontal Address 
+ 170   1              LCD_WriteCmdData(0x0021, 0x0000); // GRAM Vertical Address 
+ 171   1              // ----------- Adjust the Gamma Curve ----------// 
+ 172   1              //a-Si TFT LCD Single Chip Driver 
+ 173   1              //240RGBx320 Resolution and 262K color  ILI9325D
+ 174   1              //The information contained herein is the exclusive property of ILI Technology Corp. and shall not be dis
+             -tributed, reproduced, or disclosed in 
+ 175   1              //whole or in part without prior written permission of ILI Technology Corp.
+ 176   1              //Page 24 of 26  V0.14
+ 177   1              LCD_WriteCmdData(0x0030, 0x0000); 
+C51 COMPILER V9.01   TFTLCD                                                                06/16/2024 10:40:57 PAGE 4   
+
+ 178   1              LCD_WriteCmdData(0x0031, 0x0303); 
+ 179   1              LCD_WriteCmdData(0x0032, 0x0103); 
+ 180   1              LCD_WriteCmdData(0x0035, 0x0103); 
+ 181   1              LCD_WriteCmdData(0x0036, 0x0004); 
+ 182   1              LCD_WriteCmdData(0x0037, 0x0406); 
+ 183   1              LCD_WriteCmdData(0x0038, 0x0404); 
+ 184   1              LCD_WriteCmdData(0x0039, 0x0707); 
+ 185   1              LCD_WriteCmdData(0x003C, 0x0301); 
+ 186   1              LCD_WriteCmdData(0x003D, 0x0004); 
+ 187   1              //------------------ Set GRAM area ---------------// 
+ 188   1              LCD_WriteCmdData(0x0050, 0x0000); // Horizontal GRAM Start Address 
+ 189   1              LCD_WriteCmdData(0x0051, 0x00EF); // Horizontal GRAM End Address 
+ 190   1              LCD_WriteCmdData(0x0052, 0x0000); // Vertical GRAM Start Address 
+ 191   1              LCD_WriteCmdData(0x0053, 0x013F); // Vertical GRAM Start Address 
+ 192   1              LCD_WriteCmdData(0x0060, 0xA700); // Gate Sc an Line 
+ 193   1              LCD_WriteCmdData(0x0061, 0x0001); // NDL,VLE, REV 
+ 194   1              LCD_WriteCmdData(0x006A, 0x0000); // set scrolling line 
+ 195   1              //-------------- Partial Display Control ---------// 
+ 196   1              LCD_WriteCmdData(0x0080, 0x0000); 
+ 197   1              LCD_WriteCmdData(0x0081, 0x0000); 
+ 198   1              LCD_WriteCmdData(0x0082, 0x0000); 
+ 199   1              LCD_WriteCmdData(0x0083, 0x0000); 
+ 200   1              LCD_WriteCmdData(0x0084, 0x0000); 
+ 201   1              LCD_WriteCmdData(0x0085, 0x0000); 
+ 202   1              //-------------- Panel Control -------------------// 
+ 203   1              LCD_WriteCmdData(0x0090, 0x0010); 
+ 204   1              LCD_WriteCmdData(0x0092, 0x0600); 
+ 205   1              LCD_WriteCmdData(0x0007, 0x0133); // 262K color and display ON 
+ 206   1              
+ 207   1              LCD_WriteCmd(0x0022);
+ 208   1      
+ 209   1      
+ 210   1              LCD_Display_Dir(TFTLCD_DIR); // 0：竖屏  1：横屏  默认竖屏
+ 211   1              LCD_Clear(BACK_COLOR);
+ 212   1      }
+ 213          
+ 214          // 设置窗口,并自动设置画点坐标到窗口左上角(sx,sy).
+ 215          // sx,sy:窗口起始坐标(左上角)
+ 216          // width,height:窗口宽度和高度,必须大于0!!
+ 217          // 窗体大小:width*height. 
+ 218          void LCD_Set_Window(unsigned int sx,unsigned int sy,unsigned int width,unsigned int height)
+ 219          {
+ 220   1              if(tftlcd_data.dir == 0)        
+ 221   1              {
+ 222   2                      LCD_WriteCmdData(0x0050, sx); // Horizontal GRAM Start Address 
+ 223   2                      LCD_WriteCmdData(0x0051, width); // Horizontal GRAM End Address 
+ 224   2                      LCD_WriteCmdData(0x0052, sy); // Vertical GRAM Start Address 
+ 225   2                      LCD_WriteCmdData(0x0053, height); // Vertical GRAM Start Address 
+ 226   2              
+ 227   2                      LCD_WriteCmdData(0x0020, sx); // GRAM horizontal Address 
+ 228   2                      LCD_WriteCmdData(0x0021, sy); // GRAM Vertical Address
+ 229   2                      LCD_WriteCmd(0x0022);
+ 230   2              }
+ 231   1              else
+ 232   1              {
+ 233   2                      LCD_WriteCmdData(0x0052, sx); // Horizontal GRAM Start Address 
+ 234   2                      LCD_WriteCmdData(0x0053, width); // Horizontal GRAM End Address 
+ 235   2                      LCD_WriteCmdData(0x0050, sy); // Vertical GRAM Start Address 
+ 236   2                      LCD_WriteCmdData(0x0051, height); // Vertical GRAM Start Address 
+ 237   2              
+ 238   2                      LCD_WriteCmdData(0x0021, sx); // GRAM horizontal Address 
+ 239   2                      LCD_WriteCmdData(0x0020, sy); // GRAM Vertical Address
+C51 COMPILER V9.01   TFTLCD                                                                06/16/2024 10:40:57 PAGE 5   
+
+ 240   2                      LCD_WriteCmd(0x0022);
+ 241   2              }
+ 242   1      }
+ 243          
+ 244          // 读取个某点的颜色值    
+ 245          // x,y:坐标
+ 246          // 返回值:此点的颜色
+ 247          unsigned int LCD_ReadPoint(unsigned int x, unsigned int y)
+ 248          {
+ 249   1              unsigned int r=0,g=0x0001,b=0x0001,dat;
+ 250   1              if(x >= tftlcd_data.width || y>= tftlcd_data.height)
+ 251   1                      return 0;       //超过了范围,直接返回                
+ 252   1              LCD_Set_Window(x, y, x, y);
+ 253   1              
+ 254   1              LCD_WriteCmd(0X0022);
+ 255   1              r = LCD_ReadData();             //dummy Read                                                               
+ 256   1              r = LCD_ReadData();             //实际坐标颜色
+ 257   1      
+ 258   1              return r;
+ 259   1      }
+*** WARNING C280 IN LINE 249 OF APP\TFTLCD\TFTLCD.C: 'dat': unreferenced local variable
+ 260          
+ 261          // 清屏函数
+ 262          // color:要清屏的填充色
+ 263          void LCD_Clear(unsigned int color)
+ 264          {
+ 265   1              unsigned int i=0, j=0 ;
+ 266   1      
+ 267   1              LCD_Set_Window(0, 0, tftlcd_data.width-1, tftlcd_data.height-1);         //作用区域
+ 268   1              for(i = 0; i < tftlcd_data.width; i++)
+ 269   1              {
+ 270   2                      for(j = 0; j < tftlcd_data.height; j++)
+ 271   2                      {
+ 272   3                              LCD_WriteData_Color(color);
+ 273   3                      }
+ 274   2              } 
+ 275   1      }
+ 276          
+ 277          // 在指定区域内填充单个颜色
+ 278          // (sx,sy),(ex,ey):填充矩形对角坐标,区域大小为:(ex-sx+1)*(ey-sy+1)   
+ 279          // color:要填充的颜色
+ 280          void LCD_Fill(unsigned int xState, unsigned int yState, unsigned int xEnd, unsigned int yEnd, unsigned int
+             - color)
+ 281          {          
+ 282   1              unsigned int temp = 0;
+ 283   1      
+ 284   1          if((xState > xEnd) || (yState > yEnd))
+ 285   1          {
+ 286   2              return;
+ 287   2          }   
+ 288   1              LCD_Set_Window(xState, yState, xEnd, yEnd); 
+ 289   1          xState = xEnd - xState + 1;
+ 290   1              yState = yEnd - yState + 1;
+ 291   1      
+ 292   1              while(xState--)
+ 293   1              {
+ 294   2                      temp = yState;
+ 295   2                      while (temp--)
+ 296   2                      {                       
+ 297   3                              LCD_WriteData_Color(color);     
+ 298   3                      }
+ 299   2              }       
+C51 COMPILER V9.01   TFTLCD                                                                06/16/2024 10:40:57 PAGE 6   
+
+ 300   1      } 
+ 301          
+ 302          // 在指定区域内填充指定颜色块                    
+ 303          // (sx,sy),(ex,ey):填充矩形对角坐标,区域大小为:(ex-sx+1)*(ey-sy+1)   
+ 304          // color:要填充的颜色
+ 305          void LCD_Color_Fill(unsigned int sx,unsigned int sy,unsigned int ex,unsigned int ey,unsigned int *color)
+ 306          {  
+ 307   1              unsigned int height,width;
+ 308   1              unsigned int i,j;
+ 309   1              width = ex-sx+1;                        // 得到填充的宽度
+ 310   1              height = ey-sy+1;                       // 高度
+ 311   1              LCD_Set_Window(sx, sy,ex, ey);
+ 312   1              for(i = 0; i< height; i++)
+ 313   1              {
+ 314   2                      for(j =0 ; j < width; j++)
+ 315   2                      {
+ 316   3                              LCD_WriteData_Color(color[i*width+j]);
+ 317   3                      }
+ 318   2              }                   
+ 319   1      }
+ 320          
+ 321          // 画点
+ 322          // x,y:坐标
+ 323          // FRONT_COLOR:此点的颜色
+ 324          void LCD_DrawPoint(unsigned int x, unsigned int y)
+ 325          {
+ 326   1              LCD_Set_Window(x, y, x, y);  // 设置点的位置
+ 327   1              LCD_WriteData_Color(FRONT_COLOR);       
+ 328   1      }
+ 329          
+ 330          //快速画点
+ 331          //x,y:坐标
+ 332          //color:颜色
+ 333          void LCD_DrawFRONT_COLOR(unsigned int x, unsigned int y, unsigned int color)
+ 334          {          
+ 335   1              LCD_Set_Window(x, y, x, y);
+ 336   1              LCD_WriteData_Color(color);     
+ 337   1      } 
+ 338          
+ 339          // 画一个大点
+ 340          // 2*2的点                         
+ 341          void LCD_DrawBigPoint(unsigned int x, unsigned int y, unsigned int color)
+ 342          {           
+ 343   1              LCD_DrawFRONT_COLOR(x,y, color); // 中心点 
+ 344   1              LCD_DrawFRONT_COLOR(x+1,y, color);
+ 345   1              LCD_DrawFRONT_COLOR(x,y+1, color);
+ 346   1              LCD_DrawFRONT_COLOR(x+1,y+1, color);                    
+ 347   1      }
+ 348          
+ 349          // 画线
+ 350          // x1,y1:起点坐标
+ 351          // x2,y2:终点坐标  
+ 352          void LCD_DrawLine(unsigned int x1, unsigned int y1, unsigned int x2, unsigned int y2)
+ 353          {
+ 354   1              unsigned int t = 0; 
+ 355   1              int xerr=0,yerr=0,delta_x,delta_y,distance; 
+ 356   1              int incx,incy,uRow,uCol; 
+ 357   1              delta_x = x2-x1; // 计算坐标增量 
+ 358   1              delta_y = y2-y1; 
+ 359   1              uRow = x1; 
+ 360   1              uCol = y1; 
+ 361   1              if(delta_x > 0)
+C51 COMPILER V9.01   TFTLCD                                                                06/16/2024 10:40:57 PAGE 7   
+
+ 362   1                      incx = 1; // 设置单步方向 
+ 363   1              else if(delta_x == 0)
+ 364   1                      incx = 0; // 垂直线 
+ 365   1              else 
+ 366   1              {
+ 367   2                      incx = -1;
+ 368   2                      delta_x = -delta_x;
+ 369   2              } 
+ 370   1              if(delta_y > 0)
+ 371   1                      incy = 1; 
+ 372   1              else if(delta_y == 0)
+ 373   1                      incy = 0 ; // 水平线 
+ 374   1              else
+ 375   1              {
+ 376   2                      incy=-1; 
+ 377   2                      delta_y = -delta_y;
+ 378   2              } 
+ 379   1              if(delta_x > delta_y)
+ 380   1                      distance = delta_x; // 选取基本增量坐标轴 
+ 381   1              else 
+ 382   1                      distance = delta_y; 
+ 383   1              for(t = 0; t<= distance+1; t++ ) // 画线输出 
+ 384   1              {  
+ 385   2                      LCD_DrawPoint(uRow, uCol); // 画点 
+ 386   2                      xerr += delta_x ; 
+ 387   2                      yerr += delta_y ; 
+ 388   2                      if(xerr > distance) 
+ 389   2                      { 
+ 390   3                              xerr -= distance; 
+ 391   3                              uRow += incx; 
+ 392   3                      } 
+ 393   2                      if(yerr > distance) 
+ 394   2                      { 
+ 395   3                              yerr -= distance; 
+ 396   3                              uCol += incy; 
+ 397   3                      } 
+ 398   2              }  
+ 399   1      } 
+ 400          
+ 401          void LCD_DrawLine_Color(unsigned int x1, unsigned int y1, unsigned int x2, unsigned int y2,unsigned int co
+             -lor)
+ 402          {
+ 403   1              unsigned int t; 
+ 404   1              int xerr=0,yerr=0,delta_x,delta_y,distance; 
+ 405   1              int incx,incy,uRow,uCol; 
+ 406   1              delta_x = x2-x1; //计算坐标增量 
+ 407   1              delta_y = y2-y1; 
+ 408   1              uRow = x1; 
+ 409   1              uCol = y1; 
+ 410   1              if(delta_x>0)
+ 411   1                      incx = 1; // 设置单步方向 
+ 412   1              else if(delta_x == 0)
+ 413   1                      incx=0; // 垂直线 
+ 414   1              else 
+ 415   1              {
+ 416   2                      incx =-1; delta_x =- delta_x;
+ 417   2              } 
+ 418   1              if(delta_y>0)
+ 419   1                      incy = 1; 
+ 420   1              else if(delta_y == 0)
+ 421   1                      incy = 0;//水平线 
+ 422   1              else
+C51 COMPILER V9.01   TFTLCD                                                                06/16/2024 10:40:57 PAGE 8   
+
+ 423   1              {
+ 424   2                      incy =- 1;
+ 425   2                      delta_y =- delta_y;
+ 426   2              } 
+ 427   1              if( delta_x > delta_y)
+ 428   1                      distance = delta_x; //选取基本增量坐标轴 
+ 429   1              else 
+ 430   1                      distance = delta_y; 
+ 431   1              for(t = 0; t<= distance+1; t++ ) // 画线输出 
+ 432   1              {  
+ 433   2                      LCD_DrawFRONT_COLOR(uRow,uCol,color);//画点 
+ 434   2                      xerr += delta_x ; 
+ 435   2                      yerr += delta_y ; 
+ 436   2                      if(xerr > distance) 
+ 437   2                      { 
+ 438   3                              xerr -= distance; 
+ 439   3                              uRow += incx; 
+ 440   3                      } 
+ 441   2                      if(yerr > distance) 
+ 442   2                      { 
+ 443   3                              yerr -= distance; 
+ 444   3                              uCol += incy; 
+ 445   3                      } 
+ 446   2              }  
+ 447   1      } 
+ 448          
+ 449          
+ 450          // 画一个十字的标记
+ 451          // x：标记的X坐标
+ 452          // y：标记的Y坐标
+ 453          // color：标记的颜色
+ 454          void LCD_DrowSign(u16 x, u16 y, u16 color)
+ 455          {
+ 456   1          u8 i;
+ 457   1      
+ 458   1          /* 画点 */
+ 459   1          LCD_Set_Window(x-1, y-1, x+1, y+1);
+ 460   1          for(i=0; i<9; i++)
+ 461   1          {
+ 462   2                      LCD_WriteData_Color(color);   
+ 463   2          }
+ 464   1      
+ 465   1          /* 画竖 */
+ 466   1          LCD_Set_Window(x-4, y, x+4, y);
+ 467   1          for(i=0; i<9; i++)
+ 468   1          {
+ 469   2                      LCD_WriteData_Color(color); 
+ 470   2          }
+ 471   1      
+ 472   1          /* 画横 */
+ 473   1          LCD_Set_Window(x, y-4, x, y+4);
+ 474   1          for(i=0; i<9; i++)
+ 475   1          {
+ 476   2                      LCD_WriteData_Color(color); 
+ 477   2          }
+ 478   1      }
+ 479          
+ 480          //画矩形          
+ 481          //(x1,y1),(x2,y2):矩形的对角坐标
+ 482          void LCD_DrawRectangle(u16 x1, u16 y1, u16 x2, u16 y2)
+ 483          {
+ 484   1              LCD_DrawLine(x1,y1,x2,y1);
+C51 COMPILER V9.01   TFTLCD                                                                06/16/2024 10:40:57 PAGE 9   
+
+ 485   1              LCD_DrawLine(x1,y1,x1,y2);
+ 486   1              LCD_DrawLine(x1,y2,x2,y2);
+ 487   1              LCD_DrawLine(x2,y1,x2,y2);
+ 488   1      }
+ 489          //在指定位置画一个指定大小的圆
+ 490          //(x,y):中心点
+ 491          //r    :半径
+ 492          void LCD_Draw_Circle(u16 x0,u16 y0,u8 r)
+ 493          {
+ 494   1              int a,b;
+ 495   1              int di;
+ 496   1              a=0;b=r;          
+ 497   1              di=3-(r<<1);             //判断下个点位置的标志
+ 498   1              while(a<=b)
+ 499   1              {
+ 500   2                      LCD_DrawPoint(x0+a,y0-b);             //5
+ 501   2                      LCD_DrawPoint(x0+b,y0-a);             //0           
+ 502   2                      LCD_DrawPoint(x0+b,y0+a);             //4               
+ 503   2                      LCD_DrawPoint(x0+a,y0+b);             //6 
+ 504   2                      LCD_DrawPoint(x0-a,y0+b);             //1       
+ 505   2                      LCD_DrawPoint(x0-b,y0+a);             
+ 506   2                      LCD_DrawPoint(x0-a,y0-b);             //2             
+ 507   2                      LCD_DrawPoint(x0-b,y0-a);             //7                
+ 508   2                      a++;
+ 509   2                      //使用Bresenham算法画圆     
+ 510   2                      if(di<0)di +=4*a+6;       
+ 511   2                      else
+ 512   2                      {
+ 513   3                              di+=10+4*(a-b);   
+ 514   3                              b--;
+ 515   3                      }                                                   
+ 516   2              }
+ 517   1      } 
+ 518          
+ 519          
+ 520          //在指定位置显示一个字符
+ 521          //x,y:起始坐标
+ 522          //num:要显示的字符:" "--->"~"
+ 523          //size:字体大小 12/16/24
+ 524          //mode:叠加方式(1)还是非叠加方式(0)
+ 525          void LCD_ShowChar(u16 x,u16 y,u8 num,u8 size,u8 mode)
+ 526          {                                                         
+ 527   1          u8 temp,t1,t;
+ 528   1              u16 y0=y;
+ 529   1              u8 csize=(size/8+((size%8)?1:0))*(size/2);              //得到字体一个字符对应点阵集所占的字节数        
+ 530   1              num=num-' ';//得到偏移后的值（ASCII字库是从空格开始取模，所以-' '就是对应字符的字库）
+ 531   1              for(t=0;t<csize;t++)
+ 532   1              {   
+ 533   2                      if(size==12)temp=ascii_1206[num][t];            //调用1206字体
+ 534   2                      else if(size==16)temp=ascii_1608[num][t];       //调用1608字体
+ 535   2                      else if(size==24)temp=ascii_2412[num][t];       //调用2412字体
+ 536   2                      else return;                                                            //没有的字库
+ 537   2                      for(t1=0;t1<8;t1++)
+ 538   2                      {                           
+ 539   3                              if(temp&0x80)LCD_DrawFRONT_COLOR(x,y,FRONT_COLOR);
+ 540   3                              else if(mode==0)LCD_DrawFRONT_COLOR(x,y,BACK_COLOR);
+ 541   3                              temp<<=1;
+ 542   3                              y++;
+ 543   3                              if(y>=tftlcd_data.height)return;                //超区域了
+ 544   3                              if((y-y0)==size)
+ 545   3                              {
+ 546   4                                      y=y0;
+C51 COMPILER V9.01   TFTLCD                                                                06/16/2024 10:40:57 PAGE 10  
+
+ 547   4                                      x++;
+ 548   4                                      if(x>=tftlcd_data.width)return; //超区域了
+ 549   4                                      break;
+ 550   4                              }
+ 551   3                      }        
+ 552   2              }                                 
+ 553   1      }   
+ 554          //m^n函数
+ 555          //返回值:m^n次方.
+ 556          u32 LCD_Pow(u8 m,u8 n)
+ 557          {
+ 558   1              u32 result=1;    
+ 559   1              while(n--)result*=m;    
+ 560   1              return result;
+ 561   1      }                        
+ 562          //显示数字,高位为0,则不显示
+ 563          //x,y :起点坐标  
+ 564          //len :数字的位数
+ 565          //size:字体大小
+ 566          //color:颜色 
+ 567          //num:数值(0~4294967295);        
+ 568          void LCD_ShowNum(u16 x,u16 y,u32 num,u8 len,u8 size)
+ 569          {               
+ 570   1              u8 t,temp;
+ 571   1              u8 enshow=0;                                               
+ 572   1              for(t=0;t<len;t++)
+ 573   1              {
+ 574   2                      temp=(num/LCD_Pow(10,len-t-1))%10;
+ 575   2                      if(enshow==0&&t<(len-1))
+ 576   2                      {
+ 577   3                              if(temp==0)
+ 578   3                              {
+ 579   4                                      LCD_ShowChar(x+(size/2)*t,y,' ',size,0);
+ 580   4                                      continue;
+ 581   4                              }else enshow=1; 
+ 582   3                               
+ 583   3                      }
+ 584   2                      LCD_ShowChar(x+(size/2)*t,y,temp+'0',size,0); 
+ 585   2              }
+ 586   1      } 
+ 587          
+ 588          //显示数字,高位为0,还是显示
+ 589          //x,y:起点坐标
+ 590          //num:数值(0~999999999);         
+ 591          //len:长度(即要显示的位数)
+ 592          //size:字体大小
+ 593          //mode:
+ 594          //[7]:0,不填充;1,填充0.
+ 595          //[6:1]:保留
+ 596          //[0]:0,非叠加显示;1,叠加显示.
+ 597          void LCD_ShowxNum(u16 x,u16 y,u32 num,u8 len,u8 size,u8 mode)
+ 598          {  
+ 599   1              u8 t,temp;
+ 600   1              u8 enshow=0;                                               
+ 601   1              for(t=0;t<len;t++)
+ 602   1              {
+ 603   2                      temp=(num/LCD_Pow(10,len-t-1))%10;
+ 604   2                      if(enshow==0&&t<(len-1))
+ 605   2                      {
+ 606   3                              if(temp==0)
+ 607   3                              {
+ 608   4                                      if(mode&0X80)LCD_ShowChar(x+(size/2)*t,y,'0',size,mode&0X01);  
+C51 COMPILER V9.01   TFTLCD                                                                06/16/2024 10:40:57 PAGE 11  
+
+ 609   4                                      else LCD_ShowChar(x+(size/2)*t,y,' ',size,mode&0X01);  
+ 610   4                                      continue;
+ 611   4                              }else enshow=1; 
+ 612   3                               
+ 613   3                      }
+ 614   2                      LCD_ShowChar(x+(size/2)*t,y,temp+'0',size,mode&0X01); 
+ 615   2              }
+ 616   1      } 
+ 617          //显示字符串
+ 618          //x,y:起点坐标
+ 619          //width,height:区域大小  
+ 620          //size:字体大小
+ 621          //*p:字符串起始地址               
+ 622          void LCD_ShowString(u16 x,u16 y,u16 width,u16 height,u8 size,u8 *p)
+ 623          {         
+ 624   1              u8 x0=x;
+ 625   1              width+=x;
+ 626   1              height+=y;
+ 627   1          while((*p<='~')&&(*p>=' '))//判断是不是非法字符!
+ 628   1          {       
+ 629   2              if(x>=width){x=x0;y+=size;}
+ 630   2              if(y>=height)break;//退出
+ 631   2              LCD_ShowChar(x,y,*p,size,0);
+ 632   2              x+=size/2;
+ 633   2              p++;
+ 634   2          }  
+ 635   1      }
+ 636          
+ 637          /****************************************************************************
+ 638          *函数名：LCD_ShowFontHZ
+ 639          *输  入：x：汉字显示的X坐标
+ 640          *      * y：汉字显示的Y坐标
+ 641          *      * cn：要显示的汉字
+ 642          *      * wordColor：文字的颜色
+ 643          *      * backColor：背景颜色
+ 644          *输  出：
+ 645          *功  能：写二号楷体汉字
+ 646          ****************************************************************************/
+ 647          #if 1
+ 648          void LCD_ShowFontHZ(u16 x, u16 y, u8 *cn)        
+ 649          {  
+ 650   1              u8 i, j, wordNum;
+ 651   1              u16 color;
+ 652   1              while (*cn != '\0')
+ 653   1              {
+ 654   2                      LCD_Set_Window(x, y, x+31, y+28);
+ 655   2                      for (wordNum=0; wordNum<20; wordNum++)
+ 656   2                      {       //wordNum扫描字库的字数
+ 657   3                              if ((CnChar32x29[wordNum].Index[0]==*cn)
+ 658   3                                   &&(CnChar32x29[wordNum].Index[1]==*(cn+1)))
+ 659   3                              {
+ 660   4                                      
+ 661   4                                      for(i=0; i<116; i++) 
+ 662   4                                      {       //MSK的位数
+ 663   5                                              color=CnChar32x29[wordNum].Msk[i];
+ 664   5                                              for(j=0;j<8;j++) 
+ 665   5                                              {
+ 666   6                                                      if((color&0x80)==0x80)
+ 667   6                                                      {
+ 668   7                                                              LCD_WriteData_Color(FRONT_COLOR);                                               
+ 669   7                                                      }                                               
+ 670   6                                                      else
+C51 COMPILER V9.01   TFTLCD                                                                06/16/2024 10:40:57 PAGE 12  
+
+ 671   6                                                      {
+ 672   7                                                              LCD_WriteData_Color(BACK_COLOR); 
+ 673   7                                                      } 
+ 674   6                                                      color<<=1;
+ 675   6                                              }//for(j=0;j<8;j++)结束
+ 676   5                                      }    
+ 677   4                              }
+ 678   3                      } //for (wordNum=0; wordNum<20; wordNum++)结束  
+ 679   2                      cn += 2;
+ 680   2                      x += 32;
+ 681   2              }
+ 682   1      }
+ 683          #endif
+ 684          
+ 685          
+ 686          #if 0
+              void LCD_ShowFontHZ(u16 x, u16 y, u8 *cn)
+              {
+                      u8 i, j, wordNum;
+                      u16 color;
+                      u16 x0=x; 
+                      u16 y0=y; 
+                      while (*cn != '\0')
+                      {
+                              for (wordNum=0; wordNum<20; wordNum++)
+                              {       //wordNum扫描字库的字数
+                                      if ((CnChar32x29[wordNum].Index[0]==*cn)
+                                           &&(CnChar32x29[wordNum].Index[1]==*(cn+1)))
+                                      {
+                                              for(i=0; i<116; i++) 
+                                              {       //MSK的位数
+                                                      color=CnChar32x29[wordNum].Msk[i];
+                                                      for(j=0;j<8;j++) 
+                                                      {
+                                                              if((color&0x80)==0x80)
+                                                              {
+                                                                      LCD_DrawFRONT_COLOR(x,y,FRONT_COLOR);
+                                                              }                                               
+                                                              else
+                                                              {
+                                                                      LCD_DrawFRONT_COLOR(x,y,BACK_COLOR);
+                                                              } 
+                                                              color<<=1;
+                                                              x++;
+                                                              if((x-x0)==32)
+                                                              {
+                                                                      x=x0;
+                                                                      y++;
+                                                                      if((y-y0)==29)
+                                                                      {
+                                                                              y=y0;
+                                                                      }
+                                                              }
+                                                      }//for(j=0;j<8;j++)结束
+                                              }       
+                                      }
+                                      
+                              } //for (wordNum=0; wordNum<20; wordNum++)结束  
+                              cn += 2;
+                              x += 32;
+                              x0=x;
+                      }
+C51 COMPILER V9.01   TFTLCD                                                                06/16/2024 10:40:57 PAGE 13  
+
+              }       
+              #endif
+ 735          
+ 736          void LCD_ShowPicture(u16 x, u16 y, u16 wide, u16 high,u8 *pic)
+ 737          {
+ 738   1              u16 temp = 0;
+ 739   1              long tmp=0,num=0;
+ 740   1              LCD_Set_Window(x, y, x+wide-1, y+high-1);
+ 741   1              num = wide * high*2 ;
+ 742   1              do
+ 743   1              {  
+ 744   2                      temp = pic[tmp + 1];
+ 745   2                      temp = temp << 8;
+ 746   2                      temp = temp | pic[tmp];
+ 747   2                      LCD_WriteData_Color(temp);//逐点显示
+ 748   2                      tmp += 2;
+ 749   2              }
+ 750   1              while(tmp < num);       
+ 751   1      }
+ 752          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   5638    ----
+   CONSTANT SIZE    =   7142    ----
+   XDATA SIZE       =     11     238
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  1 WARNING(S),  0 ERROR(S)
