@@ -1,0 +1,58 @@
+C51 COMPILER V9.01   MAIN                                                                  11/24/2021 10:42:41 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\Obj\main.obj
+COMPILER INVOKED BY: D:\YZ\KEILC51\C51\BIN\C51.EXE User\main.c BROWSE INCDIR(.\App\24c02;.\App\iic;.\App\key;.\App\smg;.
+                    -\Public;.\App\ds18b20;.\App\ds1302;.\App\ired;.\App\time;.\App\xpt2046;.\App\pwm;.\App\lcd1602;.\App\lcd9648) DEBUG OBJE
+                    -CTEXTEND PRINT(.\Obj\main.lst) OBJECT(.\Obj\main.obj)
+
+line level    source
+
+   1          /**************************************************************************************
+   2          深圳市普中科技有限公司（PRECHIN 普中）
+   3          技术支持：www.prechin.net
+   4          
+   5          实验名称：LCD9648液晶显示实验
+   6          接线说明：      
+   7          实验现象：下载程序后，LCD9648上显示字符汉字信息
+   8          注意事项：                                                                                                                                                                
+   9          ***************************************************************************************/
+  10          #include "public.h"
+  11          #include "lcd9648.h"
+  12          
+  13          
+  14          /*******************************************************************************
+  15          * 函 数 名       : main
+  16          * 函数功能               : 主函数
+  17          * 输    入       : 无
+  18          * 输    出       : 无
+  19          *******************************************************************************/
+  20          void main()
+  21          {       
+  22   1              lcd9648_init();
+  23   1              lcd9648_clear();
+  24   1              lcd_show_string(0,0,LCD_WIDTH,LCD_HEIGHT,12,"Hello World!");
+  25   1              lcd_show_string(0,14,LCD_WIDTH,LCD_HEIGHT,12,"0123456789");
+  26   1              lcd_show_fontHZ(0, 30,"普中科技");
+  27   1              lcd_reflash_gram();
+  28   1              while(1)
+  29   1              {
+  30   2                      
+  31   2                              
+  32   2              }       
+  33   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     71    ----
+   CONSTANT SIZE    =     33    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

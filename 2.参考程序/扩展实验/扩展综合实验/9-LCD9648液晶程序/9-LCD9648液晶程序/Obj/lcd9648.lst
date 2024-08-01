@@ -1,0 +1,321 @@
+C51 COMPILER V9.01   LCD9648                                                               11/24/2021 10:42:17 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE LCD9648
+OBJECT MODULE PLACED IN .\Obj\lcd9648.obj
+COMPILER INVOKED BY: D:\YZ\KEILC51\C51\BIN\C51.EXE App\lcd9648\lcd9648.c BROWSE INCDIR(.\App\24c02;.\App\iic;.\App\key;.
+                    -\App\smg;.\Public;.\App\ds18b20;.\App\ds1302;.\App\ired;.\App\time;.\App\xpt2046;.\App\pwm;.\App\lcd1602;.\App\lcd9648) 
+                    -DEBUG OBJECTEXTEND PRINT(.\Obj\lcd9648.lst) OBJECT(.\Obj\lcd9648.obj)
+
+line level    source
+
+   1          #include "lcd9648.h"
+   2          #include "font.h"
+   3          
+   4          
+   5          //全局变量定义
+   6          xdata u8 gdata_buf[96][6];
+   7          
+   8          /*******************************************************************************
+   9          * 函 数 名       : lcd9648_spi_write_byte
+  10          * 函数功能               : LCD9648 SPI传输数据
+  11          * 输    入       : dat：数据
+  12          * 输    出       : 无
+  13          *******************************************************************************/
+  14          void lcd9648_spi_write_byte(u8 dat)
+  15          {
+  16   1              u8 i=0;
+  17   1      
+  18   1              for(i=0;i<8;i++)//循环8次将一个字节传输                 
+  19   1              {  
+  20   2              if((dat&0x80)!=0) 
+  21   2                              SDA = 1;
+  22   2              else 
+  23   2                              SDA = 0;
+  24   2              dat<<= 1;//先写高位再写低位
+  25   2                      SCL = 0;
+  26   2              SCL = 1;//时钟上升沿写入数据                    
+  27   2              }
+  28   1      }
+  29          
+  30          /*******************************************************************************
+  31          * 函 数 名       : lcd9648_write_cmd
+  32          * 函数功能               : LCD9648写命令
+  33          * 输    入       : cmd：命令
+  34          * 输    出       : 无
+  35          *******************************************************************************/
+  36          void lcd9648_write_cmd(u8 cmd)
+  37          {
+  38   1              CS0 = 0;//使能
+  39   1              RS  = 0;//选择命令
+  40   1              lcd9648_spi_write_byte(cmd);//发送命令
+  41   1              CS0 = 1;//失能  
+  42   1      }
+  43          
+  44          /*******************************************************************************
+  45          * 函 数 名       : lcd9648_write_dat
+  46          * 函数功能               : LCD9648写数据
+  47          * 输    入       : dat：数据
+  48          * 输    出       : 无
+  49          *******************************************************************************/
+  50          void lcd9648_write_dat(u8 dat)
+  51          {
+  52   1              CS0 = 0;//使能
+  53   1              RS  = 1;//选择数据
+C51 COMPILER V9.01   LCD9648                                                               11/24/2021 10:42:17 PAGE 2   
+
+  54   1              lcd9648_spi_write_byte(dat);//发送数据
+  55   1              CS0 = 1;//失能  
+  56   1      }
+  57          
+  58          /*******************************************************************************
+  59          * 函 数 名       : lcd9648_init
+  60          * 函数功能               : LCD9648初始化
+  61          * 输    入       : 无
+  62          * 输    出       : 无
+  63          *******************************************************************************/
+  64          void lcd9648_init(void)
+  65          {
+  66   1              RST=1;  
+  67   1              delay_ms(10);
+  68   1              RST=0;
+  69   1              delay_ms(10);
+  70   1              RST=1;
+  71   1              delay_ms(10);//复位
+  72   1      
+  73   1          lcd9648_write_cmd(0xe2);              //软件复位
+  74   1              lcd9648_write_cmd(0xc8);                  //0xC8普通方向选择选择反向，0xC0为正常方向
+  75   1              lcd9648_write_cmd(0xa0);                  //0xA0段方向选择正常方向（0xA1为反方向
+  76   1              lcd9648_write_cmd(0x2f);
+  77   1              lcd9648_write_cmd(0x26);
+  78   1              lcd9648_write_cmd(0x81);                  //背景光对比度
+  79   1              lcd9648_write_cmd(0x10);
+  80   1              lcd9648_write_cmd(0xaf);                  //开启显示
+  81   1              lcd9648_write_cmd(0x40);                  //设置滚动一行命令
+  82   1      }
+  83          
+  84          /*******************************************************************************
+  85          * 函 数 名       : lcd9648_clear
+  86          * 函数功能               : LCD9648清屏
+  87          * 输    入       : 无
+  88          * 输    出       : 无
+  89          *******************************************************************************/
+  90          void lcd9648_clear(void)
+  91          {
+  92   1              u8 i,j;
+  93   1      
+  94   1              for(i=0;i<9;i++)//一共9页
+  95   1              {
+  96   2      //              lcd9648_write_cmd(0x40);//设置滚动一行命令
+  97   2                      lcd9648_write_cmd(0xb0+i);//页地址
+  98   2                      lcd9648_write_cmd(0x10);//列高字节地址
+  99   2                      lcd9648_write_cmd(0x00);//列低字节地址
+ 100   2                      
+ 101   2                      for(j = 0; j < LCD_WIDTH; j++)//每一行的像素点
+ 102   2                      {
+ 103   3                              lcd9648_write_dat(0x00);//不显示        
+ 104   3                      }       
+ 105   2              }
+ 106   1              for(i=0;i<6;i++)  
+ 107   1              {    
+ 108   2                      for(j=0;j<LCD_WIDTH;j++)
+ 109   2                      {
+ 110   3                              gdata_buf[j][i]=0;
+ 111   3                      }
+ 112   2              }
+ 113   1              lcd_reflash_gram();//更新显示   
+ 114   1      }
+ 115          
+C51 COMPILER V9.01   LCD9648                                                               11/24/2021 10:42:17 PAGE 3   
+
+ 116          void lcd_reflash_gram(void)
+ 117          {
+ 118   1              u8 i,n;             
+ 119   1              for(i=0;i<6;i++)  
+ 120   1              {  
+ 121   2                      lcd9648_write_cmd(0xb0+i);    //设置页地址（0~5）
+ 122   2                      lcd9648_write_cmd(0x00);      //设置显示位置—列低地址
+ 123   2                      lcd9648_write_cmd(0x10);      //设置显示位置—列高地址   
+ 124   2                      for(n=0;n<LCD_WIDTH;n++)lcd9648_write_dat(gdata_buf[n][i]); 
+ 125   2              }
+ 126   1      }
+ 127          
+ 128          //画点
+ 129          //x,y:坐标
+ 130          //sta:1：显示，0：不显示
+ 131          void lcd_draw_dot(u8 x,u8 y,u8 sta)
+ 132          {
+ 133   1              u8 posy1,posy2;
+ 134   1      
+ 135   1              if(x>=LCD_WIDTH||y>=LCD_HEIGHT)return;//超出范围了
+ 136   1              posy1=y/8;//判断是第几页
+ 137   1              posy2=y%8;//判断当页的字节数中第几位（字节低位在上，高位在下显示）
+ 138   1      
+ 139   1              if(sta)
+ 140   1                      gdata_buf[x][posy1]|=1<<posy2;
+ 141   1              else
+ 142   1                      gdata_buf[x][posy1]&=~(1<<posy2);       
+ 143   1      }
+ 144          
+ 145          //在指定位置显示一个字符
+ 146          //x,y:起始坐标
+ 147          //num:要显示的字符:" "--->"~"
+ 148          //size:字体大小 12/16/24
+ 149          //mode:叠加方式(1)还是非叠加方式(0)
+ 150          void lcd_show_char(u8 x,u8 y,u8 num,u8 size,u8 mode)
+ 151          {                                                         
+ 152   1          u8 temp,t1,t;
+ 153   1              u16 y0=y;
+ 154   1              u8 csize=(size/8+((size%8)?1:0))*(size/2);              //得到字体一个字符对应点阵集所占的字节数        
+ 155   1              num=num-' ';//得到偏移后的值（ASCII字库是从空格开始取模，所以-' '就是对应字符的字库）
+ 156   1              for(t=0;t<csize;t++)
+ 157   1              {   
+ 158   2                      if(size==12)temp=ascii_1206[num][t];            //调用1206字体
+ 159   2                      else if(size==16)temp=ascii_1608[num][t];       //调用1608字体
+ 160   2                      else if(size==24)temp=ascii_2412[num][t];       //调用2412字体
+ 161   2                      else return;                                                            //没有的字库
+ 162   2                      for(t1=0;t1<8;t1++)
+ 163   2                      {                           
+ 164   3                              if(temp&0x80)lcd_draw_dot(x,y,1);
+ 165   3                              else if(mode==0)lcd_draw_dot(x,y,0);
+ 166   3                              temp<<=1;
+ 167   3                              y++;
+ 168   3                              if(y>=LCD_HEIGHT)return;                //超区域了
+ 169   3                              if((y-y0)==size)
+ 170   3                              {
+ 171   4                                      y=y0;
+ 172   4                                      x++;
+ 173   4                                      if(x>=LCD_WIDTH)return; //超区域了
+ 174   4                                      break;
+ 175   4                              }
+ 176   3                      }        
+ 177   2              }                                 
+C51 COMPILER V9.01   LCD9648                                                               11/24/2021 10:42:17 PAGE 4   
+
+ 178   1      }   
+ 179          //m^n函数
+ 180          //返回值:m^n次方.
+ 181          u32 lcd_pow(u8 m,u8 n)
+ 182          {
+ 183   1              u32 result=1;    
+ 184   1              while(n--)result*=m;    
+ 185   1              return result;
+ 186   1      }                         
+ 187          
+ 188          //显示数字,高位为0,还是显示
+ 189          //x,y:起点坐标
+ 190          //num:数值(0~999999999);         
+ 191          //len:长度(即要显示的位数)
+ 192          //size:字体大小
+ 193          //mode:
+ 194          //[7]:0,不填充;1,填充0.
+ 195          //[6:1]:保留
+ 196          //[0]:0,非叠加显示;1,叠加显示.
+ 197          void lcd_show_num(u8 x,u8 y,u32 num,u8 len,u8 size,u8 mode)
+ 198          {  
+ 199   1              u8 t,temp;
+ 200   1              u8 enshow=0;                                               
+ 201   1              for(t=0;t<len;t++)
+ 202   1              {
+ 203   2                      temp=(num/lcd_pow(10,len-t-1))%10;
+ 204   2                      if(enshow==0&&t<(len-1))
+ 205   2                      {
+ 206   3                              if(temp==0)
+ 207   3                              {
+ 208   4                                      if(mode&0X80)lcd_show_char(x+(size/2)*t,y,'0',size,mode&0X01);  
+ 209   4                                      else lcd_show_char(x+(size/2)*t,y,' ',size,mode&0X01);  
+ 210   4                                      continue;
+ 211   4                              }else enshow=1; 
+ 212   3                               
+ 213   3                      }
+ 214   2                      lcd_show_char(x+(size/2)*t,y,temp+'0',size,mode&0X01); 
+ 215   2              }
+ 216   1      } 
+ 217          //显示字符串
+ 218          //x,y:起点坐标
+ 219          //width,height:区域大小  
+ 220          //size:字体大小
+ 221          //*p:字符串起始地址               
+ 222          void lcd_show_string(u8 x,u8 y,u8 width,u8 height,u8 size,u8 *p)
+ 223          {         
+ 224   1              u8 x0=x;
+ 225   1              width+=x;
+ 226   1              height+=y;
+ 227   1          while((*p<='~')&&(*p>=' '))//判断是不是非法字符!
+ 228   1          {       
+ 229   2              if(x>=width){x=x0;y+=size;}
+ 230   2              if(y>=height)break;//退出
+ 231   2              lcd_show_char(x,y,*p,size,0);
+ 232   2              x+=size/2;
+ 233   2              p++;
+ 234   2          }  
+ 235   1      }
+ 236          
+ 237          //显示汉字
+ 238          //x,y:起点坐标
+ 239          //*cn:字符串起始地址
+C51 COMPILER V9.01   LCD9648                                                               11/24/2021 10:42:17 PAGE 5   
+
+ 240          void lcd_show_fontHZ(u8 x, u8 y, u8 *cn)
+ 241          {
+ 242   1              u8 i, j, wordNum;
+ 243   1              u16 color;
+ 244   1              u16 x0=x; 
+ 245   1              u16 y0=y; 
+ 246   1              while (*cn != '\0')
+ 247   1              {
+ 248   2                      for (wordNum=0; wordNum<20; wordNum++)
+ 249   2                      {       //wordNum扫描字库的字数
+ 250   3                              if ((CnChar16x16[wordNum].Index[0]==*cn)
+ 251   3                                   &&(CnChar16x16[wordNum].Index[1]==*(cn+1)))
+ 252   3                              {
+ 253   4                                      for(i=0; i<32; i++) 
+ 254   4                                      {       //MSK的位数
+ 255   5                                              color=CnChar16x16[wordNum].Msk[i];
+ 256   5                                              for(j=0;j<8;j++) 
+ 257   5                                              {
+ 258   6                                                      if((color&0x80)==0x80)
+ 259   6                                                      {
+ 260   7                                                              lcd_draw_dot(x,y,1);
+ 261   7                                                      }                                               
+ 262   6                                                      else
+ 263   6                                                      {
+ 264   7                                                              lcd_draw_dot(x,y,0);
+ 265   7                                                      } 
+ 266   6                                                      color<<=1;
+ 267   6                                                      x++;
+ 268   6                                                      if((x-x0)==16)
+ 269   6                                                      {
+ 270   7                                                              x=x0;
+ 271   7                                                              y++;
+ 272   7                                                              if((y-y0)==16)
+ 273   7                                                              {
+ 274   8                                                                      y=y0;
+ 275   8                                                              }
+ 276   7                                                      }
+ 277   6                                              }//for(j=0;j<8;j++)结束
+ 278   5                                      }       
+ 279   4                              }
+ 280   3                              
+ 281   3                      } //for (wordNum=0; wordNum<20; wordNum++)结束  
+ 282   2                      cn += 2;
+ 283   2                      x += 16;
+ 284   2                      x0=x;
+ 285   2              }
+ 286   1      }
+ 287          
+ 288          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1164    ----
+   CONSTANT SIZE    =   6216    ----
+   XDATA SIZE       =    576    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----      48
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

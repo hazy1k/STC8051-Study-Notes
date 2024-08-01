@@ -1,0 +1,197 @@
+<html>
+<body>
+<pre>
+<h1>礦ision Build Log</h1>
+<h2>Project:</h2>
+H:\普中51-A2&A3&A4开发板资料\4--实验程序\----------调试程序\LCD9648液晶程序\template.uvproj
+Project File Date:  11/22/2021
+
+<h2>Output:</h2>
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_STRING?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=45.0 xdata=576 code=7389
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_STRING?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=45.0 xdata=576 code=7389
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=45.0 xdata=576 code=7412
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=45.0 xdata=576 code=7412
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=45.0 xdata=576 code=7412
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling lcd9648.c...
+APP\LCD9648\LCD9648.C(260): warning C206: 'LCD_DrawFRONT_COLOR': missing function-prototype
+APP\LCD9648\LCD9648.C(260): error C267: 'LCD_DrawFRONT_COLOR': requires ANSI-style prototype
+APP\LCD9648\LCD9648.C(260): error C202: 'FRONT_COLOR': undefined identifier
+APP\LCD9648\LCD9648.C(264): error C202: 'BACK_COLOR': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling lcd9648.c...
+APP\LCD9648\LCD9648.C(286): error C249: 'DATA': SEGMENT TOO LARGE
+Target not created
+Build target 'Target 1'
+compiling lcd9648.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_FONTHZ?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=56.0 xdata=576 code=8177
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_STRING?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=56.0 xdata=576 code=8162
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 3 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=45.0 xdata=576 code=8198
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling lcd9648.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=45.0 xdata=576 code=7998
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling lcd9648.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=45.0 xdata=576 code=7998
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling lcd9648.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=45.0 xdata=576 code=7859
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling lcd9648.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=45.0 xdata=576 code=7859
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling lcd9648.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=45.0 xdata=576 code=7859
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=45.0 xdata=576 code=7860
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=45.0 xdata=576 code=7895
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+compiling lcd9648.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=45.0 xdata=576 code=7895
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 2 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_LCD_SHOW_NUM?LCD9648
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_DELAY_10US?PUBLIC
+Program Size: data=45.0 xdata=576 code=7895
+creating hex file from ".\Obj\template"...
+".\Obj\template" - 0 Error(s), 2 Warning(s).

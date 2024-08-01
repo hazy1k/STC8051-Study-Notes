@@ -1,0 +1,191 @@
+C51 COMPILER V9.01   LCD1602                                                               09/10/2021 13:49:19 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE LCD1602
+OBJECT MODULE PLACED IN .\Obj\lcd1602.obj
+COMPILER INVOKED BY: D:\YZ\KEILC51\C51\BIN\C51.EXE App\lcd1602\lcd1602.c BROWSE INCDIR(.\App\24c02;.\App\iic;.\App\key;.
+                    -\App\smg;.\Public;.\App\ds18b20;.\App\ds1302;.\App\ired;.\App\time;.\App\xpt2046;.\App\pwm;.\App\lcd1602) DEBUG OBJECTEX
+                    -TEND PRINT(.\Obj\lcd1602.lst) OBJECT(.\Obj\lcd1602.obj)
+
+line level    source
+
+   1          #include "lcd1602.h"
+   2          
+   3          
+   4          /*******************************************************************************
+   5          * 函 数 名       : lcd1602_write_cmd
+   6          * 函数功能               : LCD1602写命令
+   7          * 输    入       : cmd：指令
+   8          * 输    出       : 无
+   9          *******************************************************************************/
+  10          #if (LCD1602_4OR8_DATA_INTERFACE==0)//8位LCD
+  11          void lcd1602_write_cmd(u8 cmd)
+  12          {
+  13   1              LCD1602_RS=0;//选择命令
+  14   1              LCD1602_RW=0;//选择写
+  15   1              LCD1602_E=0;
+  16   1              LCD1602_DATAPORT=cmd;//准备命令
+  17   1              delay_ms(1);
+  18   1              LCD1602_E=1;//使能脚E先上升沿写入
+  19   1              delay_ms(1);
+  20   1              LCD1602_E=0;//使能脚E后负跳变完成写入   
+  21   1      }
+  22          #else   //4位LCD
+              void lcd1602_write_cmd(u8 cmd)
+              {
+                      LCD1602_RS=0;//选择命令
+                      LCD1602_RW=0;//选择写
+                      LCD1602_E=0;
+                      LCD1602_DATAPORT=cmd;//准备命令
+                      delay_ms(1);
+                      LCD1602_E=1;//使能脚E先上升沿写入
+                      delay_ms(1);
+                      LCD1602_E=0;//使能脚E后负跳变完成写入
+                      
+                      LCD1602_DATAPORT=cmd<<4;//准备命令
+                      delay_ms(1);
+                      LCD1602_E=1;//使能脚E先上升沿写入
+                      delay_ms(1);
+                      LCD1602_E=0;//使能脚E后负跳变完成写入   
+              }
+              #endif
+  41          
+  42          /*******************************************************************************
+  43          * 函 数 名       : lcd1602_write_data
+  44          * 函数功能               : LCD1602写数据
+  45          * 输    入       : dat：数据
+  46          * 输    出       : 无
+  47          *******************************************************************************/
+  48          #if (LCD1602_4OR8_DATA_INTERFACE==0)//8位LCD
+  49          void lcd1602_write_data(u8 dat) 
+  50          {
+  51   1              LCD1602_RS=1;//选择数据
+  52   1              LCD1602_RW=0;//选择写
+  53   1              LCD1602_E=0;
+C51 COMPILER V9.01   LCD1602                                                               09/10/2021 13:49:19 PAGE 2   
+
+  54   1              LCD1602_DATAPORT=dat;//准备数据
+  55   1              delay_ms(1);
+  56   1              LCD1602_E=1;//使能脚E先上升沿写入
+  57   1              delay_ms(1);
+  58   1              LCD1602_E=0;//使能脚E后负跳变完成写入           
+  59   1      }
+  60          #else
+              void lcd1602_write_data(u8 dat) 
+              {
+                      LCD1602_RS=1;//选择数据
+                      LCD1602_RW=0;//选择写
+                      LCD1602_E=0;
+                      LCD1602_DATAPORT=dat;//准备数据
+                      delay_ms(1);
+                      LCD1602_E=1;//使能脚E先上升沿写入
+                      delay_ms(1);
+                      LCD1602_E=0;//使能脚E后负跳变完成写入
+                      
+                      LCD1602_DATAPORT=dat<<4;//准备数据
+                      delay_ms(1);
+                      LCD1602_E=1;//使能脚E先上升沿写入
+                      delay_ms(1);
+                      LCD1602_E=0;//使能脚E后负跳变完成写入           
+              }
+              #endif
+  79          
+  80          /*******************************************************************************
+  81          * 函 数 名       : lcd1602_init
+  82          * 函数功能               : LCD1602初始化
+  83          * 输    入       : 无
+  84          * 输    出       : 无
+  85          *******************************************************************************/
+  86          #if (LCD1602_4OR8_DATA_INTERFACE==0)//8位LCD
+  87          void lcd1602_init(void)
+  88          {
+  89   1              lcd1602_write_cmd(0x38);//数据总线8位，显示2行，5*7点阵/字符
+  90   1              lcd1602_write_cmd(0x0c);//显示功能开，无光标，光标闪烁
+  91   1              lcd1602_write_cmd(0x06);//写入新数据后光标右移，显示屏不移动
+  92   1              lcd1602_write_cmd(0x01);//清屏  
+  93   1      }
+  94          #else
+              void lcd1602_init(void)
+              {
+                      lcd1602_write_cmd(0x28);//数据总线4位，显示2行，5*7点阵/字符
+                      lcd1602_write_cmd(0x0c);//显示功能开，无光标，光标闪烁
+                      lcd1602_write_cmd(0x06);//写入新数据后光标右移，显示屏不移动
+                      lcd1602_write_cmd(0x01);//清屏  
+              }
+              #endif
+ 103          
+ 104          /*******************************************************************************
+ 105          * 函 数 名       : lcd1602_clear
+ 106          * 函数功能               : LCD1602清屏
+ 107          * 输    入       : 无
+ 108          * 输    出       : 无
+ 109          *******************************************************************************/
+ 110          void lcd1602_clear(void)
+ 111          {
+ 112   1              lcd1602_write_cmd(0x01);        
+ 113   1      }
+ 114          
+ 115          /*******************************************************************************
+C51 COMPILER V9.01   LCD1602                                                               09/10/2021 13:49:19 PAGE 3   
+
+ 116          * 函 数 名       : lcd1602_show_string
+ 117          * 函数功能               : LCD1602显示字符
+ 118          * 输    入       : x,y：显示坐标，x=0~15，y=0~1;
+ 119                                             str：显示字符串
+ 120          * 输    出       : 无
+ 121          *******************************************************************************/
+ 122          void lcd1602_show_string(u8 x,u8 y,u8 *str)
+ 123          {
+ 124   1              u8 i=0;
+ 125   1      
+ 126   1              if(y>1||x>15)return;//行列参数不对则强制退出
+ 127   1      
+ 128   1              if(y<1) //第1行显示
+ 129   1              {       
+ 130   2                      while(*str!='\0')//字符串是以'\0'结尾，只要前面有内容就显示
+ 131   2                      {
+ 132   3                              if(i<16-x)//如果字符长度超过第一行显示范围，则在第二行继续显示
+ 133   3                              {
+ 134   4                                      lcd1602_write_cmd(0x80+i+x);//第一行显示地址设置        
+ 135   4                              }
+ 136   3                              else
+ 137   3                              {
+ 138   4                                      lcd1602_write_cmd(0x40+0x80+i+x-16);//第二行显示地址设置        
+ 139   4                              }
+ 140   3                              lcd1602_write_data(*str);//显示内容
+ 141   3                              str++;//指针递增
+ 142   3                              i++;    
+ 143   3                      }       
+ 144   2              }
+ 145   1              else    //第2行显示
+ 146   1              {
+ 147   2                      while(*str!='\0')
+ 148   2                      {
+ 149   3                              if(i<16-x) //如果字符长度超过第二行显示范围，则在第一行继续显示
+ 150   3                              {
+ 151   4                                      lcd1602_write_cmd(0x80+0x40+i+x);       
+ 152   4                              }
+ 153   3                              else
+ 154   3                              {
+ 155   4                                      lcd1602_write_cmd(0x80+i+x-16); 
+ 156   4                              }
+ 157   3                              lcd1602_write_data(*str);
+ 158   3                              str++;
+ 159   3                              i++;    
+ 160   3                      }       
+ 161   2              }                               
+ 162   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    236    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       5
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

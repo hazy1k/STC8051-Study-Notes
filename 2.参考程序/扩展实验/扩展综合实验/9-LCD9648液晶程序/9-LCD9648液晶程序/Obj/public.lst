@@ -1,0 +1,50 @@
+C51 COMPILER V9.01   PUBLIC                                                                11/22/2021 14:44:28 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE PUBLIC
+OBJECT MODULE PLACED IN .\Obj\public.obj
+COMPILER INVOKED BY: D:\YZ\KEILC51\C51\BIN\C51.EXE Public\public.c BROWSE INCDIR(.\App\24c02;.\App\iic;.\App\key;.\App\s
+                    -mg;.\Public;.\App\ds18b20;.\App\ds1302;.\App\ired;.\App\time;.\App\xpt2046;.\App\pwm;.\App\lcd1602;.\App\lcd9648) DEBUG 
+                    -OBJECTEXTEND PRINT(.\Obj\public.lst) OBJECT(.\Obj\public.obj)
+
+line level    source
+
+   1          #include "public.h"
+   2          
+   3          /*******************************************************************************
+   4          * 函 数 名       : delay_10us
+   5          * 函数功能               : 延时函数，ten_us=1时，大约延时10us
+   6          * 输    入       : ten_us
+   7          * 输    出       : 无
+   8          *******************************************************************************/
+   9          void delay_10us(u16 ten_us)
+  10          {
+  11   1              while(ten_us--);        
+  12   1      }
+  13          
+  14          /*******************************************************************************
+  15          * 函 数 名       : delay_ms
+  16          * 函数功能               : ms延时函数，ms=1时，大约延时1ms
+  17          * 输    入       : ms：ms延时时间
+  18          * 输    出       : 无
+  19          *******************************************************************************/
+  20          void delay_ms(u16 ms)
+  21          {
+  22   1              u16 i,j;
+  23   1              for(i=ms;i>0;i--)
+  24   1                      for(j=110;j>0;j--);
+  25   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     41    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
