@@ -1,4 +1,4 @@
-# 第十八章 I2C-EEPROM实验
+# 第十九章 I2C-EEPROM实验
 
 ## 1. 导入
 
@@ -223,80 +223,53 @@ void smg_display(unsigned char dat[],unsigned char pos)
 ```c
 #include "iic.h"
 
-
-/*******************************************************************************
-* 函 数 名       : iic_start
-* 函数功能         : 产生IIC起始信号
-* 输    入       : 无
-* 输    出         : 无
-*******************************************************************************/
+// i2c产生起始信号
 void iic_start(void)
 {
-    IIC_SDA = 1;//如果把该条语句放在SCL后面，第二次读写会出现问题
+    IIC_SDA = 1; //如果把该条语句放在SCL后面，第二次读写会出现问题
     delay_10us(1);
     IIC_SCL = 1;
     delay_10us(1);
-    IIC_SDA = 0;    //当SCL为高电平时，SDA由高变为低
+    IIC_SDA = 0; // 当SCL为高电平时，SDA由高变为低
     delay_10us(1);
-    IIC_SCL = 0;//钳住I2C总线，准备发送或接收数据
+    IIC_SCL = 0; //钳住I2C总线，准备发送或接收数据
     delay_10us(1);
 }
 
-/*******************************************************************************
-* 函 数 名         : iic_stop
-* 函数功能           : 产生IIC停止信号   
-* 输    入         : 无
-* 输    出         : 无
-*******************************************************************************/
+// 产生i2c停止信号
 void iic_stop(void)
 {    
-    IIC_SDA = 0;//如果把该条语句放在SCL后面，第二次读写会出现问题
+    IIC_SDA = 0; // 如果把该条语句放在SCL后面，第二次读写会出现问题
     delay_10us(1);
     IIC_SCL = 1;
     delay_10us(1);
-    IIC_SDA = 1;    //当SCL为高电平时，SDA由低变为高
+    IIC_SDA = 1; // 当SCL为高电平时，SDA由低变为高
     delay_10us(1);            
 }
 
-/*******************************************************************************
-* 函 数 名         : iic_ack
-* 函数功能           : 产生ACK应答  
-* 输    入         : 无
-* 输    出         : 无
-*******************************************************************************/
+// 产生ACK应答
 void iic_ack(void)
 {
     IIC_SCL = 0;
     IIC_SDA = 0; // SDA为低电平
     delay_10us(1);     
-       IIC_SCL = 1;
+    IIC_SCL = 1;
     delay_10us(1);
     IIC_SCL = 0;
 }
 
-/*******************************************************************************
-* 函 数 名         : iic_nack
-* 函数功能           : 产生NACK非应答  
-* 输    入         : 无
-* 输    出         : 无
-*******************************************************************************/
+// 产生NACK非应答  
 void iic_nack(void)
 {
     IIC_SCL = 0;
     IIC_SDA = 1; // SDA为高电平
     delay_10us(1);
-       IIC_SCL = 1;
+    IIC_SCL = 1;
     delay_10us(1);
     IIC_SCL = 0;    
 }
 
-/*******************************************************************************
-* 函 数 名         : iic_wait_ack
-* 函数功能           : 等待应答信号到来   
-* 输    入         : 无
-* 输    出         : 1，接收应答失败
-                     0，接收应答成功
-*******************************************************************************/
+// 等待应答信号到来   
 unsigned char iic_wait_ack(void)
 {
     unsigned char time_temp = 0;
@@ -316,18 +289,13 @@ unsigned char iic_wait_ack(void)
     return 0;    
 }
 
-/*******************************************************************************
-* 函 数 名         : iic_write_byte
-* 函数功能           : IIC发送一个字节 
-* 输    入         : dat：发送一个字节
-* 输    出         : 无
-*******************************************************************************/
+// IIC发送一个字节 
 void iic_write_byte(unsigned char dat)
 {                        
     unsigned char i=0; 
 
-    IIC_SCL=0;
-    for(i=0;i<8;i++)    //循环8次将一个字节传出，先传高再传低位
+    IIC_SCL = 0;
+    for(i = 0; i  <8; i++) // 循环8次将一个字节传出，先传高再传低位
     {              
         if((dat&0x80)>0) 
             IIC_SDA=1;
@@ -342,12 +310,7 @@ void iic_write_byte(unsigned char dat)
     }     
 }
 
-/*******************************************************************************
-* 函 数 名         : iic_read_byte
-* 函数功能           : IIC读一个字节 
-* 输    入         : ack=1时，发送ACK，ack=0，发送nACK 
-* 输    出         : 应答或非应答
-*******************************************************************************/
+// IIC读一个字节 
 unsigned char iic_read_byte(unsigned char ack)
 {
     unsigned char i=0,receive=0;
@@ -387,47 +350,34 @@ unsigned char at24c02_read_one_byte(unsigned char addr); // AT24C02指定地址�
 ```c
 #include "24c02.h"
 #include "iic.h"
-
-
-/*******************************************************************************
-* 函 数 名         : at24c02_write_one_byte
-* 函数功能           : 在AT24CXX指定地址写入一个数据
-* 输    入         : addr:写入数据的目的地址 
-                     dat:要写入的数据
-* 输    出         : 无
-*******************************************************************************/
+// 在AT24CXX指定地址写入一个数据
 void at24c02_write_one_byte(unsigned char addr,unsigned char dat)
 {                                                                                                  
     iic_start();  
-    iic_write_byte(0XA0);    //发送写命令              
+    iic_write_byte(0XA0);// 发送写命令              
     iic_wait_ack();       
-    iic_write_byte(addr);    //发送写地址   
+    iic_write_byte(addr);// 发送写地址   
     iic_wait_ack();                                                           
-    iic_write_byte(dat);    //发送字节                                   
+    iic_write_byte(dat); // 发送字节                                   
     iic_wait_ack();                     
-    iic_stop();                //产生一个停止条件
+    iic_stop();          // 产生一个停止条件
     delay_ms(10);     
 }
 
-/*******************************************************************************
-* 函 数 名         : at24c02_read_one_byte
-* 函数功能           : 在AT24CXX指定地址读出一个数据
-* 输    入         : addr:开始读数的地址 
-* 输    出         : 读到的数据
-*******************************************************************************/
+// 在AT24CXX指定地址读出一个数据
 unsigned char at24c02_read_one_byte(unsigned char addr)
 {                  
     unsigned char temp=0;                                                                                   
     iic_start();  
-    iic_write_byte(0XA0);    //发送写命令       
+    iic_write_byte(0XA0); // 发送写命令       
     iic_wait_ack(); 
-    iic_write_byte(addr);     //发送写地址  
+    iic_write_byte(addr); // 发送写地址  
     iic_wait_ack();        
     iic_start();              
-    iic_write_byte(0XA1);     //进入接收模式                        
+    iic_write_byte(0XA1); // 进入接收模式                        
     iic_wait_ack();     
-    temp=iic_read_byte(0);    //读取字节           
-    iic_stop();                //产生一个停止条件
+    temp=iic_read_byte(0);// 读取字节           
+    iic_stop();
 
     return temp;            //返回读取的数据
 }
@@ -446,7 +396,7 @@ unsigned char at24c02_read_one_byte(unsigned char addr)
 void main()
 {    
     unsigned char key_temp = 0;
-       unsigned char save_value=0;
+    unsigned char save_value = 0;
     unsigned char save_buf[3];
 
     while(1)
@@ -467,7 +417,7 @@ void main()
         }
         else if(key_temp == KEY4_PRESS)
         {
-            save_value=0;    
+            save_value  =0;    
         }
         save_buf[0] = save_value/100;
         save_buf[1] = save_value%100/10;
@@ -489,17 +439,17 @@ void main()
 // iic起始信号
 void iic_start(void)
 {
-	IIC_SDA = 1; // 如果把该条语句放在SCL后面，第二次读写会出现问题
-	delay_10us(1);
+    IIC_SDA = 1; // 如果把该条语句放在SCL后面，第二次读写会出现问题
+    delay_10us(1);
 
-	IIC_SCL = 1;
-	delay_10us(1);
+    IIC_SCL = 1;
+    delay_10us(1);
 
-	IIC_SDA = 0; // 当SCL为高电平时，SDA由高变为低
-	delay_10us(1);
+    IIC_SDA = 0; // 当SCL为高电平时，SDA由高变为低
+    delay_10us(1);
 
-	IIC_SCL = 0; // 钳住I2C总线，准备发送或接收数据
-	delay_10us(1);
+    IIC_SCL = 0; // 钳住I2C总线，准备发送或接收数据
+    delay_10us(1);
 }
 ```
 
@@ -514,15 +464,15 @@ void iic_start(void)
 ```c
 // iic停止信号
 void iic_stop(void)
-{	
-	IIC_SDA = 0; // 如果把该条语句放在SCL后面，第二次读写会出现问题
-	delay_10us(1);
+{    
+    IIC_SDA = 0; // 如果把该条语句放在SCL后面，第二次读写会出现问题
+    delay_10us(1);
 
-	IIC_SCL = 1;
-	delay_10us(1);
+    IIC_SCL = 1;
+    delay_10us(1);
 
-	IIC_SDA = 1; // 当SCL为高电平时，SDA由低变为高
-	delay_10us(1);			
+    IIC_SDA = 1; // 当SCL为高电平时，SDA由低变为高
+    delay_10us(1);            
 }
 ```
 
@@ -534,14 +484,14 @@ void iic_stop(void)
 // iic产生ACK应答
 void iic_ack(void)
 {
-	IIC_SCL = 0;
-	IIC_SDA = 0; // SDA为低电平
-	delay_10us(1);	
+    IIC_SCL = 0;
+    IIC_SDA = 0; // SDA为低电平
+    delay_10us(1);    
 
-   	IIC_SCL = 1;
-	delay_10us(1);
+       IIC_SCL = 1;
+    delay_10us(1);
 
-	IIC_SCL = 0;
+    IIC_SCL = 0;
 }
 ```
 
@@ -549,14 +499,14 @@ void iic_ack(void)
 // 产生NACK非应答  
 void iic_nack(void)
 {
-	IIC_SCL = 0;
-	IIC_SDA = 1; // SDA为高电平
-	delay_10us(1);
+    IIC_SCL = 0;
+    IIC_SDA = 1; // SDA为高电平
+    delay_10us(1);
 
-   	IIC_SCL = 1;
-	delay_10us(1);
+       IIC_SCL = 1;
+    delay_10us(1);
 
-	IIC_SCL = 0;	
+    IIC_SCL = 0;    
 }
 ```
 
@@ -567,21 +517,21 @@ void iic_nack(void)
 ```c
 unsigned char iic_wait_ack(void)
 {
-	unsigned char time_temp = 0;
-	
-	IIC_SCL = 1; // 拉高SCL，准备发送应答-串行时钟线
-	delay_10us(1);
-	while(IIC_SDA) // 等待SDA为低电平
-	{
-		time_temp++; // 如果SDA不为低电平，计时器加1
-		if(time_temp > 100) // 超时则强制结束IIC通信
-		{	
-			iic_stop(); // 调用信号停止函数
-			return 1; // 超时返回1-异常	
-		}			
-	}
-	IIC_SCL = 0; // 拉低SCL，准备接收应答
-	return 0; // 正常返回0
+    unsigned char time_temp = 0;
+
+    IIC_SCL = 1; // 拉高SCL，准备发送应答-串行时钟线
+    delay_10us(1);
+    while(IIC_SDA) // 等待SDA为低电平
+    {
+        time_temp++; // 如果SDA不为低电平，计时器加1
+        if(time_temp > 100) // 超时则强制结束IIC通信
+        {    
+            iic_stop(); // 调用信号停止函数
+            return 1; // 超时返回1-异常    
+        }            
+    }
+    IIC_SCL = 0; // 拉低SCL，准备接收应答
+    return 0; // 正常返回0
     // 此时返回0代表正常，那么可以准备收发数据了
 }
 ```
@@ -593,7 +543,7 @@ unsigned char iic_wait_ack(void)
 void iic_write_byte(unsigned char dat)
 {                        
     unsigned char i = 0; 
-	   	    
+
     IIC_SCL = 0;  // 将时钟线拉低，准备发送数据
 
     for(i = 0; i < 8; i++) // 循环8次将一个字节传出，先传高位再传低位
@@ -602,7 +552,7 @@ void iic_write_byte(unsigned char dat)
             IIC_SDA = 1;     // 如果最高位为1，则数据线拉高（发送逻辑1）
         else
             IIC_SDA = 0;     // 如果最高位为0，则数据线拉低（发送逻辑0）
-        
+
         dat <<= 1;  // 将数据dat向左移动一位，准备发送下一个位
         delay_10us(1);  // 稍作延时，保证时序满足要求
 
@@ -611,7 +561,7 @@ void iic_write_byte(unsigned char dat)
 
         IIC_SCL = 0;  // 将时钟线再次拉低，为发送下一位数据做准备
         delay_10us(1);  // 稍作延时，保证时序满足要求
-    }	 
+    }     
 }
 ```
 
@@ -619,25 +569,25 @@ void iic_write_byte(unsigned char dat)
 // IIC读一个字节 ack=1时，发送ACK，ack=0，发送nACK 
 unsigned char iic_read_byte(unsigned char ack)
 {
-	unsigned char i = 0, receive = 0;
-   	
+    unsigned char i = 0, receive = 0;
+
     for(i =0; i < 8; i++ ) // 循环8次将一个字节读出，先读高再传低位
-	{
+    {
         IIC_SCL = 0; 
         delay_10us(1);
 
-		IIC_SCL = 1;
+        IIC_SCL = 1;
         receive <<= 1;
 
         if(IIC_SDA)
-			receive++;   
-		delay_10us(1); 
-    }					 
+            receive++;   
+        delay_10us(1); 
+    }                     
     if (!ack)
         iic_nack(); // 发送nACK
     else
         iic_ack(); // 发送ACK
-		  
+
     return receive; // 返回读出的字节
 }
 ```
@@ -647,19 +597,19 @@ unsigned char iic_read_byte(unsigned char ack)
 ```c
 // AT24C02的写入数据的函数
 void at24c02_write_one_byte(unsigned char addr, unsigned char dat)
-{				   	  	    																 
+{                                                                                                  
     iic_start(); // iic开始信号 
-	iic_write_byte(0XA0); // 发送写命令 1010 0000
+    iic_write_byte(0XA0); // 发送写命令 1010 0000
 
-	iic_wait_ack(); // iic等待应答				   
+    iic_wait_ack(); // iic等待应答                   
     iic_write_byte(addr); // 发送写地址
 
-	iic_wait_ack(); 	 										  		   
-	iic_write_byte(dat); // 发送字节
+    iic_wait_ack();                                                           
+    iic_write_byte(dat); // 发送字节
 
-	iic_wait_ack();  		    	   
+    iic_wait_ack();                     
     iic_stop(); // 产生一个停止条件
-	delay_ms(10);	 
+    delay_ms(10);     
 }
 ```
 
@@ -670,28 +620,32 @@ void at24c02_write_one_byte(unsigned char addr, unsigned char dat)
 ```c
 // AT24C02的读取数据的函数
 unsigned char at24c02_read_one_byte(unsigned char addr)
-{				  
-	unsigned char temp = 0; // 定义一个临时变量存储读取的数据		  
+{                  
+    unsigned char temp = 0; // 定义一个临时变量存储读取的数据          
 
     iic_start(); // iic开始信号  
-	iic_write_byte(0XA0); // 发送写命令
+    iic_write_byte(0XA0); // 发送写命令
 
-	iic_wait_ack(); // iic等待应答				   
+    iic_wait_ack(); // iic等待应答                   
     iic_write_byte(addr); // 发送写地址
 
-	iic_wait_ack();	    
-	iic_start();  	 	   
-	iic_write_byte(0XA1); // 进入接收模式 
+    iic_wait_ack();        
+    iic_start();              
+    iic_write_byte(0XA1); // 进入接收模式 
 
-	iic_wait_ack();	 
+    iic_wait_ack();     
     temp = iic_read_byte(0); // 读取字节
 
-    iic_stop();	// 产生一个停止条件
-	    
-	return temp; // 返回读取的数据
+    iic_stop();    // 产生一个停止条件
+
+    return temp; // 返回读取的数据
 }
 ```
 
+该章重点其实是学会模块化工程，关于I2C配置不会，其实只要拿来用就行了，EEPROM也是一样，如果需要具体学习，后面会有一个扩展章节：关于51单片机配置I2C
+
 ---
 
-2024.7.21第一次修订
+2024.7.21 第一次修订
+
+2024.8.22 第二次修订，后期不在维护
