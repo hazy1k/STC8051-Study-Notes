@@ -69,7 +69,7 @@ void pwm_set_duty_cycle(unsigned char duty);
 //全局变量定义
 unsigned char gtim_h = 0; // 保存定时器初值高8位
 unsigned char gtim_l = 0; // 保存定时器初值低8位
-unsigned char gduty = 0; // 保存PWM占空比
+unsigned char gduty = 0;  // 保存PWM占空比
 unsigned char gtim_scale = 0; // 保存PWM周期=定时器初值*tim_scale
 
 // PWM初始化函数
@@ -80,12 +80,12 @@ void pwm_init(unsigned char tim_h, unsigned char tim_l, unsigned int tim_scale, 
     gduty = duty;
     gtim_scale = tim_scale;
 
-    TMOD|=0X01;    // 选择为定时器0模式，工作方式1
+    TMOD |= 0X01; // 选择为定时器0模式，工作方式1
     TH0 = gtim_h; // 定时初值设置 
     TL0 = gtim_l;    
-    ET0 = 1; // 打开定时器0中断允许
-    EA = 1; // 打开总中断
-    TR0 = 1; // 打开定时器
+    ET0 = 1;      // 打开定时器0中断允许
+    EA = 1;       // 打开总中断
+    TR0 = 1;      // 打开定时器
 }
 
 // 设置占空比
@@ -94,7 +94,7 @@ void pwm_set_duty_cycle(unsigned char duty)
     gduty = duty;    
 }
 
-void pwm(void) interrupt 1    //定时器0中断函数
+void pwm(void) interrupt 1 // 定时器0中断函数
 {
     static unsigned int time = 0;
 
@@ -104,12 +104,42 @@ void pwm(void) interrupt 1    //定时器0中断函数
     time++;
     if(time >= gtim_scale) // PWM周期=定时器初值*gtim_scale，重新开始计数
         time=0;
-    if(time<=gduty) // 占空比    
+    if(time <= gduty) // 占空比    
         PWM=1;
     else
         PWM=0;        
 }
 ```
+
+这里PWM初始化函数倒是好理解，我们重点分析一下定时器中断函数：
+
+1. **重新设置定时器初值**：
+
+```c
+TH0 = gtim_h; // 重新设置定时器高8位
+TL0 = gtim_l; // 重新设置定时器低8位
+```
+
+2. **计数**：
+
+```c
+time++;
+if(time >= gtim_scale) // 周期到达，重置计数
+    time = 0;
+```
+
+3. **生成 PWM 信号**：
+
+```c
+if(time <= gduty) // 根据占空比控制 PWM 信号
+    PWM = 1;
+else
+    PWM = 0;
+```
+
+- **定时器重载**：在每次中断时重新加载定时器初值，确保周期性。
+- **计数与周期**：`time` 用于计算 PWM 周期，`gtim_scale` 定义了周期的总计数值。
+- **PWM 控制**：通过比较 `time` 和 `gduty`，决定 `PWM` 的高低状态，从而实现占空比控制。
 
 ```c
 #include "public.h"
@@ -128,7 +158,7 @@ void main()
         {
             duty++; // 占空比递增
             if(duty == 70)
-                dir=1;// 当到达一定值切换方向，占空比最大能到100，但到达70左右再递增，肉眼也分辨不出亮度变化    
+                dir = 1;// 当到达一定值切换方向，占空比最大能到100，但到达70左右再递增，肉眼也分辨不出亮度变化    
         }
         else
         {
@@ -156,4 +186,6 @@ void main()
 
 ---
 
-2024.7.23第一次修订
+2024.7.23 第一次修订
+
+2024.8.23 第二次修订，后期不再维护
