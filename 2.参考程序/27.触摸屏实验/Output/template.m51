@@ -1,9 +1,9 @@
-BL51 BANKED LINKER/LOCATER V6.22                                                        06/17/2024  09:17:55  PAGE 1
+BL51 BANKED LINKER/LOCATER V6.22                                                        08/25/2024  09:43:07  PAGE 1
 
 
 BL51 BANKED LINKER/LOCATER V6.22, INVOKED BY:
-E:\DIANZI\KEIL C51\C51\BIN\BL51.EXE .\output\main.obj, .\output\public.obj, .\output\uart.obj, .\output\tftlcd.obj, .\ou
->> tput\touch.obj, .\output\gui.obj TO .\output\template PRINT (.\output\template.m51) RAMSIZE (256)
+E:\DIANZI\KEILC51\C51\BIN\BL51.EXE .\output\main.obj, .\output\public.obj, .\output\uart.obj, .\output\tftlcd.obj, .\out
+>> put\touch.obj, .\output\gui.obj TO .\output\template PRINT (.\output\template.m51) RAMSIZE (256)
 
 
 MEMORY MODEL: LARGE
@@ -16,27 +16,27 @@ INPUT MODULES INCLUDED:
   .\output\tftlcd.obj (TFTLCD)
   .\output\touch.obj (TOUCH)
   .\output\gui.obj (GUI)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C_STARTUP)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?CLDPTR)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?CLDOPTR)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?IMUL)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?IILDX)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?ILDIX)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?ILDOPTR)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?LMUL)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?ULDIV)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?SLDIV)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?SLCMP)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?ULCMP)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?LSTXDATA)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?LSTKXDATA)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (PRINTF)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C_INIT)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?CSTPTR)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?PLDIXDATA)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?PSTXDATA)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (?C?CCASE)
-  E:\DIANZI\KEIL C51\C51\LIB\C51L.LIB (PUTCHAR)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C_STARTUP)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?CLDPTR)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?CLDOPTR)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?IMUL)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?IILDX)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?ILDIX)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?ILDOPTR)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?LMUL)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?ULDIV)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?SLDIV)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?SLCMP)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?ULCMP)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?LSTXDATA)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?LSTKXDATA)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (PRINTF)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C_INIT)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?CSTPTR)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?PLDIXDATA)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?PSTXDATA)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (?C?CCASE)
+  E:\DIANZI\KEILC51\C51\LIB\C51L.LIB (PUTCHAR)
 
 
 LINK MAP OF MODULE:  .\output\template (MAIN)
@@ -59,7 +59,7 @@ LINK MAP OF MODULE:  .\output\template (MAIN)
             XDATA   0061H     001EH     UNIT         ?XD?_LCD_DRAWLINE_COLOR?TFTLCD
             XDATA   007FH     001CH     UNIT         ?XD?_LCD_DRAWLINE?TFTLCD
             XDATA   009BH     0015H     UNIT         ?XD?_LCD_SHOWPICTURE?TFTLCD
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 2
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 2
 
 
             XDATA   00B0H     0013H     UNIT         ?XD?_LCD_COLOR_FILL?TFTLCD
@@ -119,7 +119,7 @@ LINK MAP OF MODULE:  .\output\template (MAIN)
             CODE    421DH     0033H     UNIT         ?PR?_UART_SENDSTRING?UART
             CODE    4250H     0027H     UNIT         ?PR?PUTCHAR?PUTCHAR
             CODE    4277H     0026H     UNIT         ?PR?_LCD_WRITECMD?TFTLCD
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 3
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 3
 
 
             CODE    429DH     0025H     UNIT         ?CO?MAIN
@@ -179,7 +179,7 @@ SEGMENT                                    BIT_GROUP          DATA_GROUP        
   +--> ?PR?_LCD_WRITECMDDATA?TFTLCD
 
 ?PR?_LCD_CLEAR?TFTLCD                   -----    -----      -----    -----      0038H    0004H
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 4
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 4
 
 
   +--> ?PR?_LCD_SET_WINDOW?TFTLCD
@@ -239,7 +239,7 @@ UNRESOLVED EXTERNAL SYMBOLS:
    _GUI_DRAW_BLINE
    _GUI_DRAW_RECTANGLE
    _GUI_FILL_ELLIPSE
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 5
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 5
 
 
    _GUI_FILL_RECTANGLE
@@ -299,7 +299,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   C:25CBH         LINE#         43
   C:25CBH         LINE#         44
   C:25D0H         LINE#         45
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 6
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 6
 
 
   C:25D2H         LINE#         46
@@ -356,19 +356,19 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   C:2D41H         LINE#         106
   C:2D6BH         LINE#         107
   C:2D95H         LINE#         108
+  C:2DBFH         LINE#         110
   C:2DBFH         LINE#         111
   C:2DBFH         LINE#         112
-  C:2DBFH         LINE#         113
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 7
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 7
 
 
+  C:2DC5H         LINE#         113
   C:2DC5H         LINE#         114
-  C:2DC5H         LINE#         115
-  C:2DC7H         LINE#         116
-  C:2DD2H         LINE#         117
-  C:2DD5H         LINE#         118
-  C:2DD5H         LINE#         120
-  C:2DD8H         LINE#         122
+  C:2DC7H         LINE#         115
+  C:2DD2H         LINE#         116
+  C:2DD5H         LINE#         117
+  C:2DD5H         LINE#         119
+  C:2DD8H         LINE#         121
   -------         ENDPROC       MAIN
   -------         ENDMOD        MAIN
 
@@ -419,7 +419,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   B:0098H.1       PUBLIC        TI
   C:421DH         PUBLIC        _UART_SendString
   C:439AH         PUBLIC        _UART_SendData
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 8
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 8
 
 
   D:0099H         PUBLIC        SBUF
@@ -479,7 +479,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   C:424DH         LINE#         40
   C:424FH         LINE#         41
   -------         ENDPROC       _UART_SENDSTRING
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 9
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 9
 
 
   -------         PROC          UART_IRQN
@@ -539,7 +539,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   C:2213H         PUBLIC        TFTLCD_Init
   C:04A7H         PUBLIC        ascii_1608
   C:3BB4H         PUBLIC        _LCD_Fill
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 10
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 10
 
 
   C:3C89H         PUBLIC        _LCD_Set_Window
@@ -599,7 +599,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   C:4298H         LINE#         118
   C:429AH         LINE#         120
   C:429CH         LINE#         246
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 11
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 11
 
 
   -------         ENDPROC       _LCD_WRITECMD
@@ -659,7 +659,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   -------         ENDDO         
   C:433FH         LINE#         709
   C:433FH         LINE#         710
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 12
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 12
 
 
   C:433FH         LINE#         713
@@ -719,7 +719,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   C:227CH         LINE#         1505
   C:2287H         LINE#         1506
   C:2290H         LINE#         1507
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 13
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 13
 
 
   C:2299H         LINE#         1508
@@ -779,7 +779,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   X:0055H         SYMBOL        sx
   X:0057H         SYMBOL        sy
   X:0059H         SYMBOL        width
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 14
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 14
 
 
   X:005BH         SYMBOL        height
@@ -839,7 +839,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   C:3F40H         LINE#         2787
   C:3F50H         LINE#         2788
   C:3F50H         LINE#         2789
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 15
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 15
 
 
   C:3F6CH         LINE#         2790
@@ -899,7 +899,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   C:38C3H         LINE#         2834
   C:38C3H         LINE#         2835
   C:38F9H         LINE#         2836
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 16
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 16
 
 
   C:3909H         LINE#         2837
@@ -959,7 +959,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   X:0095H         SYMBOL        incy
   X:0097H         SYMBOL        uRow
   X:0099H         SYMBOL        uCol
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 17
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 17
 
 
   -------         ENDDO         
@@ -1019,7 +1019,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   C:286CH         LINE#         2907
   C:286CH         LINE#         2909
   C:2877H         LINE#         2911
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 18
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 18
 
 
   C:288CH         LINE#         2912
@@ -1079,7 +1079,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   -------         ENDPROC       _LCD_DROWSIGN
   -------         PROC          _LCD_DRAWRECTANGLE
   X:010AH         SYMBOL        x1
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 19
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 19
 
 
   X:010CH         SYMBOL        y1
@@ -1139,7 +1139,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   -------         ENDDO         
   C:2F61H         LINE#         3017
   C:2F76H         LINE#         3018
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 20
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 20
 
 
   C:2F76H         LINE#         3020
@@ -1199,7 +1199,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   C:3A13H         LINE#         3064
   C:3A28H         LINE#         3065
   C:3A28H         LINE#         3066
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 21
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 21
 
 
   C:3A52H         LINE#         3067
@@ -1259,7 +1259,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   C:392FH         LINE#         3115
   C:392FH         LINE#         3116
   C:393BH         LINE#         3117
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 22
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 22
 
 
   C:3947H         LINE#         3118
@@ -1319,7 +1319,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   X:009DH         SYMBOL        y
   X:009FH         SYMBOL        wide
   X:00A1H         SYMBOL        high
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 23
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 23
 
 
   X:00A3H         SYMBOL        pic
@@ -1379,7 +1379,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   C:43BDH         LINE#         16
   -------         ENDPROC       TOUCH_SPI_START
   -------         PROC          _TOUCH_SPI_WRITE
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 24
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 24
 
 
   D:0007H         SYMBOL        dat
@@ -1439,7 +1439,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   C:2E02H         LINE#         67
   C:2E03H         LINE#         68
   C:2E04H         LINE#         69
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 25
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 25
 
 
   C:2E06H         LINE#         70
@@ -1499,7 +1499,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   C:3784H         LINE#         136
   C:3797H         LINE#         137
   C:3797H         LINE#         140
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 26
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 26
 
 
   C:37B4H         LINE#         141
@@ -1559,7 +1559,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   -------         MODULE        ?C?CLDOPTR
   C:1F97H         PUBLIC        ?C?CLDOPTR
   -------         ENDMOD        ?C?CLDOPTR
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 27
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 27
 
 
 
@@ -1619,7 +1619,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
   -------         ENDMOD        PRINTF
 
   -------         MODULE        ?C?CSTPTR
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 28
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 28
 
 
   C:21BBH         PUBLIC        ?C?CSTPTR
@@ -1679,7 +1679,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
 
 *** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
     SEGMENT: ?PR?_LCD_SHOWXNUM?TFTLCD
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 29
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 29
 
 
 
@@ -1739,7 +1739,7 @@ SYMBOL TABLE OF MODULE:  .\output\template (MAIN)
     SYMBOL:  ?_GUI_DRAW_BLINE?BYTE
     MODULE:  .\output\main.obj (MAIN)
     ADDRESS: 3186H
-BL51 BANKED LINKER/LOCATER V6.22                                                      06/17/2024  09:17:55  PAGE 30
+BL51 BANKED LINKER/LOCATER V6.22                                                      08/25/2024  09:43:07  PAGE 30
 
 
 

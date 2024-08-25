@@ -1,10 +1,10 @@
-C51 COMPILER V9.01   MAIN                                                                  06/17/2024 09:17:55 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  08/25/2024 09:43:04 PAGE 1   
 
 
-C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN .\output\main.obj
-COMPILER INVOKED BY: E:\dianzi\Keil C51\C51\BIN\C51.EXE User\main.c LARGE BROWSE INCDIR(.\User;.\Public;.\GUI;.\APP\tftl
-                    -cd;.\APP\touch) DEBUG OBJECTEXTEND PRINT(.\output\main.lst) OBJECT(.\output\main.obj)
+COMPILER INVOKED BY: E:\dianzi\KEILC51\C51\BIN\C51.EXE User\main.c LARGE OPTIMIZE(8,SPEED) BROWSE INCDIR(.\User;.\Public
+                    -;.\GUI;.\APP\tftlcd;.\APP\touch) DEBUG OBJECTEXTEND PRINT(.\output\main.lst) TABS(2) OBJECT(.\output\main.obj)
 
 line level    source
 
@@ -19,25 +19,25 @@ line level    source
    9          u8 Touch_RST=0;
   10          
   11          
-  12          //触摸测试
+  12          // 触摸测试
   13          void TOUCH_Test(void)
   14          {
-  15   1              
-  16   1              static u16 penColor = BLUE;
+  15   1        
+  16   1        static u16 penColor = BLUE;
   17   1      
-  18   1              TOUCH_Scan();
-  19   1              if(xpt_xy.sta)
-  20   1              {       
-  21   2                      
-  22   2                      if(xpt_xy.lcdx>tftlcd_data.width)
-  23   2                              xpt_xy.lcdx=tftlcd_data.width-1;
-  24   2                      if(xpt_xy.lcdy>tftlcd_data.height)
-  25   2                              xpt_xy.lcdy=tftlcd_data.height-1;
-  26   2                      if((xpt_xy.lcdx>=(tftlcd_data.width-3*12))&&(xpt_xy.lcdy<24))
-  27   2                              Touch_RST=1;
-  28   2                      if(xpt_xy.lcdy > tftlcd_data.height - 20)
-  29   2                      {
-  30   3                              if(xpt_xy.lcdx>100)
+  18   1        TOUCH_Scan();
+  19   1        if(xpt_xy.sta)
+  20   1        { 
+  21   2          
+  22   2          if(xpt_xy.lcdx>tftlcd_data.width)
+  23   2            xpt_xy.lcdx=tftlcd_data.width-1;
+  24   2          if(xpt_xy.lcdy>tftlcd_data.height)
+  25   2            xpt_xy.lcdy=tftlcd_data.height-1;
+  26   2          if((xpt_xy.lcdx>=(tftlcd_data.width-3*12))&&(xpt_xy.lcdy<24))
+  27   2            Touch_RST=1;
+  28   2          if(xpt_xy.lcdy > tftlcd_data.height - 20)
+  29   2          {
+  30   3            if(xpt_xy.lcdx>100)
   31   3                  {
   32   4                      penColor = YELLOW;
   33   4                  }
@@ -62,79 +62,80 @@ line level    source
   52   3                  {
   53   4                      penColor = BLUE;
   54   4                  }       
-C51 COMPILER V9.01   MAIN                                                                  06/17/2024 09:17:55 PAGE 2   
+C51 COMPILER V9.54   MAIN                                                                  08/25/2024 09:43:04 PAGE 2   
 
-  55   3                      }
-  56   2                      else
-  57   2                      {
-  58   3                              LCD_Fill(xpt_xy.lcdx-2,xpt_xy.lcdy-2,xpt_xy.lcdx+2,xpt_xy.lcdy+2,penColor);     
-  59   3                      }
-  60   2                                                              
-  61   2              }               
+  55   3          }
+  56   2          else
+  57   2          {
+  58   3            LCD_Fill(xpt_xy.lcdx-2,xpt_xy.lcdy-2,xpt_xy.lcdx+2,xpt_xy.lcdy+2,penColor); 
+  59   3          }
+  60   2                    
+  61   2        }   
   62   1      }
   63          
   64          //GUI测试
   65          void GUI_Test(void)
   66          {
-  67   1              FRONT_COLOR=BLACK;
-  68   1              LCD_ShowFontHZ(tftlcd_data.width/2-2*24-12, 0,"普中科技");
-  69   1              LCD_ShowString(tftlcd_data.width/2-7*12,30,tftlcd_data.width,tftlcd_data.height,24,"www.prechin.cn");
-  70   1              LCD_ShowString(tftlcd_data.width/2-7*8,55,tftlcd_data.width,tftlcd_data.height,24,"GUI Test");
-  71   1              
-  72   1              FRONT_COLOR=RED;
-  73   1              gui_draw_bigpoint(10,55,GREEN);
-  74   1              gui_draw_bline(10,80,120,80,10,GREEN);
-  75   1              gui_draw_rectangle(10,95,30,30,GREEN);
-  76   1              gui_draw_arcrectangle(50,95,30,30,5,1,BLUE,GREEN);
-  77   1              gui_fill_rectangle(90,95,30,30,GREEN);
-  78   1              //gui_fill_circle(90,120,20,GREEN);
-  79   1              gui_fill_ellipse(30,150,20,10,GREEN);
+  67   1        FRONT_COLOR=BLACK;
+  68   1        LCD_ShowFontHZ(tftlcd_data.width/2-2*24-12, 0,"普中科技");
+  69   1        LCD_ShowString(tftlcd_data.width/2-7*12,30,tftlcd_data.width,tftlcd_data.height,24,"www.prechin.cn");
+  70   1        LCD_ShowString(tftlcd_data.width/2-7*8,55,tftlcd_data.width,tftlcd_data.height,24,"GUI Test");
+  71   1        
+  72   1        FRONT_COLOR=RED;
+  73   1        gui_draw_bigpoint(10,55,GREEN);
+  74   1        gui_draw_bline(10,80,120,80,10,GREEN);
+  75   1        gui_draw_rectangle(10,95,30,30,GREEN);
+  76   1        gui_draw_arcrectangle(50,95,30,30,5,1,BLUE,GREEN);
+  77   1        gui_fill_rectangle(90,95,30,30,GREEN);
+  78   1        //gui_fill_circle(90,120,20,GREEN);
+  79   1        gui_fill_ellipse(30,150,20,10,GREEN);
   80   1      
-  81   1              //更多的GUI等待大家来发掘和编写
-  82   1              
-  83   1              delay_ms(2000);
-  84   1              LCD_Clear(BACK_COLOR);          
+  81   1        //更多的GUI等待大家来发掘和编写
+  82   1        
+  83   1        delay_ms(2000);
+  84   1        LCD_Clear(BACK_COLOR);    
   85   1      }
   86          
   87          void main()
   88          {
-  89   1              
-  90   1              u16 color=0;
+  89   1        
+  90   1        u16 color=0;
   91   1      
-  92   1              UART_Init();
-  93   1              TFTLCD_Init();
+  92   1        UART_Init();
+  93   1        TFTLCD_Init();
   94   1      
   95   1      Start:
-  96   1              //GUI_Test();
-  97   1                      
-  98   1              FRONT_COLOR=BLACK;
-  99   1              LCD_ShowFontHZ(tftlcd_data.width/2-2*24-12, 0,"普中科技");
- 100   1              LCD_ShowString(tftlcd_data.width/2-7*12,30,tftlcd_data.width,tftlcd_data.height,24,"www.prechin.cn");
- 101   1              FRONT_COLOR=RED;
- 102   1              LCD_ShowString(tftlcd_data.width-3*12,0,tftlcd_data.width,tftlcd_data.height,24,"RST");
- 103   1              LCD_Fill(0, tftlcd_data.height - 20, 20, tftlcd_data.height, BLUE);
- 104   1          LCD_Fill(20, tftlcd_data.height - 20, 40, tftlcd_data.height, RED);
+  96   1        //GUI_Test();
+  97   1          
+  98   1        FRONT_COLOR = BLACK;
+  99   1        LCD_ShowFontHZ(tftlcd_data.width/2-2*24-12, 0,"普中科技"); // 显示标题
+ 100   1        LCD_ShowString(tftlcd_data.width/2-7*12,30,tftlcd_data.width,tftlcd_data.height,24,"www.prechin.cn"); // 
+             -显示地址
+ 101   1        FRONT_COLOR = RED;
+ 102   1        LCD_ShowString(tftlcd_data.width-3*12,0,tftlcd_data.width,tftlcd_data.height,24,"RST"); // 显示触摸按键提
+             -示
+ 103   1        LCD_Fill(0, tftlcd_data.height - 20, 20, tftlcd_data.height, BLUE); // 显示颜色选择提示
+ 104   1          LCD_Fill(20, tftlcd_data.height - 20, 40, tftlcd_data.height, RED); 
  105   1          LCD_Fill(40, tftlcd_data.height - 20, 60, tftlcd_data.height, MAGENTA);
  106   1          LCD_Fill(60, tftlcd_data.height - 20, 80, tftlcd_data.height, GREEN);
  107   1          LCD_Fill(80, tftlcd_data.height - 20, 100, tftlcd_data.height, CYAN);
  108   1          LCD_Fill(100, tftlcd_data.height - 20, 120, tftlcd_data.height, YELLOW);
- 109   1              
- 110   1                      
- 111   1              while(1)
- 112   1              {
- 113   2                      if(Touch_RST)
- 114   2                      {
- 115   3                              Touch_RST=0;
- 116   3                              LCD_Clear(BACK_COLOR);
-C51 COMPILER V9.01   MAIN                                                                  06/17/2024 09:17:55 PAGE 3   
+ 109   1        
+ 110   1        while(1)
+ 111   1        {
+ 112   2          if(Touch_RST) 
+ 113   2          {
+ 114   3            Touch_RST = 0;
+C51 COMPILER V9.54   MAIN                                                                  08/25/2024 09:43:04 PAGE 3   
 
- 117   3                              goto Start;
- 118   3                      }
- 119   2                      
- 120   2                      TOUCH_Test();
- 121   2                              
- 122   2              }                                       
- 123   1      }
+ 115   3            LCD_Clear(BACK_COLOR);
+ 116   3            goto Start;
+ 117   3          }
+ 118   2          
+ 119   2          TOUCH_Test();
+ 120   2            
+ 121   2        }         
+ 122   1      }
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE

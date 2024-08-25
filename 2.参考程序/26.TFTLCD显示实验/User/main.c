@@ -4,8 +4,6 @@
 #include "gui.h"
 #include "picture.h"
 
-
-
 void main()
 {
 	UART_Init(); // 串口初始化，方便使用printf调试

@@ -1,9 +1,9 @@
-C51 COMPILER V9.01   MAIN                                                                  06/24/2024 21:11:15 PAGE 1   
+C51 COMPILER V9.54   MAIN                                                                  08/18/2024 16:16:35 PAGE 1   
 
 
-C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+C51 COMPILER V9.54, COMPILATION OF MODULE MAIN
 OBJECT MODULE PLACED IN main.OBJ
-COMPILER INVOKED BY: E:\dianzi\Keil C51\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND
+COMPILER INVOKED BY: E:\dianzi\KEILC51\C51\BIN\C51.EXE main.c OPTIMIZE(8,SPEED) BROWSE DEBUG OBJECTEXTEND TABS(2)
 
 line level    source
 
@@ -13,16 +13,16 @@ line level    source
    4          
    5          // 共阴极数码管显示0~F的段码数据
    6          unsigned char smg_code[17] = {0x3f,0x06,0x5b,0x4f,0x66,0x6d,0x7d,0x07,
-   7                                          0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
+   7                  0x7f,0x6f,0x77,0x7c,0x39,0x5e,0x79,0x71};
    8          
    9          void main()
   10          {
-  11   1              // 显示数字0
+  11   1        // 显示数字0
   12   1          SMG =~ smg_code[0]; // 对共阴极数码管段码取反，就是阳极的了
   13   1          while(1)
-  14   1              {
+  14   1        {
   15   2          
-  16   2              }
+  16   2        }
   17   1      }
 
 

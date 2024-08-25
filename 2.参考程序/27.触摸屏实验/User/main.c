@@ -95,24 +95,23 @@ void main()
 Start:
 	//GUI_Test();
 		
-	FRONT_COLOR=BLACK;
-	LCD_ShowFontHZ(tftlcd_data.width/2-2*24-12, 0,"普中科技");
-	LCD_ShowString(tftlcd_data.width/2-7*12,30,tftlcd_data.width,tftlcd_data.height,24,"www.prechin.cn");
-	FRONT_COLOR=RED;
-	LCD_ShowString(tftlcd_data.width-3*12,0,tftlcd_data.width,tftlcd_data.height,24,"RST");
-	LCD_Fill(0, tftlcd_data.height - 20, 20, tftlcd_data.height, BLUE);
-    LCD_Fill(20, tftlcd_data.height - 20, 40, tftlcd_data.height, RED);
+	FRONT_COLOR = BLACK;
+	LCD_ShowFontHZ(tftlcd_data.width/2-2*24-12, 0,"普中科技"); // 显示标题
+	LCD_ShowString(tftlcd_data.width/2-7*12,30,tftlcd_data.width,tftlcd_data.height,24,"www.prechin.cn"); // 显示地址
+	FRONT_COLOR = RED;
+	LCD_ShowString(tftlcd_data.width-3*12,0,tftlcd_data.width,tftlcd_data.height,24,"RST"); // 显示触摸按键提示
+	LCD_Fill(0, tftlcd_data.height - 20, 20, tftlcd_data.height, BLUE); // 显示颜色选择提示
+    LCD_Fill(20, tftlcd_data.height - 20, 40, tftlcd_data.height, RED); 
     LCD_Fill(40, tftlcd_data.height - 20, 60, tftlcd_data.height, MAGENTA);
     LCD_Fill(60, tftlcd_data.height - 20, 80, tftlcd_data.height, GREEN);
     LCD_Fill(80, tftlcd_data.height - 20, 100, tftlcd_data.height, CYAN);
     LCD_Fill(100, tftlcd_data.height - 20, 120, tftlcd_data.height, YELLOW);
 	
-		
 	while(1)
 	{
-		if(Touch_RST)
+		if(Touch_RST) 
 		{
-			Touch_RST=0;
+			Touch_RST = 0;
 			LCD_Clear(BACK_COLOR);
 			goto Start;
 		}
