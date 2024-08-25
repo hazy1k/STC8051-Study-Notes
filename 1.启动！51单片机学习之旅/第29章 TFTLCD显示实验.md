@@ -83,10 +83,32 @@ RST： TFTLCD 复位。
 
 - 编写主函数
 
+```c
+void main()
+{
+	UART_Init(); // 串口初始化，方便使用printf调试
+	TFTLCD_Init(); // TFTLCD初始化
+		
+	FRONT_COLOR = WHITE;
+	LCD_ShowString(10,80,tftlcd_data.width,tftlcd_data.height,16,"0123456789");
+	//LCD_ShowFontHZ(10,100,"好好好");
+	LCD_ShowPicture(10,60,56,56,gImage_picture_snow);
+	
+	while(1)
+	{
+		
+	}					
+}
+```
+
 ## 5. 小结
 
     代码量太多了，就不搬上来凑字数了，注释也写得很详细
 
+    还是重复一遍之前的话，我们购买TFT彩屏，商家会提供驱动代码，我们只需会使用封装好的功能函数即可，当然学有余力也看工程注释理解
+
 ---
 
-2024.7.25第一次修订
+2024.7.25 第一次修订
+
+2024.8.25 第二次修订，后期不再维护
