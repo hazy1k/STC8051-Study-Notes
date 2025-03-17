@@ -1,0 +1,4 @@
+".\list\main-ISP-IAP15F2K.obj" 
+TO ".\list\STC-ISP" 
+PRINT(".\list\STC-ISP.m51") RAMSIZE(256) 
+CODE( 0XE400-0XF3FF )

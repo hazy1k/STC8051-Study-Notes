@@ -1,0 +1,7 @@
+".\list\compare.obj",
+".\list\GPIO.obj",
+".\list\timer.obj",
+".\list\USART1.obj",
+".\list\main.obj" 
+TO ".\list\cmp_adc" 
+PRINT(".\list\cmp_adc.m51") RAMSIZE(256) 

@@ -1,0 +1,25 @@
+<html>
+<body>
+<pre>
+<h1>礦ision2 Build Log</h1>
+<h2>Project:</h2>
+E:\prog\STC15F2K60S2\程序模板\13-模拟串口\UART.uv2
+Project File Date:  10/19/2011
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling 宏晶模拟串口.c...
+宏晶模拟串口.C(77): error C202: 'Timer0_Reload': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling 宏晶模拟串口.c...
+linking...
+Program Size: data=35.3 xdata=0 code=201
+creating hex file from "UART"...
+"UART" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling 宏晶模拟串口.c...
+linking...
+Program Size: data=35.3 xdata=0 code=201
+creating hex file from "UART"...
+"UART" - 0 Error(s), 0 Warning(s).

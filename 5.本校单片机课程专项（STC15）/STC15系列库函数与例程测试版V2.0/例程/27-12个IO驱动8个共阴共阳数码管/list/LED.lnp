@@ -1,0 +1,4 @@
+".\list\delay.obj",
+".\list\LED“ı—Ù«˝∂Ø.obj" 
+TO ".\list\LED" 
+PRINT(".\list\LED.m51") RAMSIZE(256) 

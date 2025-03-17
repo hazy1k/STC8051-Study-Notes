@@ -1,0 +1,6 @@
+".\list\delay.obj",
+".\list\EEPROM.obj",
+".\list\USART.obj",
+".\list\main.obj" 
+TO ".\list\UART-EEPROM" 
+PRINT(".\list\UART-EEPROM.m51") RAMSIZE(256) 

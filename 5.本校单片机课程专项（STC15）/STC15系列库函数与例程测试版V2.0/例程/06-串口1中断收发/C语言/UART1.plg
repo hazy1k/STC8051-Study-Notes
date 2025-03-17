@@ -1,0 +1,17 @@
+<html>
+<body>
+<pre>
+<h1>礦ision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360云盘\prog\STC15F2K60S2\程序模板\05B-串口1中断收发\C语言\UART1.uv2
+Project File Date:  04/11/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+"UART1" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=43.1 xdata=0 code=143
+creating hex file from "UART1"...
+"UART1" - 0 Error(s), 0 Warning(s).

@@ -1,0 +1,107 @@
+C51 COMPILER V9.01   MAIN                                                                  03/06/2025 17:07:12 PAGE 1   
+
+
+C51 COMPILER V9.01, COMPILATION OF MODULE MAIN
+OBJECT MODULE PLACED IN .\list\main.obj
+COMPILER INVOKED BY: E:\dianzi\C51\C51\BIN\C51.EXE main.c BROWSE DEBUG OBJECTEXTEND PRINT(.\list\main.lst) OBJECT(.\list
+                    -\main.obj)
+
+line level    source
+
+   1          
+   2          /*------------------------------------------------------------------*/
+   3          /* --- STC MCU International Limited -------------------------------*/
+   4          /* --- STC 1T Series MCU RC Demo -----------------------------------*/
+   5          /* --- Mobile: (86)13922805190 -------------------------------------*/
+   6          /* --- Fax: 86-0513-55012956,55012947,55012969 ---------------------*/
+   7          /* --- Tel: 86-0513-55012928,55012929,55012966 ---------------------*/
+   8          /* --- Web: www.GXWMCU.com -----------------------------------------*/
+   9          /* --- QQ:  800003751 ----------------------------------------------*/
+  10          /* If you want to use the program or the program referenced in the  */
+  11          /* article, please specify in which data and procedures from STC    */
+  12          /*------------------------------------------------------------------*/
+  13          
+  14          
+  15          #include        "config.h"
+  16          #include        "GPIO.h"
+  17          #include        "delay.h"
+  18          
+  19          /*************  功能说明        **************
+  20          
+  21          本程序演示跑马灯。
+  22          程序使用P2口来演示，输出低驱动。用户可以修改为别的口。
+  23          
+  24          ******************************************/
+  25          
+  26          /*************  本地常量声明    **************/
+  27          
+  28          
+  29          /*************  本地变量声明    **************/
+  30          
+  31          
+  32          /*************  本地函数声明    **************/
+  33          
+  34          
+  35          
+  36          /*************  外部函数和变量声明 *****************/
+  37          
+  38          
+  39          
+  40          /******************** IO配置函数 **************************/
+  41          void GPIO_config(void)
+  42          {
+  43   1              GPIO_InitTypeDef        GPIO_InitStructure;             //结构定义
+  44   1              GPIO_InitStructure.Pin  = GPIO_Pin_7;           //指定要初始化的IO, GPIO_Pin_0 ~ GPIO_Pin_7, 或操作
+  45   1              GPIO_InitStructure.Mode = GPIO_OUT_PP;          //指定IO的输入或输出方式,GPIO_PullUp,GPIO_HighZ,GPIO_OUT_OD,GPIO_
+             -OUT_PP
+  46   1              GPIO_Inilize(GPIO_P1,&GPIO_InitStructure);      //初始化
+  47   1      }
+  48          
+  49          
+  50          
+  51          /******************** 主函数 **************************/
+  52          void main(void)
+  53          {
+C51 COMPILER V9.01   MAIN                                                                  03/06/2025 17:07:12 PAGE 2   
+
+  54   1              u8      i,tmp;
+  55   1              
+  56   1              GPIO_config();
+  57   1              
+  58   1              while(1)
+  59   1              {
+  60   2                      tmp = 1;
+  61   2                      for(i=0; i<8; i++)
+  62   2                      {
+  63   3                              P2 = ~tmp;
+  64   3                              tmp <<= 1;
+  65   3                              delay_ms(250);
+  66   3                      }
+  67   2      
+  68   2                      tmp = 0x80;
+  69   2                      for(i=0; i<8; i++)
+  70   2                      {
+  71   3                              P2 = ~tmp;
+  72   3                              tmp >>= 1;
+  73   3                              delay_ms(250);
+  74   3                      }
+  75   2              }
+  76   1      }
+  77          
+  78          
+  79          
+  80          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     84    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----       4
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

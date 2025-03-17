@@ -1,0 +1,6 @@
+".\list\main-pca.obj",
+".\list\PCA.obj",
+".\list\timer.obj",
+".\list\USART.obj" 
+TO ".\list\main-pca" 
+PRINT(".\list\main-pca.m51") RAMSIZE(256) 

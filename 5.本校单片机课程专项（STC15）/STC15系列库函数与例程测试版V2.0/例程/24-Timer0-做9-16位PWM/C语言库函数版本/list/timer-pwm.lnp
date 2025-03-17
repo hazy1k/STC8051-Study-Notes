@@ -1,0 +1,5 @@
+".\list\delay.obj",
+".\list\timer.obj",
+".\list\main.obj" 
+TO ".\list\timer-pwm" 
+PRINT(".\list\timer-pwm.m51") RAMSIZE(256) 

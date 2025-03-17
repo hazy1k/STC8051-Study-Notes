@@ -1,0 +1,4 @@
+".\list\Soft_UART.obj",
+".\list\Read-ID.obj" 
+TO ".\list\Read-ID" 
+PRINT(".\list\Read-ID.m51") RAMSIZE(256) 

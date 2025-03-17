@@ -1,0 +1,25 @@
+<html>
+<body>
+<pre>
+<h1>礦ision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360云盘\prog\STC15F2K60S2\程序模板\26-Timer2-做9-16位PWM\C语言\Timer-PWM.uv2
+Project File Date:  04/08/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+MAIN.C(65): error C202: 'IE2': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=15.0 xdata=0 code=221
+creating hex file from "Timer-PWM"...
+"Timer-PWM" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=15.0 xdata=0 code=221
+creating hex file from "Timer-PWM"...
+"Timer-PWM" - 0 Error(s), 0 Warning(s).

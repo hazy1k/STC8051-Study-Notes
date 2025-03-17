@@ -1,0 +1,15 @@
+<html>
+<body>
+<pre>
+<h1>µVision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360ÔÆÅÌ\prog\STC15F2K60S2\³ÌĞòÄ£°å\12-¶ÁIDºÅ-Ä£Äâ´®¿Ú·¢ËÍ\»ã±àÓïÑÔ\Read-ID.uv2
+Project File Date:  05/27/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling Read-ID.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=214
+creating hex file from "Read-ID"...
+"Read-ID" - 0 Error(s), 0 Warning(s).

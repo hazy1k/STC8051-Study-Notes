@@ -1,0 +1,3 @@
+"wakeup-demo.obj" 
+TO "sleep" 
+RAMSIZE(256) 

@@ -1,0 +1,6 @@
+".\list\ADC.obj",
+".\list\delay.obj",
+".\list\main.obj",
+".\list\Soft_UART.obj" 
+TO ".\list\ADC" 
+PRINT(".\list\ADC.m51") RAMSIZE(256) 

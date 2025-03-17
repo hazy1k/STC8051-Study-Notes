@@ -1,0 +1,5 @@
+"delay.obj",
+"LCD1602B.obj",
+"main.obj" 
+TO "LCD1602_driver" 
+RAMSIZE(256) 

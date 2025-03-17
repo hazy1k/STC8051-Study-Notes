@@ -1,0 +1,6 @@
+".\list\delay.obj",
+".\list\spi.obj",
+".\list\USART1.obj",
+".\list\main.obj" 
+TO ".\list\SPI" 
+PRINT(".\list\SPI.m51") RAMSIZE(256) 

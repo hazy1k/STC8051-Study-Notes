@@ -1,0 +1,26 @@
+<html>
+<body>
+<pre>
+<h1>礦ision2 Build Log</h1>
+<h2>Project:</h2>
+E:\STC\STC-PROG\通用测试程序\ISP-Demo\用户实际代码范例\c\ap.uv2
+Project File Date:  07/23/2011
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling AP.c...
+linking...
+Program Size: data=10.0 xdata=0 code=83
+creating hex file from "ap"...
+"ap" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling AP.c...
+AP.C(49): error C202: 'P_SW1': undefined identifier
+AP.C(50): error C202: 'PCON2': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling AP.c...
+linking...
+Program Size: data=10.0 xdata=0 code=89
+creating hex file from "ap"...
+"ap" - 0 Error(s), 0 Warning(s).

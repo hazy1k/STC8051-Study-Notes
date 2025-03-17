@@ -1,0 +1,74 @@
+<html>
+<body>
+<pre>
+<h1>礦ision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360云盘\prog\STC15F2K60S2\程序模板\28-使用Timer2模拟一个半双工串口\汇编语言\Timer2-SOFT-UART.uv2
+Project File Date:  04/02/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling Timer2-SOFT-UART.asm...
+Timer2-SOFT-UART.asm(147): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(159): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(160): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(169): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(170): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(172): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(173): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(175): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(177): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(180): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(181): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(182): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(183): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(184): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(185): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(188): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(208): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(209): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(210): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(233): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(234): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(235): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(237): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(238): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(239): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(240): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(241): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(242): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(311): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(312): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(313): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(314): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(318): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(319): error A45: UNDEFINED SYMBOL (PASS-2)
+Timer2-SOFT-UART.asm(320): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling Timer2-SOFT-UART.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=403
+creating hex file from "Timer2-SOFT-UART"...
+"Timer2-SOFT-UART" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling Timer2-SOFT-UART.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=403
+creating hex file from "Timer2-SOFT-UART"...
+"Timer2-SOFT-UART" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling Timer2-SOFT-UART.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=403
+creating hex file from "Timer2-SOFT-UART"...
+"Timer2-SOFT-UART" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling Timer2-SOFT-UART.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=403
+creating hex file from "Timer2-SOFT-UART"...
+"Timer2-SOFT-UART" - 0 Error(s), 0 Warning(s).
+</pre>
+</body>
+</html>

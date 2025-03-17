@@ -1,0 +1,5 @@
+".\list\delay.obj",
+".\list\PCA.obj",
+".\list\main-pca-pwm.obj" 
+TO ".\list\PCA-PWM" 
+PRINT(".\list\PCA-PWM.m51") RAMSIZE(256) 

@@ -1,0 +1,3 @@
+"main-pca-pwm.obj" 
+TO "PCA-PWM" 
+RAMSIZE(256) 

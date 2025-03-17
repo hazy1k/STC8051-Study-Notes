@@ -1,0 +1,58 @@
+<html>
+<body>
+<pre>
+<h1>µVision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360ÔÆÅÌ\prog\STC15F2K60S2\³ÌÐòÄ£°å\24-Timer0-×ö9-16Î»PWM\»ã±àÓïÑÔ\Timer-PWM.uv2
+Project File Date:  04/08/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling main.asm...
+main.asm(55): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(66): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(68): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(69): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(119): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(120): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(145): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(146): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(68): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(70): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(71): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(121): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(122): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(147): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(148): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(68): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(69): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(119): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(120): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(145): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(146): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(116): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(117): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(142): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(143): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=275
+creating hex file from "Timer-PWM"...
+"Timer-PWM" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=275
+creating hex file from "Timer-PWM"...
+"Timer-PWM" - 0 Error(s), 0 Warning(s).

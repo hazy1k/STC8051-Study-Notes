@@ -1,0 +1,5 @@
+".\list\Exti.obj",
+".\list\main.obj",
+".\list\timer.obj" 
+TO ".\list\EXTI" 
+PRINT(".\list\EXTI.m51") RAMSIZE(256) 

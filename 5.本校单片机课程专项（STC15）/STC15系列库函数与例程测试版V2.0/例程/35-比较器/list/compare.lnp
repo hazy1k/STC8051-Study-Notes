@@ -1,0 +1,5 @@
+".\list\GPIO.obj",
+".\list\compare.obj",
+".\list\main.obj" 
+TO ".\list\compare" 
+PRINT(".\list\compare.m51") RAMSIZE(256) 

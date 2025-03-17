@@ -1,0 +1,5 @@
+".\list\LCD_IO16.obj",
+".\list\main.obj",
+".\list\timer.obj" 
+TO ".\list\IO-drive-lcd" 
+PRINT(".\list\IO-drive-lcd.m51") RAMSIZE(256) 
