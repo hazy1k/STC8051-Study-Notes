@@ -1,0 +1,27 @@
+<html>
+<body>
+<pre>
+<h1>礦ision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360云盘\prog\STC15F2K60S2\STC开发板程序-V2\10-P35输出PWM做DAC_P15做ADC读入DAC输出值_串口1设置占空比\C语言\PCA-PWM.uv2
+Project File Date:  07/18/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main-pca-pwm.c...
+MAIN-PCA-PWM.C(140): warning C206: 'UART1_config': missing function-prototype
+MAIN-PCA-PWM.C(140): error C267: 'UART1_config': requires ANSI-style prototype
+MAIN-PCA-PWM.C(274): error C231: '_UART1_config': redefinition
+Target not created
+Build target 'Target 1'
+compiling main-pca-pwm.c...
+linking...
+Program Size: data=42.5 xdata=128 code=1230
+creating hex file from "PCA-PWM"...
+"PCA-PWM" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main-pca-pwm.c...
+linking...
+Program Size: data=42.5 xdata=128 code=1228
+creating hex file from "PCA-PWM"...
+"PCA-PWM" - 0 Error(s), 0 Warning(s).

@@ -1,0 +1,4 @@
+".\list\main.obj",
+".\list\USART.obj" 
+TO ".\list\UART1-UART4" 
+PRINT(".\list\UART1-UART4.m51") RAMSIZE(256) 

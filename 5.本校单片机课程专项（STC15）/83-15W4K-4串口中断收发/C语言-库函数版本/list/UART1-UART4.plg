@@ -1,0 +1,16 @@
+<html>
+<body>
+<pre>
+<h1>礦ision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360云盘\prog\STC15W4K60S4\305A-4串口中断收发\C语言-库函数版本\UART1-UART4.uv2
+Project File Date:  12/17/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+compiling USART.C...
+linking...
+Program Size: data=57.0 xdata=512 code=2657
+creating hex file from ".\list\UART1-UART4"...
+".\list\UART1-UART4" - 0 Error(s), 0 Warning(s).

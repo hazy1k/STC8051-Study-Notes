@@ -1,0 +1,34 @@
+<html>
+<body>
+<pre>
+<h1>礦ision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360云盘\prog\STC15F2K60S2\STC开发板程序-V2\31-使用两路PCA模拟一个全双工串口-C和汇编\C语言\PCA-SOFT-UART.uv2
+Project File Date:  04/01/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling PCA-SOFT-UART.c...
+PCA-SOFT-UART.C(115): error C202: 'P0M1': undefined identifier
+PCA-SOFT-UART.C(115): error C202: 'P0M0': undefined identifier
+PCA-SOFT-UART.C(116): error C202: 'P1M1': undefined identifier
+PCA-SOFT-UART.C(116): error C202: 'P1M0': undefined identifier
+PCA-SOFT-UART.C(117): error C202: 'P2M1': undefined identifier
+PCA-SOFT-UART.C(117): error C202: 'P2M0': undefined identifier
+PCA-SOFT-UART.C(118): error C202: 'P3M1': undefined identifier
+PCA-SOFT-UART.C(118): error C202: 'P3M0': undefined identifier
+PCA-SOFT-UART.C(119): error C202: 'P4M1': undefined identifier
+PCA-SOFT-UART.C(119): error C202: 'P4M0': undefined identifier
+PCA-SOFT-UART.C(120): error C202: 'P5M1': undefined identifier
+PCA-SOFT-UART.C(120): error C202: 'P5M0': undefined identifier
+PCA-SOFT-UART.C(121): error C202: 'P6M1': undefined identifier
+PCA-SOFT-UART.C(121): error C202: 'P6M0': undefined identifier
+PCA-SOFT-UART.C(122): error C202: 'P7M1': undefined identifier
+PCA-SOFT-UART.C(122): error C202: 'P7M0': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling PCA-SOFT-UART.c...
+linking...
+Program Size: data=37.3 xdata=0 code=358
+creating hex file from "PCA-SOFT-UART"...
+"PCA-SOFT-UART" - 0 Error(s), 0 Warning(s).

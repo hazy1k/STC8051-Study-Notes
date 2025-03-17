@@ -1,0 +1,20 @@
+<html>
+<body>
+<pre>
+<h1>礦ision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360云盘\prog\STC15F2K60S2\STC开发板程序-V2\10-P35输出PWM做DAC_P15做ADC读入DAC输出值_串口1设置占空比\汇编语言\PCA-PWM.uv2
+Project File Date:  05/06/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling main.asm...
+main.asm(669): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(698): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1293
+creating hex file from "PCA-PWM"...
+"PCA-PWM" - 0 Error(s), 0 Warning(s).

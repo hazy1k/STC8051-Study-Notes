@@ -1,0 +1,402 @@
+<html>
+<body>
+<pre>
+<h1>µVision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360‘∆≈Ã\prog\STC15W4K60S4\305A-4¥Æø⁄÷–∂œ ’∑¢\ª„±‡”Ô—‘\UART1-UART4.uv2
+Project File Date:  11/28/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling main.asm...
+main.asm(85): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(86): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(87): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(88): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(89): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(90): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(91): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(92): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(93): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(94): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(95): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(96): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(110): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(132): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(139): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(142): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(143): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(145): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(148): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(155): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(158): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(159): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(160): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(161): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(164): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(171): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(174): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(175): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(176): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(177): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(180): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(187): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(189): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(190): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(191): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(192): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(193): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(261): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(301): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(313): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(329): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(348): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(363): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(382): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(405): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(419): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
+main.asm(421): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(423): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(427): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(437): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(438): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(440): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(445): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(475): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(508): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(541): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(565): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(567): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(571): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(575): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(579): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(581): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(126): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(148): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(155): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(158): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(159): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(161): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(164): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(171): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(174): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(175): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(176): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(177): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(180): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(187): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(190): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(191): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(192): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(193): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(196): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(203): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(205): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(206): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(207): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(208): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(209): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(277): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(317): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(329): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(345): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(364): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(379): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(398): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(421): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(435): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
+main.asm(437): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(439): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(443): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(453): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(454): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(456): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(461): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(491): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(524): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(557): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(581): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(583): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(587): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(591): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(595): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(597): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(129): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(151): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(158): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(161): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(162): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(164): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(167): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(174): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(177): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(178): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(179): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(180): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(183): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(190): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(193): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(194): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(195): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(196): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(199): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(206): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(209): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(210): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(211): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(212): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(320): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(332): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(348): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(367): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(382): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(401): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(424): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(438): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
+main.asm(442): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(464): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(494): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(527): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(560): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(594): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(129): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(151): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(158): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(161): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(162): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(164): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(167): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(174): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(177): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(178): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(179): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(180): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(183): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(190): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(193): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(194): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(195): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(196): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(199): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(206): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(209): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(210): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(211): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(212): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(320): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(332): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(348): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(367): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(382): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(401): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(424): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(438): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
+main.asm(442): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(464): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(133): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(162): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(165): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(166): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(168): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(178): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(181): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(182): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(183): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(184): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(194): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(197): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(198): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(199): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(200): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(210): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(213): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(214): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(215): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(216): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(324): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(336): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(371): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(405): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(442): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
+main.asm(446): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(162): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(165): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(166): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(168): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(178): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(181): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(182): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(183): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(184): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(194): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(197): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(198): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(199): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(200): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(210): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(213): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(214): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(215): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(216): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(324): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(336): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(371): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(405): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(446): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(162): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(165): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(166): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(168): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(178): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(181): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(182): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(183): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(184): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(194): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(197): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(198): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(199): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(200): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(210): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(213): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(214): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(215): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(216): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(336): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(163): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(166): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(167): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(169): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(179): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(182): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(183): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(184): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(185): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(195): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(198): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(199): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(200): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(201): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(211): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(214): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(215): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(216): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(217): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(184): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(200): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(216): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(216): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=984
+creating hex file from "UART1-UART4"...
+"UART1-UART4" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=984
+creating hex file from "UART1-UART4"...
+"UART1-UART4" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1046
+creating hex file from "UART1-UART4"...
+"UART1-UART4" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1048
+creating hex file from "UART1-UART4"...
+"UART1-UART4" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1049
+creating hex file from "UART1-UART4"...
+"UART1-UART4" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1051
+creating hex file from "UART1-UART4"...
+"UART1-UART4" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1063
+creating hex file from "UART1-UART4"...
+"UART1-UART4" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1054
+creating hex file from "UART1-UART4"...
+"UART1-UART4" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+"UART1-UART4" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1054
+creating hex file from "UART1-UART4"...
+"UART1-UART4" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1046
+creating hex file from "UART1-UART4"...
+"UART1-UART4" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1046
+creating hex file from "UART1-UART4"...
+"UART1-UART4" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1054
+creating hex file from "UART1-UART4"...
+"UART1-UART4" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1058
+creating hex file from "UART1-UART4"...
+"UART1-UART4" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1046
+creating hex file from "UART1-UART4"...
+"UART1-UART4" - 0 Error(s), 0 Warning(s).

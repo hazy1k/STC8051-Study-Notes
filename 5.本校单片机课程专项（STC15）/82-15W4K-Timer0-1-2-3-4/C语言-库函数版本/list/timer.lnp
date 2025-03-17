@@ -1,0 +1,5 @@
+".\list\GPIO.obj",
+".\list\main.obj",
+".\list\timer.obj" 
+TO ".\list\timer" 
+PRINT(".\list\timer.m51") RAMSIZE(256) 

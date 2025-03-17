@@ -1,0 +1,15 @@
+<html>
+<body>
+<pre>
+<h1>µVision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360ÔÆÅÌ\prog\STC15W4K60S4\301-15W4K-PCA-2Â·10Î»Ó²¼þPWM\CÓïÑÔ\PCA-PWM.uv2
+Project File Date:  12/15/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main-pca-pwm.c...
+linking...
+Program Size: data=9.0 xdata=0 code=226
+creating hex file from "PCA-PWM"...
+"PCA-PWM" - 0 Error(s), 0 Warning(s).

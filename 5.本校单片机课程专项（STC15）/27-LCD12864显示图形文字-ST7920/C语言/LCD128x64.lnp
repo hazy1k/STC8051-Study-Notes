@@ -1,0 +1,3 @@
+"lcd128x64_V20.obj" 
+TO "LCD128x64" 
+RAMSIZE(256) 

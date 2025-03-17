@@ -1,0 +1,38 @@
+<html>
+<body>
+<pre>
+<h1>µVision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360ÔÆÅÌ\prog\STC15F2K60S2\STC¿ª·¢°å³ÌÐò-V2\08-Í¨¹ý´®¿Ú1ÃüÁî¶à×Ö½Ú¶ÁÐ´EEPROM²âÊÔ³ÌÐò\»ã±àÓïÑÔ\UART-EEPROM.uv2
+Project File Date:  04/18/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling main.asm...
+main.asm(519): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(548): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(520): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1320
+creating hex file from "UART-EEPROM"...
+"UART-EEPROM" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=1320
+creating hex file from "UART-EEPROM"...
+"UART-EEPROM" - 0 Error(s), 0 Warning(s).
+Driver version   : V1.02
+Firmware version : V2.3
+Driver version   : V1.02
+Firmware version : V2.3
+Build target 'Target 1'
+"UART-EEPROM" - 0 Error(s), 0 Warning(s).
+Driver version   : V1.02
+Firmware version : V2.3

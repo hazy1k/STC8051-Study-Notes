@@ -1,0 +1,13 @@
+<html>
+<body>
+<pre>
+<h1>礦ision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360云盘\prog\STC15F2K60S2\STC开发板程序-V2\08-通过串口1命令多字节读写EEPROM测试程序\C语言\UART-EEPROM.uv2
+Project File Date:  07/17/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+"UART-EEPROM" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+"UART-EEPROM" - 0 Error(s), 0 Warning(s).

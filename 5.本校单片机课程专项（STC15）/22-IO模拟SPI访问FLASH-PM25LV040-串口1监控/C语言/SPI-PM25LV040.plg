@@ -1,0 +1,17 @@
+<html>
+<body>
+<pre>
+<h1>礦ision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360云盘\prog\STC15F2K60S2\STC开发板程序-V2\18-IO模拟SPI访问FLASH-PM25LV040-串口1监控\C语言\SPI-PM25LV040.uv2
+Project File Date:  07/21/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=31.2 xdata=109 code=2332
+creating hex file from "SPI-PM25LV040"...
+"SPI-PM25LV040" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+"SPI-PM25LV040" - 0 Error(s), 0 Warning(s).

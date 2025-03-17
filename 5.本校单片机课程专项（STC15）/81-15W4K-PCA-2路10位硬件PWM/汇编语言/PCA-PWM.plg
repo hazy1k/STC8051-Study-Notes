@@ -1,0 +1,92 @@
+<html>
+<body>
+<pre>
+<h1>µVision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360‘∆≈Ã\prog\STC15W4K60S4\10-PCA-2¬∑”≤º˛PWM\ª„±‡”Ô—‘\PCA-PWM.uv2
+Project File Date:  12/15/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling main-pca-pwm.asm...
+main-pca-pwm.asm(87): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(90): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(96): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(101): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(102): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(103): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(104): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(166): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
+main-pca-pwm.asm(219): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(231): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
+main-pca-pwm.asm(234): warning A41: MISSING 'END' STATEMENT
+Target not created
+Build target 'Target 1'
+assembling main-pca-pwm.asm...
+main-pca-pwm.asm(87): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(90): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(96): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(101): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(102): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(103): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(104): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(166): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
+main-pca-pwm.asm(219): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(231): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
+Target not created
+Build target 'Target 1'
+assembling main-pca-pwm.asm...
+main-pca-pwm.asm(90): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(95): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(96): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(97): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(98): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(160): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
+main-pca-pwm.asm(213): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(225): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
+Target not created
+Build target 'Target 1'
+assembling main-pca-pwm.asm...
+main-pca-pwm.asm(90): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(95): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(96): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(97): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(98): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(160): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
+main-pca-pwm.asm(213): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(225): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
+Target not created
+Build target 'Target 1'
+assembling main-pca-pwm.asm...
+main-pca-pwm.asm(90): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(156): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
+main-pca-pwm.asm(209): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(221): error A8: ATTEMPT TO DEFINE AN ALREADY DEFINED LABEL
+Target not created
+Build target 'Target 1'
+assembling main-pca-pwm.asm...
+main-pca-pwm.asm(90): error A45: UNDEFINED SYMBOL (PASS-2)
+main-pca-pwm.asm(156): error A38: NUMBER OF OPERANDS DOES NOT MATCH INSTRUCTION
+Target not created
+Build target 'Target 1'
+assembling main-pca-pwm.asm...
+main-pca-pwm.asm(90): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main-pca-pwm.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=167
+creating hex file from "PCA-PWM"...
+"PCA-PWM" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main-pca-pwm.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=167
+creating hex file from "PCA-PWM"...
+"PCA-PWM" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main-pca-pwm.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=167
+creating hex file from "PCA-PWM"...
+"PCA-PWM" - 0 Error(s), 0 Warning(s).

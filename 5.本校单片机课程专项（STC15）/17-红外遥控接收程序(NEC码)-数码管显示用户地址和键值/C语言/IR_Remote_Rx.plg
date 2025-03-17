@@ -1,0 +1,15 @@
+<html>
+<body>
+<pre>
+<h1>礦ision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360云盘\prog\STC15F2K60S2\STC开发板程序-V2\11-红外遥控接收程序(NEC码)-数码管显示用户地址和键值\C语言\IR_Remote_Rx.uv2
+Project File Date:  07/18/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=28.4 xdata=0 code=433
+creating hex file from "IR_Remote_Rx"...
+"IR_Remote_Rx" - 0 Error(s), 0 Warning(s).

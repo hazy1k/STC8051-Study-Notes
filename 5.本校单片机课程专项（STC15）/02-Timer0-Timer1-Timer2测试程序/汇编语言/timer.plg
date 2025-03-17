@@ -1,0 +1,115 @@
+<html>
+<body>
+<pre>
+<h1>µVision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360‘∆≈Ã\prog\STC15F2K60S2\STCø™∑¢∞Â≥Ã–Ú-V2\02-Timer0-Timer1-Timer2\ª„±‡”Ô—‘\timer.uv2
+Project File Date:  01/12/2015
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=606
+creating hex file from "timer"...
+"timer" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+main.asm(145): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(168): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(169): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(191): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(209): error A9: SYNTAX ERROR
+main.asm(218): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(234): error A9: SYNTAX ERROR
+main.asm(235): error A9: SYNTAX ERROR
+main.asm(239): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(241): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(245): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(248): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(248): error A9: SYNTAX ERROR
+main.asm(248): error A9: SYNTAX ERROR
+main.asm(248): error A9: SYNTAX ERROR
+main.asm(249): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(249): error A9: SYNTAX ERROR
+main.asm(249): error A9: SYNTAX ERROR
+main.asm(249): error A9: SYNTAX ERROR
+main.asm(251): error A9: SYNTAX ERROR
+main.asm(251): error A9: SYNTAX ERROR
+main.asm(251): error A9: SYNTAX ERROR
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(100): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(126): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(152): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(168): error A9: SYNTAX ERROR
+main.asm(172): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(174): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(178): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(181): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(182): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(213): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(101): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(127): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(153): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(169): error A9: SYNTAX ERROR
+main.asm(173): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(175): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(179): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(182): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(183): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(103): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(129): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(155): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(171): error A9: SYNTAX ERROR
+main.asm(175): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(177): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(181): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(104): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(172): error A9: SYNTAX ERROR
+main.asm(176): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(176): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=421
+creating hex file from "timer"...
+"timer" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=423
+creating hex file from "timer"...
+"timer" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+main.asm(70): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(76): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(79): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(82): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(85): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(88): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(91): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(94): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(97): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=423
+creating hex file from "timer"...
+"timer" - 0 Error(s), 0 Warning(s).

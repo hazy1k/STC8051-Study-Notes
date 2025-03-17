@@ -1,0 +1,71 @@
+<html>
+<body>
+<pre>
+<h1>µVision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360‘∆≈Ã\prog\STC15F2K60S2\STCø™∑¢∞Â≥Ã–Ú-V2\03-ø¥√≈π∑∏¥Œª≤‚ ‘≥Ã–Ú\ª„±‡”Ô—‘\wake_up.uv2
+Project File Date:  01/13/2015
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling main.asm...
+main.asm(82): error A9: SYNTAX ERROR
+main.asm(83): error A9: SYNTAX ERROR
+main.asm(84): error A9: SYNTAX ERROR
+main.asm(85): error A9: SYNTAX ERROR
+main.asm(86): error A9: SYNTAX ERROR
+main.asm(87): error A9: SYNTAX ERROR
+main.asm(88): error A9: SYNTAX ERROR
+main.asm(89): error A9: SYNTAX ERROR
+main.asm(90): error A9: SYNTAX ERROR
+main.asm(91): error A9: SYNTAX ERROR
+main.asm(92): error A9: SYNTAX ERROR
+main.asm(93): error A9: SYNTAX ERROR
+main.asm(114): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(117): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(161): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(162): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(177): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(114): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(117): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(161): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(162): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+main.asm(114): error A45: UNDEFINED SYMBOL (PASS-2)
+main.asm(117): error A45: UNDEFINED SYMBOL (PASS-2)
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=509
+creating hex file from "wake_up"...
+"wake_up" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=515
+creating hex file from "wake_up"...
+"wake_up" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=515
+creating hex file from "wake_up"...
+"wake_up" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+assembling main.asm...
+main.asm(72): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+main.asm(73): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+main.asm(74): error A17: INVALID BYTE BASE IN BIT ADDRESS EXPRESSION
+Target not created
+Build target 'Target 1'
+assembling main.asm...
+linking...
+Program Size: data=8.0 xdata=0 code=515
+creating hex file from "wake_up"...
+"wake_up" - 0 Error(s), 0 Warning(s).

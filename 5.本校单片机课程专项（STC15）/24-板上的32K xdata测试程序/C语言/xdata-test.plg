@@ -1,0 +1,23 @@
+<html>
+<body>
+<pre>
+<h1>礦ision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360云盘\prog\STC15F2K60S2\STC开发板程序-V2\21-板上的32K xdata测试程序\C语言\xdata-test.uv2
+Project File Date:  07/21/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+"xdata-test" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=19.1 xdata=64 code=34025
+creating hex file from "xdata-test"...
+"xdata-test" - 0 Error(s), 0 Warning(s).
+Build target 'Target 1'
+compiling main.c...
+linking...
+Program Size: data=19.1 xdata=64 code=34120
+creating hex file from "xdata-test"...
+"xdata-test" - 0 Error(s), 0 Warning(s).

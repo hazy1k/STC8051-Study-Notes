@@ -1,0 +1,32 @@
+<html>
+<body>
+<pre>
+<h1>礦ision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360云盘\prog\STC15F2K60S2\STC开发板程序-V2\30-PCA-3路9-16位PWM-C和汇编\C语言\PCA-PWM.uv2
+Project File Date:  04/08/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling main-pca-pwm.c...
+MAIN-PCA-PWM.C(111): error C202: 'P0M1': undefined identifier
+MAIN-PCA-PWM.C(111): error C202: 'P0M0': undefined identifier
+MAIN-PCA-PWM.C(112): error C202: 'P1M1': undefined identifier
+MAIN-PCA-PWM.C(112): error C202: 'P1M0': undefined identifier
+MAIN-PCA-PWM.C(114): error C202: 'P3M1': undefined identifier
+MAIN-PCA-PWM.C(114): error C202: 'P3M0': undefined identifier
+MAIN-PCA-PWM.C(115): error C202: 'P4M1': undefined identifier
+MAIN-PCA-PWM.C(115): error C202: 'P4M0': undefined identifier
+MAIN-PCA-PWM.C(116): error C202: 'P5M1': undefined identifier
+MAIN-PCA-PWM.C(116): error C202: 'P5M0': undefined identifier
+MAIN-PCA-PWM.C(117): error C202: 'P6M1': undefined identifier
+MAIN-PCA-PWM.C(117): error C202: 'P6M0': undefined identifier
+MAIN-PCA-PWM.C(118): error C202: 'P7M1': undefined identifier
+MAIN-PCA-PWM.C(118): error C202: 'P7M0': undefined identifier
+Target not created
+Build target 'Target 1'
+compiling main-pca-pwm.c...
+linking...
+Program Size: data=33.0 xdata=0 code=470
+creating hex file from "PCA-PWM"...
+"PCA-PWM" - 0 Error(s), 0 Warning(s).

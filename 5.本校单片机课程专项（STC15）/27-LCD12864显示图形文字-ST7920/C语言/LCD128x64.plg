@@ -1,0 +1,15 @@
+<html>
+<body>
+<pre>
+<h1>礦ision2 Build Log</h1>
+<h2>Project:</h2>
+E:\360云盘\prog\STC15F2K60S2\STC开发板程序-V2\16-LCD12864显示图形文字-ST7920\C语言\LCD128x64.uv2
+Project File Date:  07/19/2014
+
+<h2>Output:</h2>
+Build target 'Target 1'
+compiling lcd128x64_V20.c...
+linking...
+Program Size: data=17.0 xdata=0 code=1689
+creating hex file from "LCD128x64"...
+"LCD128x64" - 0 Error(s), 0 Warning(s).
