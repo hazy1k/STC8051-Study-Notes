@@ -2,190 +2,259 @@
 
 ## 1. 导入
 
-    在前面章节， 我们介绍了如何使用 51 单片机来采集外部模拟信号， 这一章来介绍下如何使用 51 单片机输出模拟信号， 要让 51 单片机输出模拟信号， 同样需要相应的转换器， 这种转换器我们称之为 DAC 数模转换器， 但 DAC 专用芯片价格是比较高的， 在实际应用中通常使用 PWM 技术来模拟 DAC 输出。 我们开发板上集成了一个 DAC(PWM)模块电路， 通过单片机 IO 口生成 PWM 波来模拟 DAC 输出。
+ADC把模拟量转为数字量；DAC（Digital-to-Analog Converter）则将数字量恢复为模拟电压/电流，用于音频、波形发生、偏置控制等。本章给出两种常用实现路径：
 
-## 2. DAC介绍
+- 外接串行DAC（主讲 MCP4921，12位，SPI 时序）
+- 软硬件简易替代：PWM+RC 低通滤波“伪DAC”（作为备选）
 
-    DAC（ Digital to analog converter） 即数字模拟转换器， 它可以将数字信号转换为模拟信号。 它的功能与 ADC 相反。 在常见的数字信号系统中， 大部分传感器信号被转化成电压信号， 而 ADC 把电压模拟信号转换成易于计算机存储、处理的数字编码， 由计算机处理完成后， 再由 DAC 输出电压模拟信号， 该电压模拟信号常常用来驱动某些执行器件， 使人类易于感知。 如音频信号的采集及还原就是这样一个过程。
+你将掌握：
 
-    关于更多DAC介绍：[数模转换器的基本原理及DAC类型简介 | 贸泽工程师社区 (eetrend.com)](https://mouser.eetrend.com/content/2017/100006118.html)
+- DAC量程、分辨率、参考电压与输出关系
+- MCP4921的SPI时序、配置字与代码实现
+- 直流电压输出、锯齿波/正弦波输出
+- PWM+RC 方案的设计要点与实现
 
-    [关于DAC的原理_dac工作原理-CSDN博客](https://blog.csdn.net/always_one/article/details/104560604)
+---
 
-## 3. PWM介绍
+## 2. 基础概念
 
-    出于成本考虑， 在实际开发应用中， 使用较多的是通过 PWM 来模拟 DAC 输出。下面就先来了解下 PWM 相关概念：
+- 分辨率：MCP4921 为 12 位，数字码 0~4095。步进电压 ΔV = Vref/4096。
+- 参考电压 Vref：输出近似 Vout = (D/4096) × Vref（GA=1x 时）。
+- 采样速率/更新率：波形质量与更新速率相关；正弦波建议更新频率 ≥ 40×目标频率。
 
-    PWM 是 Pulse Width Modulation 的缩写， 中文意思就是脉冲宽度调制， 简称脉宽调制。 它是利用微处理器的数字输出来对模拟电路进行控制的一种非常有效的技术， 其控制简单、 灵活和动态响应好等优点而成为电力电子技术最广泛应用的控制方式， 其应用领域包括测量， 通信， 功率控制与变换， 电动机控制、 伺服控制、 调光、 开关电源， 甚至某些音频放大器。
+---
 
-    关于PWM更多介绍：[STM32——PWM原理及应用（附代码）_pwm控制代码-CSDN博客](https://blog.csdn.net/m0_60503814/article/details/136163178)
+## 3. 方案一：外接串行 DAC（MCP4921）
 
-    [PWM的基本原理及如何产生PWM_pwm csdn-CSDN博客](https://blog.csdn.net/weixin_45237963/article/details/122033273)
+### 3.1 硬件连接
 
-## 4. 硬件设计
+- 器件：MCP4921（12位、SPI兼容）、0.1µF 去耦
+- 单片机 IO（示例使用 P1.0~P1.2）：
+  - `P1.0 → SDI`（数据输入）
+  - `P1.1 → SCK`（时钟，空闲低，上升沿采样）
+  - `P1.2 → CS`（片选，低有效）
+  - `LDAC` 接地（低电平时 CS 上升沿即可更新输出）
+  - `SHDN` 上拉到 VDD（使能）
+- 电源与参考：
+  - `VDD=+5V`，`GND=0V`
+  - `VREF` 建议接 4.096V 基准或 5V（有源基准更稳）
+- 输出：
+  - `VOUT` → 示波器/万用表/后级缓冲（负载阻抗尽量高）
 
-本实验使用到硬件资源如下：
+注意：总线较短、地线良好、近芯片放置 0.1µF 去耦。
 
-- DAC(PWM)模块
+### 3.2 数据格式（16位命令字，MSB先）
 
-    下面来看下开发板上 DAC(PWM)模块电路， 如下图所示：
+- [15] 通道选择（MCP4921固定A通道，置0）
+- [14] BUF：1=缓冲参考（推荐）
+- [13] GA：1=1×增益（Vout= D/4096×Vref），0=2×
+- [12] SHDN：1=工作，0=关断
+- [11:0] D11..D0：12位数据
 
-![屏幕截图 2024 06 20 092539](https://img.picgo.net/2024/06/20/-2024-06-20-092539ab6109daa9f80531.png)
+推荐配置：bit15..12 = 0b0111（BUF=1, GA=1, SHDN=1） → 命令高 4 位为 0x7
 
-    从上图中可知， 该模块是独立的， 由 J50 端子输入 PWM 信号， 可使用单片机P2.1 管脚输出 PWM 信号至 J50 端子， DAC1 为 PWM 输出信号， 将其连接一个 LED，这样可以通过指示灯的状态直观的反映出 PWM 输出电压值变化。 LM358 芯片与这些电容电阻构成了一个跟随电路， 即输入是多少， 输出即为多大电压， 输出电压范围是 0-5V。 输出信号由 J52 端子的 DAC1 引出， 在其端子上还有一个 AIN3 脚，它是上一章介绍 ADC 时的外部模拟信号输入通道。 如果使用短接片将 DAC1 和AIN3 短接， 这样就可以使用 XPT2046 芯片采集检测 PWM 输出信号。
-
-## 5. 软件设计
-
-本章所要实现的功能是： DAC(PWM)模块上的指示灯 DA1 呈呼吸灯效果， 由暗变亮再由亮变暗。
-
-    程序框架如下：
-
-- 编写 PWM 函数
-
-- 编写主函数
-
-```c
-#ifndef _pwm_H
-#define _pwm_H
-
-#include "public.h"
-
-//管脚定义
-sbit PWM = P2^1;
-
-//变量声明
-extern unsigned char gtim_scale;
-
-//函数声明
-void pwm_init(unsigned char tim_h, unsigned char tim_l, unsigned int tim_scale, unsigned char duty);
-void pwm_set_duty_cycle(unsigned char duty);
-
-#endif
-```
+### 3.3 完整示例（C51，位触发SPI，锯齿/正弦）
 
 ```c
-#include "pwm.h"
+#include <reg52.h>
+#include <intrins.h>
 
-//全局变量定义
-unsigned char gtim_h = 0; // 保存定时器初值高8位
-unsigned char gtim_l = 0; // 保存定时器初值低8位
-unsigned char gduty = 0;  // 保存PWM占空比
-unsigned char gtim_scale = 0; // 保存PWM周期=定时器初值*tim_scale
+/* ---------- 引脚定义（按需修改端口） ---------- */
+sbit DAC_SDI = P1^0;   // MCP4921 SDI
+sbit DAC_SCK = P1^1;   // MCP4921 SCK
+sbit DAC_CS  = P1^2;   // MCP4921 CS (低有效)
 
-// PWM初始化函数
-void pwm_init(unsigned char tim_h, unsigned char tim_l, unsigned int tim_scale, unsigned char duty)
+/* ---------- 公共延时 ---------- */
+static void tiny_delay(void){ _nop_(); _nop_(); _nop_(); _nop_(); }
+
+/* ---------- SPI 发送16位（MSB先） ---------- */
+static void mcp4921_write16(unsigned int dat16)
 {
-    gtim_h = tim_h; // 将传入的初值保存在全局变量中，方便中断函数继续调用
-    gtim_l = tim_l;
-    gduty = duty;
-    gtim_scale = tim_scale;
-
-    TMOD |= 0X01; // 选择为定时器0模式，工作方式1
-    TH0 = gtim_h; // 定时初值设置 
-    TL0 = gtim_l;    
-    ET0 = 1;      // 打开定时器0中断允许
-    EA = 1;       // 打开总中断
-    TR0 = 1;      // 打开定时器
+    unsigned char i;
+    DAC_CS = 0;              // 选中
+    for (i = 0; i < 16; i++) {
+        // 发送最高位
+        DAC_SDI = (dat16 & 0x8000) ? 1 : 0;
+        tiny_delay();
+        DAC_SCK = 1;         // 上升沿采样
+        tiny_delay();
+        DAC_SCK = 0;
+        dat16 <<= 1;
+    }
+    DAC_CS = 1;              // 拉高CS，若LDAC为低则更新输出
 }
 
-// 设置占空比
-void pwm_set_duty_cycle(unsigned char duty)
+/* ---------- 写入12位码值（0~4095） ---------- */
+void dac_out_12b(unsigned int code12)
 {
-    gduty = duty;    
+    if (code12 > 4095) code12 = 4095;
+    // 高4位 0x7xxx： 0b0111 -> BUF=1, GA=1x, SHDN=1
+    mcp4921_write16( (0x7 << 12) | (code12 & 0x0FFF) );
 }
 
-void pwm(void) interrupt 1 // 定时器0中断函数
-{
-    static unsigned int time = 0;
-
-    TH0 = gtim_h; // 定时初值设置 
-    TL0 = gtim_l;
-
-    time++;
-    if(time >= gtim_scale) // PWM周期=定时器初值*gtim_scale，重新开始计数
-        time=0;
-    if(time <= gduty) // 占空比    
-        PWM=1;
-    else
-        PWM=0;        
+/* ---------- 简单延时ms ---------- */
+void delay_ms(unsigned int ms){
+    unsigned int i,j;
+    for(i=0;i<ms;i++)
+        for(j=0;j<125;j++);
 }
-```
 
-这里PWM初始化函数倒是好理解，我们重点分析一下定时器中断函数：
+/* ---------- 示例1：直流扫阶 & 锯齿波 ---------- */
+void demo_sawtooth(void)
+{
+    unsigned int v;
+    // 直流阶梯：每步 ~50ms，0→满量程
+    for (v = 0; v <= 4095; v += 128) {
+        dac_out_12b(v);
+        delay_ms(50);
+    }
 
-1. **重新设置定时器初值**：
-
-```c
-TH0 = gtim_h; // 重新设置定时器高8位
-TL0 = gtim_l; // 重新设置定时器低8位
-```
-
-2. **计数**：
-
-```c
-time++;
-if(time >= gtim_scale) // 周期到达，重置计数
-    time = 0;
-```
-
-3. **生成 PWM 信号**：
-
-```c
-if(time <= gduty) // 根据占空比控制 PWM 信号
-    PWM = 1;
-else
-    PWM = 0;
-```
-
-- **定时器重载**：在每次中断时重新加载定时器初值，确保周期性。
-- **计数与周期**：`time` 用于计算 PWM 周期，`gtim_scale` 定义了周期的总计数值。
-- **PWM 控制**：通过比较 `time` 和 `gduty`，决定 `PWM` 的高低状态，从而实现占空比控制。
-
-```c
-#include "public.h"
-#include "pwm.h"
-
-void main()
-{    
-    unsigned char dir = 0; // 默认为0
-    unsigned char duty = 0;
-
-    pwm_init(0XFF,0XF6, 100, 0); // 定时时间为0.01ms，PWM周期是100*0.01ms=1ms，占空比为0%
-
-    while(1)
-    {
-        if(dir == 0) // 当dir为递增方向
-        {
-            duty++; // 占空比递增
-            if(duty == 70)
-                dir = 1;// 当到达一定值切换方向，占空比最大能到100，但到达70左右再递增，肉眼也分辨不出亮度变化    
+    // 连续锯齿波（快速循环）
+    while (1) {
+        for (v = 0; v <= 4095; v += 8) { // 步进越小，波形越细腻
+            dac_out_12b(v);
+            // 控制更新速率（决定输出频率），按需微调
+            tiny_delay(); tiny_delay(); tiny_delay(); tiny_delay();
         }
-        else
-        {
-            duty--;
-            if(duty == 0)
-                dir = 0; // 当到达一定值切换方向    
+    }
+}
+
+/* ---------- 示例2：正弦波查表 ---------- */
+// 256点正弦表（0~4095），幅度≈(4095/2)，直流偏置≈(4095/2)
+unsigned int code sine_lut[256] = {
+    // 可用脚本生成，下面仅示例前16项，实际请填满256点
+    2048,2098,2149,2199,2249,2299,2349,2398,
+    2447,2496,2544,2591,2638,2684,2729,2774,
+    // ……（请补齐256项）……
+};
+
+void demo_sine(void)
+{
+    unsigned char i = 0;
+    while (1) {
+        dac_out_12b(sine_lut[i++]);
+        // 控制输出频率：Fout ≈ Fs/256，其中 Fs 为本循环更新频率
+        // 例如 i++ 每次后 tiny_delay 若 ~2us，则 Fs≈500kSPS，Fout≈~1953Hz
+        tiny_delay(); tiny_delay();
+    }
+}
+
+/* ---------- 主程序 ---------- */
+void main(void)
+{
+    // 缺省电平
+    DAC_CS = 1; DAC_SCK = 0; DAC_SDI = 0;
+
+    // 任选其一：锯齿/正弦
+    // demo_sawtooth();
+    demo_sine();
+}
+```
+
+要点：
+
+- 输出电压计算（GA=1x）：Vout ≈ (code/4096) × Vref
+- 若使用 5.000V 作为 Vref，code=2048 时约 2.5V。
+- 正弦表可用脚本离线生成（0.5×FS 振幅 + 0.5×FS 直流偏置），避免实时浮点。
+
+---
+
+## 4. 方案二：PWM + RC 低通“伪 DAC”（备选）
+
+当无专用 DAC 芯片时，可用较高频率 PWM，经 RC 低通滤波得到近似直流电压/慢变波形。
+
+### 4.1 硬件
+
+- 单片机 PWM 引脚 → RC 一阶低通 → 测试点
+- 典型取值：R=10kΩ、C=0.1µF（fc≈1/(2πRC)≈159 Hz）
+- PWM 频率需远高于 fc（建议 5~20 kHz）
+
+### 4.2 软件（定时器产生 PWM，占空比映射输出电压）
+
+```c
+#include <reg52.h>
+
+/* 以 T0 方式2 或方式1 产生 ~10kHz PWM 的思路：
+   简化处理：软件PWM（中断中计数） */
+sbit PWM_PIN = P3^7;
+
+volatile unsigned char duty = 128; // 0~255 -> 0~100%占空比
+volatile unsigned char cnt  = 0;
+
+void timer0_init_10kHz(void){
+    // 11.0592MHz，方式2（8位自动重装）计算略，可按实际微调
+    TMOD = (TMOD & 0xF0) | 0x02;
+    TH0  = 0x9C;  // 约10kHz
+    TL0  = 0x9C;
+    ET0  = 1; EA = 1; TR0 = 1;
+}
+
+void t0_isr(void) interrupt 1 {
+    cnt++;
+    if (cnt < duty) PWM_PIN = 1; else PWM_PIN = 0;
+    // 周期结束
+    if (cnt == 255) cnt = 0;
+}
+
+void main(){
+    PWM_PIN = 0;
+    timer0_init_10kHz();
+
+    while(1){
+        // 扫占空比：0→100%
+        unsigned char d;
+        for(d=0; d<255; d+=8){
+            duty = d;
+            // 经过RC后，输出近似 Vout ≈ Vcc * duty/255
+            // 上升/下降受时间常数τ=RC影响，变化较缓
+            // 观察万用表/示波器输出即可
+            // 简单停顿
+            {
+                unsigned int i,j;
+                for(i=0;i<200;i++) for(j=0;j<125;j++);
+            }
         }
-        pwm_set_duty_cycle(duty); // 设置占空比
-        delay_ms(1); // 短暂延时，让呼吸灯有一个流畅的效果            
     }
 }
 ```
 
-## 6. 小结
+要点：
 
-    从整体上简单分析一下代码：
-
-    上述代码主要是基于定时器实现 PWM 输出， PWM 初始化实际上为定时器 0 初始化， pwm_init 函数有 4 个入口参数， tim_h 和 tim_l 为定时器定时初值， 即进入中断时间； tim_scale 参数为 PWM 的周期倍数， 使用该值乘以定时器初值可得出 PWM 的周期； duty 参数为 PWM 占空比， 即一个周期内高电平所占的时间比例。在 pwm 初始化函数内， 将函数入口参数通过全局变量保存， 方便在后续中断函数内使用。
-
-    pwm_set_duty_cycle 函数是占空比设置函数， 该函数有一个入口参数， 用于设置 PWM 占空比， 注意， 该值不能超过初始化中的 PWM 的周期倍数值。
-
-    最后就是定时器 0 的中断服务函数， 在中断内定义了一个静态变量用于统计进入中断的次数时间， 当进入中断次数时间大于等于 gtim_scale 周期倍数， 则重新开始计数， 表示 PWM 周期为定时器初值*gtim_scale； 然后当计数次数时间小于等于设置的占空比次数时间， 则使对应 IO 输出高电平， 否则输出低电平。
-
-    主函数比较简单， 首先调用外设驱动头文件， 然后进入主函数初始化 PWM，将定时器设置为 0.01ms， 初值为 0XFFF6， 即每隔 0.01ms 进入一次中断。 PWM 周期倍数设置为 100， 即 PWM 周期为 1ms， 占空比设置为 0。 最后进入 while 循环，通过 dir 切换方向实现 duty 值的自增和自减来调节占空比， 将该值传入到占空比调节函数 pwm_set_duty_cycl。 为了使呼吸灯流畅， 每调节占空比短暂延时一下
+- 低频慢变电压可行；若要音频/高保真波形，需更高 PWM 频率与更高阶滤波。
+- PWM+RC 的输出阻抗较高、纹波受负载影响较大，工程上常用专用 DAC 替代。
 
 ---
 
-2024.7.23 第一次修订
+## 5. 测试与应用
 
-2024.8.23 第二次修订，后期不再维护
+- 直流输出：依次输出 0%、50%、100%（或 0、2048、4095），用万用表测电压是否接近理论值。
+- 波形输出：锯齿/正弦，示波器观察波形形状与幅值；增大查表点数/提高更新率可改善失真。
+- 驱动/缓冲：若需带载，建议在 VOUT 后加运放缓冲（电压跟随器），减小源阻抗与负载效应。
+
+---
+
+## 6. 误差与优化
+
+- 参考误差：Vref 稳定度直接影响绝对精度，建议用高精度基准源。
+- 线性度与微分非线性（INL/DNL）：取决于 DAC 芯片，选择与应用需求相匹配的器件。
+- 更新抖动：中断/轮询抖动会引入相位噪声；可用定时器中断固定节拍更新。
+- 滤波：对正弦/音频应用，使用FIR/IIR数字生成+模拟低通配合，效果更好。
+- 噪声与地：模拟与数字地分区、单点汇接，减少地弹与串扰。
+
+---
+
+## 7. 小结
+
+- 掌握了两种DAC实现：专用串行DAC（MCP4921，主推）与 PWM+RC 替代方案。
+- 给出完整代码：SPI位操作、12位码输出、锯齿与正弦查表。
+- 了解输出电压与参考的关系、更新率与波形质量的权衡。
+- 为后续“任意波形发生器”“音频播放”“偏置控制”等应用奠定基础。
+
+常见问题与排查：
+
+- 无输出/固定电平：检查 CS/SCK/SDI 连接与时序（上升沿采样）、LDAC/SHDN 管脚。
+- 电压不准：Vref 实际值与计算不符；负载过重；未使用缓冲。
+- 波形畸变：更新率低、查表点稀疏；长导线与地回路引入噪声。
+- PWM方案纹波大：提高 PWM 频率、优化 RC 值、增加阶数或改用专用 DAC。
+
+---
